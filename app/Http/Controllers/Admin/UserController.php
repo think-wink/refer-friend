@@ -11,12 +11,9 @@ use Illuminate\Support\Facades\Log;
 
 use App\Models\User;
 
-use App\Http\Requests\User\CreateRequest;
-use App\Http\Requests\User\IndexRequest;
 use App\Http\Requests\User\Store as StoreRequest;
 use App\Http\Requests\User\AdminStore;
 
-use App\Models\Admin\Role;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -24,7 +21,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */    
-    public function index(IndexRequest $request)
+    public function index()
     {
 
         return Inertia::render('Admin/UsersTable', [
@@ -32,8 +29,7 @@ class UserController extends Controller
                 'table_url' => route('dashboard.users'),
                 'box_filter_column' => 'email'
             ],
-            'user_url' => '/dashboard/users/admin/',
-            'roles' => Role::all()
+            'user_url' => '/dashboard/users/admin/'
         ]);
 
     }
@@ -51,7 +47,7 @@ class UserController extends Controller
         return ['token' => $token->plainTextToken];
     }
 
-    public function create(CreateRequest $request)
+    public function create(Request $request)
     {
         User::create([
             'email' => $request['email'],
@@ -60,24 +56,14 @@ class UserController extends Controller
         ]);
     }
 
-    public function store(User $user, StoreRequest $request)
+    public function store(User $user, Request $request)
     {
         $request_data = $request->all();
         $user->fill($request_data)->save();
     }
     
-    public function storeAdmin(User $user, AdminStore $request)
+    public function storeAdmin(User $user, Request $request)
     {
-        $user->roles()->detach();
-
-        if($request->admin) {
-            $user->roles()->attach(1);
-        }
-        
-        if($request->user) {
-            $user->roles()->attach(2);
-        }
-        
         if($request->new_email) {
             $user->email = $request->new_email;
         }

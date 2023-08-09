@@ -58,8 +58,8 @@ Route::prefix('dashboard')->name('dashboard.')->middleware([
         Route::put('/users/admin/{user}/store', 'storeAdmin');
     });
     
-    Route::get('/accounts', function () {
-        return Inertia::render('Admin/AccountsTable');
+    Route::get('/', function () {
+        return Inertia::render('Admin/DashboardPage');
     })->name('accounts');
 });
 

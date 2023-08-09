@@ -1,17 +1,34 @@
-<script setup>
+<script>
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
-import AppLayout from '../../Layouts/AppLayout.vue';
-import SyncedTable from '../../Components/SyncedTable.vue';
-import ConfirmationModel from '../../Components/ConfirmationModel.vue';
-import RowTitle from '../../Components/RowTitle.vue';
-import TableCell from '../../Components/TableCell.vue';
-import TextInputLight from '../../Components/TextInputLight.vue';
-import PopupButton from '../../Components/PopupButton.vue';
-</script>
 
-<script>
+import ConfirmationModel from '../../Components/ConfirmationModel.vue';
+import PopupButton from '../../Components/PopupButton.vue';
+
+import AppLayout from '../../Layouts/AppLayout.vue';
+import SyncedTable from '../../Components/SyncedTable/SyncedTable.vue';
+import RowHeading from '../../Components/SyncedTable/HeadingRow/RowHeading.vue';
+import ColumnSelect from '../../Components/SyncedTable/ActionsRow/ColumnSelect.vue';
+import TextFilter from '../../Components/SyncedTable/ActionsRow/TextFilter.vue';
+import FilterEnums from '../../Components/SyncedTable/ActionsRow/FilterEnums.vue';
+import TextCell from '../../Components/SyncedTable/DataRow/TextCell.vue';
+import ListCell from '../../Components/SyncedTable/DataRow/ListCell.vue';
+import DateCell from '../../Components/SyncedTable/DataRow/DateCell.vue';
+
 export default {
+  components: {
+    ConfirmationModel,
+    PopupButton,
+    AppLayout,
+    SyncedTable,
+    RowHeading,
+    ColumnSelect,
+    TextFilter,
+    FilterEnums,
+    ListCell,
+    DateCell,
+    TextCell,
+  },
   props: {
     table: Object,
     user_url: String,
@@ -20,49 +37,18 @@ export default {
   data() {
     return {
       table_key: ref(0),
-      show_update_user: false,
       show_create: false,
-      user_row: {},
-      update_user_form: null,
       new_user_form: useForm({
         email: '',
       }),
     };
   },
   methods: {
-    hideUpdateUser() {
-      this.show_update_user = false;
-    },
     setCreate(value) {
       this.show_create = value;
     },
-    showUpdateUser(props) {
-      this.user_row = props.row;
-      const user_form = {
-        new_email: '',
-        new_password: '',
-        password_confirm: '',
-      };
-      this.roles.forEach((value) => {
-        if (this.user_row.role_names.includes(value.type)) {
-          user_form[value.type] = true;
-        } else {
-          user_form[value.type] = false;
-        }
-      });
-      this.update_user_form = useForm({ ...user_form });
-      this.show_update_user = true;
-    },
-    updateUser() {
-      this.update_user_form.put(`${this.user_url}${this.user_row.id}/store`, {
-        onSuccess: () => {
-          this.show_update_user = false;
-          this.table_key += 1;
-        },
-      });
-    },
     createNewUser() {
-      this.new_user_form.post(`${this.user_url}create`, {
+      this.new_user_form.post('/dashboard/users/admin/create', {
         preserveScroll: true,
         onSuccess: () => {
           this.setCreate(false);
@@ -70,124 +56,81 @@ export default {
         },
       });
     },
-    parseDate(value) {
-      const date = new Date(value);
-      return date.toLocaleString();
-    },
   },
 };
 </script>
 
 <template>
   <AppLayout title="users">
-    <ConfirmationModel
-      :show="show_update_user"
-      :close="() => hideUpdateUser()"
-    >
-      <template #title>
-        Updating User: {{ user_row.name }}
-      </template>
-      <template #body>
-        <p class="text-xl">Roles</p>
-        <div v-for="role in roles" :key="role.id" class="flex flex-row">
-          <input
-            v-model="update_user_form[role.type]"
-            class="mt-1 mr-3 text-orange "
-            type="checkbox"
+    <Suspense>
+      <SyncedTable
+        columns_url="/dashboard/users/columns"
+        data_url="/dashboard/users/data"
+      >
+        <template #actions="action_props">
+          <ColumnSelect
+            :initial_columns="action_props.state_data.columns"
+            :update="action_props.updateSelectedColumns"
           />
-          <p> {{ role.type }}</p>
-        </div>
-
-        <TextInputLight
-          class="mt-3 bg-white"
-          v-model="update_user_form.new_email"
-          label="New Email"
-          :error="update_user_form.errors.new_email"
-        />
-
-        <TextInputLight
-          class="mt-3 bg-white"
-          v-model="update_user_form.new_password"
-          label="New Password"
-          type="password"
-          :error="update_user_form.errors.new_password"
-        />
-        <TextInputLight
-          class="mt-3 bg-white"
-          v-model="update_user_form.password_confirm"
-          label="Confirm Password"
-          type="password"
-          :error="update_user_form.errors.password_confirm"
-        />
-      </template>
-      <template #buttons>
-        <PopupButton @click="updateUser"> Save </PopupButton>
-        <PopupButton @click="hideUpdateUser"> Cancel </PopupButton>
-      </template>
-    </ConfirmationModel>
-    <SyncedTable
-      v-bind="table"
-      :key="table_key"
-    >
-      <template #buttons>
-        <button class="mx-3 px-2 text-white bg-orange rounded my-2" @click="setCreate(true)">
-          New User
-        </button>
-        <ConfirmationModel
-          :show="show_create"
-          :close="() => setCreate(false)"
-        >
-          <template #title>
-            Create a new User
-          </template>
-          <template #body>
-            <div class="flex flex-row">
-              <p> Email: </p>
-              <input
-                v-model="new_user_form.email"
-                class="mx-3 px-2 text-primary border border-primary"
-              />
-            </div>
-            <p
-              v-if="new_user_form.errors.email"
-              class="text-[red]"
-            >
-              {{ new_user_form.errors.email}}
-            </p>
-        </template>
-      <template #buttons>
-        <PopupButton @click="createNewUser"> Save </PopupButton>
-        <PopupButton @click="setCreate(false)"> Cancel </PopupButton>
-      </template>
-        </ConfirmationModel>
-      </template>
-      <template #colNames="row_props">
-          <RowTitle :row_props="row_props" item_id="id" />
-          <RowTitle :row_props="row_props" item_id="name" />
-          <RowTitle :row_props="row_props" item_id="email" />
-          <RowTitle :row_props="row_props" item_id="role_names" />
-          <RowTitle :row_props="row_props" item_id="updated_at" />
-          <RowTitle :row_props="row_props" item_id="created_at" />
-          <th> Actions </th>
-      </template>
-      <template #row="row_props">
-        <TableCell :row_props="row_props" item_id="id" />
-        <TableCell :row_props="row_props" item_id="name" />
-        <TableCell :row_props="row_props" item_id="email" />
-        <TableCell :row_props="row_props" item_id="role_names" />
-        <TableCell :row_props="row_props" item_id="updated_at" />
-        <TableCell :row_props="row_props" item_id="created_at" />
-        <td>
-          <button
-            @click="showUpdateUser(row_props)"
-            :id="row_props.id"
-            class="block border rounded border-orange p-1 align-middle
-                   text-center text-orange bg-primary hover:bg-orange hover:text-white"
-            >
-            Update
+          <FilterEnums
+            :initial_filters="action_props.state_data.filters"
+            :update="action_props.updateFilters"
+            :columns="action_props.column_data"
+          />
+          <TextFilter
+            :update="action_props.updateFilters"
+            column_name="email"
+          />
+          <button class="px-2 text-white bg-orange rounded my-2" @click="create(true)">
+            New User
           </button>
-        </td>
-      </template>
-    </SyncedTable>
+          <ConfirmationModel
+            :show="show_create"
+            :close="() => setCreate(false)"
+          >
+            <template #title>
+              Create a new User
+            </template>
+            <template #body>
+              <div class="flex flex-row">
+                <p> Email: </p>
+                <input
+                  v-model="new_user_form.email"
+                  class="mx-3 px-2 text-primary border border-primary"
+                />
+              </div>
+              <p
+                v-if="new_user_form.errors.email"
+                class="text-[red]"
+              >
+                {{ new_user_form.errors.email}}
+              </p>
+          </template>
+        <template #buttons>
+          <PopupButton @click="createNewUser"> Save </PopupButton>
+          <PopupButton @click="setCreate(false)"> Cancel </PopupButton>
+        </template>
+          </ConfirmationModel>
+        </template>
+        <template #headings>
+            <RowHeading column_name="id" />
+            <RowHeading column_name="name" />
+            <RowHeading column_name="email" />
+            <RowHeading column_name="updated_at" />
+            <RowHeading column_name="created_at" />
+            <th> Actions </th>
+        </template>
+        <template #row="row_props">
+          <TextCell :data="row_props.row.id" />
+          <TextCell :data="row_props.row.name" />
+          <TextCell :data="row_props.row.email" />
+          <DateCell :data="row_props.row.updated_at" />
+          <DateCell :data="row_props.row.created_at" />
+        </template>
+      </SyncedTable>
+    </Suspense>
+    <template #fallback>
+      <div class="text-white"> Loading ...</div>
+    </template>
   </AppLayout>
 </template>

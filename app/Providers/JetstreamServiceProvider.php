@@ -34,7 +34,6 @@ class JetstreamServiceProvider extends ServiceProvider
             $user = User::where('email', $request->email)->first();
     
             if ($user &&
-                $user->isAdmin() &&
                 Hash::check($request->password, $user->password)) {
                 return $user;
             }

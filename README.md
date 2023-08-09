@@ -8,25 +8,6 @@
 5. `sail artisan migrate`
 5. `npm install `
 
-## ngrok setup
-1. install ngrok 
-2. get your auth token 
-3. set your config to the following. use `ngrok config check` to find the path create if it doesn't exist 
-```yml
-version: "2"
-authtoken: {your auth token}
-tunnels:
-  site:
-    addr: 80
-    proto: http
-    hostname: wink-dashboard.au.ngrok.io
-  vite:
-    addr: 4040
-    proto: http
-    hostname: wink-dashboard.au.ngrok.io
-```
-4. `ngrok start --all` open ngrok
-
 ## switching environments
 1. rename the APP_ENV to match the environment 
 2. restart sail 

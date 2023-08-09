@@ -72,7 +72,6 @@ export default {
   <ILink
     :href="route('dashboard.users')"
     :class="row_style"
-    v-if="$page.props.auth.user.role_names.includes(admin_user)"
   >
     <UserGroupIconFill
       v-if="title === 'users'"

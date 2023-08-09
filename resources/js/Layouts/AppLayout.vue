@@ -20,11 +20,6 @@ defineProps({
               <p class="text-white self-center justify-self-end mx-3">
               Welcome back, <span class="capitalize"> {{ $page.props.auth.user.name }} </span>!
               </p>
-              <img
-              :src="$page.props.auth.user.profile_photo_url"
-              :alt="$page.props.auth.user.name"
-              class="rounded-full h-10 w-10 mr-4 object-cover"
-                        >
             </div>
           </div>
         </div>

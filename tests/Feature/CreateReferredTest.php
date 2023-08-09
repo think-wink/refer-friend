@@ -1,17 +1,12 @@
 <?php
 
-namespace Tests\Feature\Api;
+namespace Tests\Feature;
 
-use Illuminate\Testing\Fluent\AssertableJson;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
 use App\Models\User;
-use App\Models\Internal\Retailer;
-use App\Models\Internal\Transaction;
-
 use Tests\TestCase;
 
-class TransactionTest extends TestCase
+class CreateReferredTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -31,15 +26,22 @@ class TransactionTest extends TestCase
             'Content-Type' => 'application/json',
         ];
     }
-   
+
     /**
      * A basic feature test example.
      */
     public function test_unauthenticated(): void
     {
-       
+        $response = $this->post('/api/referrer/create', [], ['Accept' => 'application/json']);
+        $response->assertStatus(401);
     }
 
-    
+    /**
+     * A basic feature test example.
+     */
+    public function test_empty(): void
+    {
+        $response = $this->post('/api/referrer/create', [], $this->headers);
+        $response->assertStatus(422);
+    }
 }
-
