@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('referrers', function (Blueprint $table) {
+        Schema::create('referred_aliases', function (Blueprint $table) {
             $table->id();
-            $table->uuid();
             $table->timestamps();
             $table->string('email')->unique();
-            $table->boolean('accepted_contact')->default(false);
-            $table->boolean('accepted_terms')->default(false);
+            $table->foreignId('referred_id');
+            $table->foreign('referred_id')->references('id')->on('referreds');
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('referers');
+        Schema::dropIfExists('referred_aliases');
     }
 };

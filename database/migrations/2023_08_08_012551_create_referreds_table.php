@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\Models\Customer\Referred;
 return new class extends Migration
 {
     /**
@@ -15,27 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('email')->unique();
-            $table->string('cellphone')->unique();
+            $table->string('phone_number');
             $table->string('first_name');
-            $table->string('surname');
-            $table->enum('status', [
-                'eligibly_email_1_sent',
-                'eligibly_email_2_sent',
-                'eligibly_email_3_sent',
-                'eligibly_form_completed',
-                'eligibly_form_matched',
-                'not_interested',
-                'nurture_cycle_email_1_sent',
-                'nurture_cycle_email_2_sent',
-                'nurture_cycle_email_3_sent',
-                'meeting_booked',
-                'ineligible',
-                'pension_boot_eligible',
-                'loan_eligible',
-                'loan_approved',
-                'pension_boot_approved',
-                'reward_credited' 
-            ]);
+            $table->string('last_name');
+            $table->enum('reward_status', array_merge(Referred::INTERNAL_STATUS, Referred::EXTERNAL_STATUS));
+            $table->enum('match_status', Referred::MATCH_STATUS);
             $table->foreignId('referrer_id');
             $table->foreign('referrer_id')->references('id')->on('referrers');
         });

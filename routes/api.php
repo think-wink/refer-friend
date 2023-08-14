@@ -19,7 +19,7 @@ use App\Http\Controllers\Api\Auth;
 
 Route::middleware('auth:sanctum')->controller(Customer::class)->group(function() {
     Route::post('referred/update', 'updateReferred');
-    Route::post('referred/create', 'createReferred');
+    Route::post('referrer/{uuid}/referred/create', 'createReferred');
     Route::post('referrer/create', 'createReferrer');
 });
 

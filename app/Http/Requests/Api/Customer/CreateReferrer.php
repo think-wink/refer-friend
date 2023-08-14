@@ -27,6 +27,7 @@ class CreateReferrer extends FormRequest
                 'array',
             ],
             'referrers.*.email' => [
+                'required',
                 'distinct:strict',
                 'email',
                 'unique:referrers,email'

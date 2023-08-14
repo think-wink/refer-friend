@@ -4,8 +4,20 @@ namespace App\Models\Customer;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Referer extends Model
+use App\Models\Traits\HasUUID;
+
+class Referrer extends Model
 {
     use HasFactory;
+
+    use HasUUID;
+
+    public $fillable = ['email'];
+
+    public function referred(): HasMany
+    {
+        return $this->hasMany(Referred::class);
+    }
 }
