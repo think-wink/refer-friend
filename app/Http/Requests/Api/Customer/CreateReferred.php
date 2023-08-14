@@ -22,29 +22,28 @@ class CreateReferred extends FormRequest
     public function rules(): array
     {
         return [
-            'referred' => [
+            'referees' => [
                 'required',
                 'array',
             ],
-            'referred.*.email' => [
+            'referees.*.email' => [
                 'required',
                 'distinct:strict',
                 'email',
                 'unique:referreds'
             ],
-            'referred.*.phone_number' => [
+            'referees.*.phone_number' => [
                 'required',
                 'distinct:strict',
-                'digits:10',
-                'unique:referreds'
+                'digits:10'
             ],
-            'referred.*.first_name' => [
+            'referees.*.first_name' => [
                 'required',
                 'string',
                 'min:2',
                 'max:50'
             ],
-            'referred.*.last_name' => [
+            'referees.*.last_name' => [
                 'required',
                 'string',
                 'min:2',

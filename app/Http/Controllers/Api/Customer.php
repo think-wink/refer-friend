@@ -15,6 +15,14 @@ use Illuminate\Support\Facades\Log;
 
 class Customer extends Controller
 {
+    /**
+     * Create New Referrers
+     * 
+     * creates new referrer from an email address. 
+     * this referrer will be email a form to refer friends with
+     *  
+     * @response 201 {"message": "created x new referrers"}
+     */
     public function createReferrer(CreateReferrer $request){
         
         foreach($request['referrers'] as $referrer) {
@@ -23,31 +31,45 @@ class Customer extends Controller
         return response(['message' => 'created'.count($request['referrers']).' new referrers'], 201);
     }
 
+    /**
+     * @hideFromAPIDocumentation
+     * 
+    */
     public function createReferred(string $uuid, CreateReferred $request){
         $referrer = Referrer::where('uuid', $uuid)->first();
         
         if(! $referrer instanceof Referrer){
             return response(['error' => "no referrer found with uuid: $uuid", 404]);
         } 
-        $new = $referrer->referred()->createMany([
-            ...$request['referred'],
-            ...['match_status' => 'not_updated']
-        ]);
+        $referees = $request['referees'];
+        foreach(array_keys($request['referees']) as $key) {
+            $referees[$key]['match_status'] = 'not_updated';
+        }
+        $new = $referrer->referred()->createMany($referees);
         return response(['message' => 'created'.count($new).' new referrals'], 201);
     }
 
+    /**
+     * Upsert Referred Friend's Status
+     * 
+     * Uses the match_* fields to update a Referred friend, and sets the status.
+     * If no match is found a new Referred Friend will be created with the given status.
+     * @bodyParam referees object[] required the list of Referred friends to upsert
+     * @bodyParam referees[].match_phone_number string required Must be at least 10 characters. Must not be greater than 50 characters. Example: +61 5054 43251
+     * @response 201 {"message": "Upsert Successful"}
+     */
     public function updateReferredStatus(UpdateReferred $request) {
-        foreach($request['referred'] as $referred_request) {
+        foreach($request['referees'] as $referred_request) {
             $referred = $this->referrerSearch($referred_request);
-            $referred->status = $referred_request['new_status'];
+            $referred->reward_status = $referred_request['new_status'];
             $referred->save();
         }
-        return response('', 201);
+        return response(['message' => 'Upset Successful'], 201);
     }
 
     protected function referrerSearch(array $search_terms): Referred {
-        $referred = Referred::where('email', $search_terms['match_email'])->first();
         
+        $referred = Referred::where('email', $search_terms['match_email'])->first();
         if($referred) {
            return $referred->setAutoStatus();
         }
@@ -76,7 +98,7 @@ class Customer extends Controller
             'first_name' =>  $search_terms['match_first_name'],
             'last_name' => $search_terms['match_last_name'],
             'email' => $search_terms['match_email'],
-            'phone' => $search_terms['match_phone_number'],
+            'phone_number' => $search_terms['match_phone_number'],
             'match_status' => 'failed'
         ]);
 

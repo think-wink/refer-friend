@@ -4,6 +4,7 @@ namespace Database\Factories\Customer;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Customer\Referred;
+use App\Models\Customer\Referrer;
 use App\Models\Customer\ReferredAlias;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer\Referred>
@@ -32,6 +33,7 @@ class ReferredFactory extends Factory
             'phone_number' => $this->faker->phoneNumber(),
             'reward_status' => $this->faker->randomElement($reward_status),
             'match_status' => 'auto',
+            'referrer_id' => Referrer::factory(),
         ];
     }
 

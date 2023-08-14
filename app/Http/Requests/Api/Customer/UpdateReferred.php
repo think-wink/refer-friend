@@ -24,15 +24,18 @@ class UpdateReferred extends FormRequest
     public function rules(): array
     {
         return [
-            'referrers' => [
+            'referees' => [
                 'required',
                 'array',
             ],
-            'referrers.*.match_email' => 'email|required',
-            'referrers.*.match_phone_number' => 'string|required',
-            'referrers.*.match_first_name' => 'required|string|min:2|max:50',
-            'referrers.*.match_last_name' =>'required|string|min:2|max:50',
-            'referrers.*.new_status' => Rule::in(Referred::EXTERNAL_STATUS)
+            'referees.*.match_email' => 'email|required',
+            'referees.*.match_phone_number' => 'required|string|min:10|max:50',
+            'referees.*.match_first_name' => 'required|string|min:2|max:50',
+            'referees.*.match_last_name' =>'required|string|min:2|max:50',
+            'referees.*.new_status' => [
+                'required',
+                Rule::in(Referred::EXTERNAL_STATUS)
+            ]
         ];
     }
 }

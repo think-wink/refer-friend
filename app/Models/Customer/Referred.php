@@ -27,10 +27,10 @@ class Referred extends Model
         'not_interested', 
         'meeting_booked', 
         'ineligible', 
-        'pension_boot_eligible',
+        'pension_boost_eligible',
         'loan_eligible',
         'loan_approved', 
-        'pension_boot_approved', 
+        'pension_boost_approved', 
     ];
 
     const MATCH_STATUS = [
@@ -60,7 +60,7 @@ class Referred extends Model
         return $this->BelongsTo(Referrer::class);
     }
 
-    protected function setAutoStatus(): static {
+    public function setAutoStatus(): static {
         if($this->match_status === 'not_updated') {
             $this->match_status = 'auto';
             $this->save();

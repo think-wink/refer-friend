@@ -30,143 +30,380 @@ class UpdateReferredStatusTest extends TestCase
         ];
     }
 
-    // /**
-    //  * A basic feature test example.
-    //  */
-    // public function test_unauthenticated(): void
-    // {
-    //     $response = $this->postJson('/api/referrer/create', [], ['Accept' => 'application/json']);
-    //     $response->assertStatus(401);
-    // }
+    public function test_unauthenticated(): void
+    {
+        $this->postJson('/api/referred/update', [], ['Accept' => 'application/json'])
+            ->assertStatus(401);
+    }
 
-    // /**
-    //  * A basic feature test example.
-    //  */
-    // public function test_empty(): void
-    // {
-    //     $response = $this->postJson('/api/referrer/create', [], $this->headers);
-    //     $response->assertStatus(422);
-    // }
+    public function test_empty(): void
+    {
+        $this->postJson('/api/referred/update', [], $this->headers)
+            ->assertStatus(422);
+    }
 
-    // /**
-    //  * A basic feature test example.
-    //  */
-    // public function test_missing_referrers(): void
-    // {
-    //     $response = $this->postJson('/api/referrer/create', ['x'], $this->headers);
-    //     $response->assertStatus(422);
-    // }
+    public function test_missing_referrers(): void
+    {
+        $this->postJson('/api/referred/update', ['x'], $this->headers)
+            ->assertStatus(422);
+    }
 
-    //  /**
-    //  * A basic feature test example.
-    //  */
-    // public function test_referrers_wrong_type(): void
-    // {
-    //     $response = $this->postJson('/api/referrer/create', ['referrers' => 5], $this->headers);
-    //     $response->assertStatus(422);
-    // }
+    public function test_referrers_wrong_type(): void
+    {
+        $this->postJson('/api/referred/update', ['referees' => 5], $this->headers)
+            ->assertStatus(422);
+    }
 
-    // /**
-    //  * A basic feature test example.
-    //  */
-    // public function test_referrers_empty(): void
-    // {
-    //     $response = $this->postJson('/api/referrer/create', ['referrers' => []], $this->headers);
-    //     $response->assertStatus(422);
-    // }
+    public function test_referrers_empty(): void
+    {
+        $this->postJson('/api/referred/update', ['referees' => []], $this->headers)
+            ->assertStatus(422);
+    }
 
-    // /**
-    //  * A basic feature test example.
-    //  */
-    // public function test_referrers_unexpected_value(): void
-    // {
-    //     $response = $this->postJson('/api/referrer/create', ['referrers' => [
-    //         '5'
-    //     ]], $this->headers);
-    //     $response->assertStatus(422);
-    // }
-     
-    // /**
-    //  * A basic feature test example.
-    //  */
-    // public function test_referrers_email_field_empty(): void
-    // {
-    //     $response = $this->postJson('/api/referrer/create', ['referrers' => [
-    //         'email' => ''
-    //     ]], $this->headers);
-    //     $response->assertStatus(422);
-    // }
+    public function test_referrers_unexpected_value(): void
+    {
+        $this->postJson('/api/referred/update', ['referees' => [
+            '5'
+        ]], $this->headers)
+            ->assertStatus(422);
+    }
 
+    public function test_referrers_email_invalid(): void
+    {
+       $this->postJson('/api/referrer/create', ['referrers' => [
+            'email' => 'asdfasdfasd',
+            'match_phone_number' => '1234512345',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+        ]], $this->headers)
+            ->assertStatus(422);
+    }
 
-    //  /**
-    //  * A basic feature test example.
-    //  */
-    // public function test_referrers_email_invaild(): void
-    // {
-    //     $response = $this->postJson('/api/referrer/create', ['referrers' => [
-    //         'email' => 'asdfasdfasd'
-    //     ]], $this->headers);
-    //     $response->assertStatus(422);
-    // }
+    public function test_referrers_first_name_invalid(): void
+    {
+       $this->postJson('/api/referrer/create', ['referrers' => [
+            'email' => 'asdfasdfasd',
+            'match_phone_number' => '1234512345',
+            'match_first_name' => 'asdfasdjfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfsdfasdfasdfasdf',
+            'match_last_name' => "asdfadsf",
+        ]], $this->headers)
+            ->assertStatus(422);
+    }
 
-    //  /**
-    //  * A basic feature test example.
-    //  */
-    // public function test_referrers_referer_exists(): void
-    // {
-    //     Referrer::factory(['email' => 'test@mail.com'])->create();
-    //     $response = $this->postJson('/api/referrer/create', ['referrers' => [
-    //         'email' => 'test@mail.com'
-    //     ]], $this->headers);
-    //     $response->assertStatus(422);
-    // }
+    public function test_referrers_last_name_invalid(): void
+    {
+       $this->postJson('/api/referrer/create', ['referrers' => [
+            'email' => 'asdfasdfasd',
+            'match_phone_number' => '1234512345',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "a",
+        ]], $this->headers)
+            ->assertStatus(422);
+    }
 
-    /**
-     * A basic feature test example.
-     */
-    public function test_create_referrer(): void
+    public function test_referrers_phone_number_invalid(): void
+    {
+       $this->postJson('/api/referrer/create', ['referrers' => [
+            'email' => 'asdfasdfasd',
+            'match_phone_number' => '222',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+        ]], $this->headers)
+            ->assertStatus(422);
+    }
+
+    public function test_email_match(): void
     {   
-        $this->assertNull(Referred::first());
-        $referrer = Referrer::factory()->create();
-        $this->postJson("/api/referrer/$referrer->uuid/referred/create", ['referred' => [
+        Referred::factory(['email' => 'test@mail.com'])->notUpdated()->create();
+        $this->postJson("/api/referred/update", ['referees' => [
            [ 
-            'email' => 'test@mail.com',
-            'phone_number' => '123123123',
-            'first_name' => 'xxxyyycccc',
-            'last_name' => "asdfadsf",
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
             ],
         ]], $this->headers)
             ->assertStatus(201);
-        $item = Referred::first();
-        $this->assertInstanceOf(Referred::class, $item);
-        $this->assertEquals('test@mail.com', $item->email);
+        $referrer =  Referred::first();
+        $this->assertEquals(Referred::count(), 1);
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('auto',  $referrer->match_status);
+    }  
+    
+    public function test_phone_match(): void
+    {   
+        Referred::factory(['phone_number' => '1231223123'])->notUpdated()->create();
+        $this->postJson("/api/referred/update", ['referees' => [
+           [ 
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $referrer =  Referred::first();
+        $this->assertEquals(Referred::count(), 1);
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('auto',  $referrer->match_status);
+
     }
 
-    // /**
-    //  * A basic feature test example.
-    //  */
-    // public function test_duplicate_create_referrer(): void
-    // {   
-    //     $this->postJson('/api/referrer/create', ['referrers' => [
-    //        [ 'email' => 'test@mail.com'],
-    //        [ 'email' => 'test@mail.com']
-    //     ]], $this->headers)
-    //         ->assertStatus(422);
-    // }
+    public function test_phone_with_strip_match(): void
+    {   
+        Referred::factory(['phone_number' => '1231223123'])->notUpdated()->create();
+        $this->postJson("/api/referred/update", ['referees' => [
+           [ 
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1a231223as123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $referrer =  Referred::first();
+        $this->assertEquals(Referred::count(), 1);
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('auto',  $referrer->match_status);
 
-    // /**
-    //  * A basic feature test example.
-    //  */
-    // public function test_double_create_referrer(): void
-    // {   
-    //     $this->postJson('/api/referrer/create', ['referrers' => [
-    //        [ 'email' => 'test@mail.com'],
-    //        [ 'email' => 'te2st@mail.com']
-    //     ]], $this->headers)
-    //         ->assertStatus(201);
-    //     $this->assertEquals(
-    //         2,
-    //         count(Referrer::all())
-    //     );
-    // }
+    }
+
+    public function test_name_match(): void
+    {   
+        Referred::factory(['first_name' => 'xxxyyycccc', 'last_name' => 'asdfadsf'])->notUpdated()->create();
+        $this->postJson("/api/referred/update", ['referees' => [
+           [ 
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $referrer =  Referred::first();
+        $this->assertEquals(Referred::count(), 1);
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('auto',  $referrer->match_status);
+    }
+
+    public function test_duplicate_name_match(): void
+    {   
+        Referred::factory(2, ['first_name' => 'xxxyyycccc', 'last_name' => 'asdfadsf'])->notUpdated()->create();
+        $this->postJson("/api/referred/update", ['referees' => [
+           [ 
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $referrer =  Referred::where('email', 'test@mail.com')->first();
+        $this->assertEquals(Referred::count(), 3);
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('failed',  $referrer->match_status);
+    }
+
+    public function test_name_duplicate_phone_numbers(): void
+    {
+        Referred::factory(2, ['phone_number' => '1231223123'])->notUpdated()->create();   
+        $this->postJson("/api/referred/update", ['referees' => [
+           [ 
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $referrer =  Referred::where('email', 'test@mail.com')->first();
+        $this->assertEquals(Referred::count(), 3);
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('failed',  $referrer->match_status);
+    }
+
+    public function test_name_duplicate_phone_name_diff(): void
+    {
+        Referred::factory(['phone_number' => '1231223123', 'first_name' => 'xxxyyycccc', 'last_name' => 'asdfadsf'])->notUpdated()->create();
+        Referred::factory(['phone_number' => '1231223123', 'first_name' => 'xxxyyycccc', 'last_name' => 'test'])->notUpdated()->create();
+        $this->postJson("/api/referred/update", ['referees' => [
+           [ 
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $referrer =  Referred::where('first_name', 'xxxyyycccc')->where('last_name', 'asdfadsf')->first();
+        $this->assertEquals(Referred::count(), 2);
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('auto',  $referrer->match_status);
+    }
+
+    public function test_name_duplicate_names_phone_diff(): void
+    {
+        Referred::factory(['phone_number' => '1231223122', 'first_name' => 'xxxyyycccc', 'last_name' => 'asdfadsf'])->notUpdated()->create();
+        Referred::factory(['phone_number' => '1231223123', 'first_name' => 'xxxyyycccc', 'last_name' => 'asdfadsf'])->notUpdated()->create();
+        $this->postJson("/api/referred/update", ['referees' => [
+           [ 
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $referrer =  Referred::where('phone_number', '1231223123')->first();
+        $this->assertEquals(Referred::count(), 2);
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('auto',  $referrer->match_status);
+    }
+
+    public function test_name_double_duplicate(): void
+    {
+        Referred::factory(['phone_number' => '1231223123', 'first_name' => 'xxxyyycccc', 'last_name' => 'asdfadsf'])->notUpdated()->create();
+        Referred::factory(['phone_number' => '1231223123', 'first_name' => 'xxxyyycccc', 'last_name' => 'asdfadsf'])->notUpdated()->create();
+        $this->postJson("/api/referred/update", ['referees' => [
+           [ 
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $referrer =  Referred::where('email', 'test@mail.com')->first();
+        $this->assertEquals(Referred::count(), 3);
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('failed',  $referrer->match_status);
+    }
+
+    public function test_name_double_duplicate_unique_emails(): void
+    {
+        Referred::factory(['email' => 'test@mail.com', 'phone_number' => '1231223123', 'first_name' => 'xxxyyycccc', 'last_name' => 'asdfadsf'])->notUpdated()->create();
+        Referred::factory(['email' => 'test2@mail.com', 'phone_number' => '1231223123', 'first_name' => 'xxxyyycccc', 'last_name' => 'asdfadsf'])->notUpdated()->create();
+        $this->postJson("/api/referred/update", ['referees' => [
+           [ 
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $referrer =  Referred::where('email', 'test@mail.com')->first();
+        $this->assertEquals(Referred::count(), 2);
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('auto',  $referrer->match_status);
+    }
+
+    public function test_status_manual_no_update(): void
+    {
+        Referred::factory(['email' => 'test@mail.com', 'match_status' => 'manual'])->create();
+        $this->postJson("/api/referred/update", ['referees' => [
+           [ 
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $referrer =  Referred::where('email', 'test@mail.com')->first();
+        $this->assertEquals(Referred::count(), 1);
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('manual',  $referrer->match_status);
+    }
+
+    public function test_status_failed_no_update(): void
+    {
+        Referred::factory(['email' => 'test@mail.com', 'match_status' => 'failed'])->create();
+        $this->postJson("/api/referred/update", ['referees' => [
+           [ 
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $referrer =  Referred::where('email', 'test@mail.com')->first();
+        $this->assertEquals(Referred::count(), 1);
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('failed',  $referrer->match_status);
+    }
+
+    public function test_double_create(): void
+    {
+        Referred::factory(['email' => 'test@mail.com'])->create();
+        Referred::factory(['email' => 'test2@mail.com'])->create();
+
+        $this->postJson("/api/referred/update", ['referees' => [
+           [ 
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+            [ 
+            'match_email' => 'test2@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $this->assertEquals(Referred::count(), 2);
+        $referrer =  Referred::where('email', 'test@mail.com')->first();
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('auto',  $referrer->match_status);
+        $referrer =  Referred::where('email', 'test2@mail.com')->first();
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('auto',  $referrer->match_status);
+    }
+
+    public function test_double_create_one_match_fails(): void
+    {
+        Referred::factory(['email' => 'test@mail.com'])->create();
+
+        $this->postJson("/api/referred/update", ['referees' => [
+           [ 
+            'match_email' => 'test@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+            [ 
+            'match_email' => 'test2@mail.com',
+            'match_phone_number' => '1231223123',
+            'match_first_name' => 'xxxyyycccc',
+            'match_last_name' => "asdfadsf",
+            'new_status' => 'meeting_booked',
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $this->assertEquals(Referred::count(), 2);
+        $referrer =  Referred::where('email', 'test@mail.com')->first();
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('auto',  $referrer->match_status);
+        $referrer =  Referred::where('email', 'test2@mail.com')->first();
+        $this->assertEquals('meeting_booked', $referrer->reward_status);
+        $this->assertEquals('failed',  $referrer->match_status);
+    }
 }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->enum('reward_status', array_merge(Referred::INTERNAL_STATUS, Referred::EXTERNAL_STATUS));
             $table->enum('match_status', Referred::MATCH_STATUS);
-            $table->foreignId('referrer_id');
+            $table->foreignId('referrer_id')->nullable();
             $table->foreign('referrer_id')->references('id')->on('referrers');
         });
     }

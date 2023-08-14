@@ -1,0 +1,208 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/referred/upsert
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Upsert Referred Friend's Status"
+      description: |-
+        Uses the match_* fields to update a Referred friend, and sets the status.
+        If no match is found a new Referred Friend will be created with the given status.
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      referees:
+        name: referees
+        description: 'the list of Referred friends to upsert'
+        required: true
+        example:
+          - []
+        type: 'object[]'
+        custom: []
+      'referees[].match_email':
+        name: 'referees[].match_email'
+        description: 'Must be a valid email address.'
+        required: true
+        example: gerlach.johathan@example.com
+        type: string
+        custom: []
+      'referees[].match_phone_number':
+        name: 'referees[].match_phone_number'
+        description: 'Must be at least 10 characters. Must not be greater than 50 characters.'
+        required: true
+        example: '+61 5054 43251'
+        type: string
+        custom: []
+      'referees[].match_first_name':
+        name: 'referees[].match_first_name'
+        description: 'Must be at least 2 characters. Must not be greater than 50 characters.'
+        required: true
+        example: cyviiatfvmmscxhr
+        type: string
+        custom: []
+      'referees[].match_last_name':
+        name: 'referees[].match_last_name'
+        description: 'Must be at least 2 characters. Must not be greater than 50 characters.'
+        required: true
+        example: eotjtmrfrfb
+        type: string
+        custom: []
+      'referees[].new_status':
+        name: 'referees[].new_status'
+        description: 'Must be one of <code>form_completed</code>, <code>not_interested</code>, <code>meeting_booked</code>, <code>ineligible</code>, <code>pension_boost_eligible</code>, <code>loan_eligible</code>, <code>loan_approved</code>, or <code>pension_boost_approved</code>.'
+        required: true
+        example: loan_eligible
+        type: string
+        custom: []
+    cleanBodyParameters:
+      referees:
+        -
+          match_email: gerlach.johathan@example.com
+          match_phone_number: '+61 5054 43251'
+          match_first_name: cyviiatfvmmscxhr
+          match_last_name: eotjtmrfrfb
+          new_status: loan_eligible
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: '{"message": "Upsert Successful"}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|M40o0zzh7CkG0fOtYvSjxSxqSqL8JzG4byyDtrtx'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/referrer/create
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create New Referrers'
+      description: |-
+        creates new referrer from an email address.
+        this referrer will be email a form to refer friends with
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      referrers:
+        name: referrers
+        description: ''
+        required: true
+        example:
+          - quidem
+        type: 'string[]'
+        custom: []
+      'referrers[].email':
+        name: 'referrers[].email'
+        description: 'Must be a valid email address.'
+        required: true
+        example: sven65@example.com
+        type: string
+        custom: []
+    cleanBodyParameters:
+      referrers:
+        - quidem
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: '{"message": "created x new referrers"}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|M40o0zzh7CkG0fOtYvSjxSxqSqL8JzG4byyDtrtx'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Login to the API'
+      description: |-
+        requires an email & password. returns an API token to use with the other endpoints
+        contact a wink admin to get your account setup
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'the email to user.'
+        required: true
+        example: steuber.ray@example.net
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'the users password.'
+        required: true
+        example: '].?j8Br9f'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      email: steuber.ray@example.net
+      password: '].?j8Br9f'
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: '{"token": "2060|dEKg7dU3vespqTYTuGa1wpkUPGkKISJsWav2XH9p"}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

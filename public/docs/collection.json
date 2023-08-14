@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "https:\/\/wink-dashboard.tw-dev.com"
+            "value": "https:\/\/refer-friend.tw-dev.com"
         }
     ],
     "info": {
         "name": "WinkDashboard",
-        "_postman_id": "0ddf306c-c3bf-4c57-b6c0-6f31c1ebc7b5",
+        "_postman_id": "6d183a69-efc6-463e-904f-0e846244d951",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -20,66 +20,13 @@
             "description": "",
             "item": [
                 {
-                    "name": "GET api\/profile",
+                    "name": "Upsert Referred Friend's Status",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/profile",
+                            "path": "api\/referred\/upsert",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/profile"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "55"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":{\"id\":26,\"name\":\"afasdf\",\"profile_photo\":null,\"status\":\"active\",\"balance\":43713}}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "POST api\/profile\/update",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/profile\/update",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/profile\/update"
+                            "raw": "{{baseUrl}}\/api\/referred\/upsert"
                         },
                         "method": "POST",
                         "header": [
@@ -94,27 +41,27 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"asperiores\",\"profile_photo\":\"https:\\\/\\\/media.istockphoto.com\\\/id\\\/1469947007\\\/photo\\\/holiday-in-hong-kong-ngong-ping-360-view.jpg?s=1024x1024&w=is&k=20&c=RnqpNmkSfz0cwK5tCZZKlzM-G_UF97lKHO7XvDkziLQ=\",\"status\":\"active\"}"
+                            "raw": "{\"referees\":[{\"match_email\":\"gerlach.johathan@example.com\",\"match_phone_number\":\"+61 5054 43251\",\"match_first_name\":\"cyviiatfvmmscxhr\",\"match_last_name\":\"eotjtmrfrfb\",\"new_status\":\"loan_eligible\"}]}"
                         },
-                        "description": ""
+                        "description": "Uses the match_* fields to update a Referred friend, and sets the status.\nIf no match is found a new Referred Friend will be created with the given status."
                     },
                     "response": [
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{ \"id\": 26, \"name\": \"test user\", \"profile_photo\": null, \"status\": \"active\", \"balance\": 43713}",
+                            "body": "{\"message\": \"Upsert Successful\"}",
                             "name": ""
                         }
                     ]
                 },
                 {
-                    "name": "POST api\/profile\/updatePassword",
+                    "name": "Create New Referrers",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/profile\/updatePassword",
+                            "path": "api\/referrer\/create",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/profile\/updatePassword"
+                            "raw": "{{baseUrl}}\/api\/referrer\/create"
                         },
                         "method": "POST",
                         "header": [
@@ -129,523 +76,27 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"password\":\"password\",\"old_password\":\"quia\",\"password_confirmation\":\"password\"}"
+                            "raw": "{\"referrers\":[\"quidem\"]}"
                         },
-                        "description": ""
+                        "description": "creates new referrer from an email address.\nthis referrer will be email a form to refer friends with"
                     },
                     "response": [
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{ \"message\": \"successfully updated the password\"}",
+                            "body": "{\"message\": \"created x new referrers\"}",
                             "name": ""
                         }
                     ]
                 },
                 {
-                    "name": "GET api\/retailers",
+                    "name": "Login to the API",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/retailers",
-                            "query": [
-                                {
-                                    "key": "page",
-                                    "value": "1",
-                                    "description": "the page number to get.",
-                                    "disabled": false
-                                }
-                            ],
-                            "raw": "{{baseUrl}}\/api\/retailers?page=1"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "54"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":[{\"id\":1,\"company_name\":\"Kaya Schiller\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":3,\"retailer_id\":1,\"type\":\"fixed\",\"description\":null,\"terms\":null,\"start_date\":\"2005-07-17T00:00:00.000000Z\",\"end_date\":\"1971-08-24T00:00:00.000000Z\",\"default\":false,\"rate\":4463}},{\"id\":2,\"company_name\":\"Madelynn Bayer\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":8,\"retailer_id\":2,\"type\":\"fixed\",\"description\":\"Qui quia non facilis in dicta. Sint occaecati eum ducimus neque distinctio. Id et est ipsa dolor ullam libero.\",\"terms\":null,\"start_date\":null,\"end_date\":null,\"default\":false,\"rate\":4993}},{\"id\":3,\"company_name\":\"Wiley Stark\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":9,\"retailer_id\":3,\"type\":\"fixed\",\"description\":\"Delectus commodi commodi libero eligendi odio. Ut quidem molestias laboriosam voluptate. Odit eos quisquam dolorum et. Error blanditiis ut qui libero incidunt est architecto.\",\"terms\":null,\"start_date\":\"2016-08-07T00:00:00.000000Z\",\"end_date\":\"1987-06-25T00:00:00.000000Z\",\"default\":true,\"rate\":4517}},{\"id\":4,\"company_name\":\"Brisa Lynch\",\"target_url\":null,\"tracking_url\":\"http:\\\/\\\/www.mann.info\\\/iste-eius-possimus-nulla-quis-in\",\"image\":\"http:\\\/\\\/www.ullrich.com\\\/explicabo-at-ab-est-rerum-ullam-est\",\"max_commission_details\":{\"id\":14,\"retailer_id\":4,\"type\":\"percent\",\"description\":\"Ex consequatur tempora quos omnis laborum nisi. Dolor voluptas corrupti non. Eveniet consequatur a sint sapiente nulla non.\",\"terms\":null,\"start_date\":null,\"end_date\":\"2000-11-05T00:00:00.000000Z\",\"default\":false,\"rate\":4722}},{\"id\":5,\"company_name\":\"Violette Douglas I\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":18,\"retailer_id\":5,\"type\":\"percent\",\"description\":\"Quia ea aut sunt enim unde ea distinctio quidem. Libero qui eaque alias illum nobis dolores. Sed incidunt sit ipsum atque magnam. Autem tempore at quia sint iusto hic tempora.\",\"terms\":null,\"start_date\":\"1995-03-24T00:00:00.000000Z\",\"end_date\":\"1980-07-30T00:00:00.000000Z\",\"default\":false,\"rate\":3681}},{\"id\":6,\"company_name\":\"Miss Natasha Gusikowski\",\"target_url\":null,\"tracking_url\":\"http:\\\/\\\/www.hansen.com\\\/porro-explicabo-iste-omnis\",\"image\":null,\"max_commission_details\":{\"id\":20,\"retailer_id\":6,\"type\":\"percent\",\"description\":\"Optio unde corrupti quam consectetur quia earum iusto. Dolorem nihil totam totam voluptas quae omnis. Tempore id quisquam iste fugiat consequatur animi voluptatem soluta. Unde sed at atque dolor.\",\"terms\":null,\"start_date\":\"2023-01-05T00:00:00.000000Z\",\"end_date\":null,\"default\":false,\"rate\":4516}},{\"id\":7,\"company_name\":\"Dr. Ardith Wisoky PhD\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":23,\"retailer_id\":7,\"type\":\"percent\",\"description\":null,\"terms\":\"Autem odit nihil quia quam iure. Reiciendis enim sunt quisquam in occaecati. Et alias doloribus tempora totam et. Voluptates facere rerum porro aut.\",\"start_date\":\"2007-09-05T00:00:00.000000Z\",\"end_date\":null,\"default\":false,\"rate\":4919}},{\"id\":8,\"company_name\":\"Mateo Schumm Jr.\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":24,\"retailer_id\":8,\"type\":\"percent\",\"description\":null,\"terms\":\"Libero id voluptas ex enim aut. Neque possimus aut voluptatem accusantium. Similique ut temporibus dolorum qui voluptatibus dolorem ut. Ea sit saepe nihil delectus reprehenderit.\",\"start_date\":null,\"end_date\":\"1981-01-09T00:00:00.000000Z\",\"default\":true,\"rate\":4742}},{\"id\":9,\"company_name\":\"Deon Rempel\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":29,\"retailer_id\":9,\"type\":\"percent\",\"description\":\"Odio explicabo odit perferendis saepe est. Laboriosam voluptatem molestiae enim occaecati. Fugit eaque sed nesciunt. Autem sed aut corrupti ex nostrum consequatur.\",\"terms\":\"Qui corporis eius dolorem molestiae rem. Et alias saepe est sed. Labore corrupti neque quisquam rerum. Aliquam ea nemo ut iste.\",\"start_date\":null,\"end_date\":null,\"default\":false,\"rate\":3860}},{\"id\":10,\"company_name\":\"Prof. Jacey Cronin IV\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":31,\"retailer_id\":10,\"type\":\"percent\",\"description\":\"Ipsum ut porro non consectetur ex dolorem. Voluptas est a at nesciunt voluptatem aut. Enim necessitatibus dolorum voluptas officia doloribus voluptate id.\",\"terms\":\"Suscipit enim iste officiis maxime. Nihil ut autem soluta et. Ut nesciunt amet iusto voluptatem reiciendis delectus. Doloremque enim illum possimus ratione sequi officiis exercitationem.\",\"start_date\":null,\"end_date\":\"1993-02-20T00:00:00.000000Z\",\"default\":true,\"rate\":1820}},{\"id\":11,\"company_name\":\"Dr. Brad Hamill\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":32,\"retailer_id\":11,\"type\":\"percent\",\"description\":\"Sed quia quo enim vel voluptatibus. Sequi unde deserunt nostrum animi esse dolorem possimus. Mollitia dolorum in dolor officia. Consequuntur est ut et qui.\",\"terms\":null,\"start_date\":\"1998-09-25T00:00:00.000000Z\",\"end_date\":\"2018-08-25T00:00:00.000000Z\",\"default\":true,\"rate\":4755}},{\"id\":12,\"company_name\":\"Rosario Carroll\",\"target_url\":\"http:\\\/\\\/www.reilly.info\\\/\",\"tracking_url\":null,\"image\":\"http:\\\/\\\/pacocha.com\\\/\",\"max_commission_details\":{\"id\":37,\"retailer_id\":12,\"type\":\"fixed\",\"description\":null,\"terms\":null,\"start_date\":\"1972-07-08T00:00:00.000000Z\",\"end_date\":\"2010-06-09T00:00:00.000000Z\",\"default\":false,\"rate\":4953}},{\"id\":13,\"company_name\":\"Mrs. Lenore Smith\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":43,\"retailer_id\":13,\"type\":\"fixed\",\"description\":\"Iste reprehenderit tempora unde hic ab numquam. Aliquam ex sint aut eaque autem voluptas velit. Nesciunt eos rem enim et quis.\",\"terms\":\"Aspernatur alias assumenda in officiis in eos. Soluta laborum dolorem aut rem. Tempore tempore rem facere rerum minus et.\",\"start_date\":null,\"end_date\":null,\"default\":false,\"rate\":2394}},{\"id\":14,\"company_name\":\"Augustus Bernier DDS\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":46,\"retailer_id\":14,\"type\":\"percent\",\"description\":\"Reiciendis animi a architecto perferendis. Voluptas perferendis nisi aperiam. Libero sequi in numquam.\",\"terms\":\"Aliquid perferendis laborum temporibus voluptas optio labore. Unde ut sit aut quas adipisci eum dolore. Similique et temporibus non sunt tenetur. Ex consequatur est quam reprehenderit.\",\"start_date\":\"2022-01-11T00:00:00.000000Z\",\"end_date\":null,\"default\":true,\"rate\":2737}},{\"id\":15,\"company_name\":\"Evalyn Dicki III\",\"target_url\":\"http:\\\/\\\/www.romaguera.org\\\/ut-aspernatur-fuga-non.html\",\"tracking_url\":\"http:\\\/\\\/www.abshire.info\\\/architecto-vel-dicta-maiores-consequatur-maxime-asperiores-laborum\",\"image\":null,\"max_commission_details\":{\"id\":47,\"retailer_id\":15,\"type\":\"fixed\",\"description\":\"Minus officiis dolorem explicabo praesentium. Eos incidunt ut perspiciatis adipisci iusto eligendi rerum.\",\"terms\":\"Aut qui minus odit iste. Alias necessitatibus sunt qui quia est. Cum aut commodi assumenda ipsum repellat quis.\",\"start_date\":\"2017-01-19T00:00:00.000000Z\",\"end_date\":\"2011-12-02T00:00:00.000000Z\",\"default\":true,\"rate\":4618}},{\"id\":16,\"company_name\":\"Mrs. Verlie Reinger DDS\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":54,\"retailer_id\":16,\"type\":\"fixed\",\"description\":null,\"terms\":null,\"start_date\":null,\"end_date\":null,\"default\":false,\"rate\":4665}},{\"id\":17,\"company_name\":\"Nathen Huels\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":59,\"retailer_id\":17,\"type\":\"fixed\",\"description\":null,\"terms\":\"Recusandae rerum unde doloribus dolorem nemo nemo. Ea neque et maiores quas qui enim. Beatae omnis ut et quisquam. Nulla quia eos accusamus et ut.\",\"start_date\":\"1986-12-29T00:00:00.000000Z\",\"end_date\":null,\"default\":false,\"rate\":4899}},{\"id\":18,\"company_name\":\"Kevon Koepp\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":62,\"retailer_id\":18,\"type\":\"percent\",\"description\":null,\"terms\":null,\"start_date\":null,\"end_date\":\"1982-08-15T00:00:00.000000Z\",\"default\":false,\"rate\":4219}},{\"id\":19,\"company_name\":\"Gage Mraz IV\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":68,\"retailer_id\":19,\"type\":\"percent\",\"description\":\"Et ipsum aut consequatur voluptatem magni nulla aperiam at. Et nostrum voluptatem facere dicta sint ut. Nisi cum quibusdam et dignissimos porro perspiciatis esse. Tenetur ea iusto autem natus.\",\"terms\":null,\"start_date\":null,\"end_date\":\"1994-05-12T00:00:00.000000Z\",\"default\":false,\"rate\":2502}},{\"id\":20,\"company_name\":\"Caesar Cole\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":70,\"retailer_id\":20,\"type\":\"percent\",\"description\":\"Qui quas assumenda autem sed sapiente a laborum reiciendis. In quaerat quasi asperiores. Architecto nihil nihil repellat sint.\",\"terms\":null,\"start_date\":\"1987-10-02T00:00:00.000000Z\",\"end_date\":null,\"default\":false,\"rate\":839}},{\"id\":21,\"company_name\":\"Ena Fisher V\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":71,\"retailer_id\":21,\"type\":\"percent\",\"description\":null,\"terms\":null,\"start_date\":null,\"end_date\":null,\"default\":true,\"rate\":3963}},{\"id\":22,\"company_name\":\"Jailyn Breitenberg\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":72,\"retailer_id\":22,\"type\":\"fixed\",\"description\":\"Nihil repellendus consequuntur itaque et voluptatem aliquam. Modi mollitia distinctio consequuntur vitae ducimus fugiat ea nisi. Porro ex adipisci et. Et sit natus dolorem quo.\",\"terms\":null,\"start_date\":null,\"end_date\":null,\"default\":true,\"rate\":4017}},{\"id\":23,\"company_name\":\"Afton Hintz\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":73,\"retailer_id\":23,\"type\":\"percent\",\"description\":null,\"terms\":null,\"start_date\":\"2019-06-21T00:00:00.000000Z\",\"end_date\":null,\"default\":true,\"rate\":4105}},{\"id\":24,\"company_name\":\"Ms. Hilma Watsica DDS\",\"target_url\":null,\"tracking_url\":null,\"image\":\"http:\\\/\\\/champlin.com\\\/\",\"max_commission_details\":{\"id\":75,\"retailer_id\":24,\"type\":\"fixed\",\"description\":\"Eum voluptas culpa error porro eum a voluptas. Quaerat illo dolorum nihil possimus quis qui. Repellendus voluptates est ut nisi fuga. Doloremque porro inventore magni sed nemo.\",\"terms\":null,\"start_date\":null,\"end_date\":\"1978-02-07T00:00:00.000000Z\",\"default\":true,\"rate\":906}},{\"id\":25,\"company_name\":\"Roselyn Daniel\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":76,\"retailer_id\":25,\"type\":\"fixed\",\"description\":\"Recusandae optio fugiat vel nobis. Est non consequuntur vero similique. Nihil illo qui dolorem sunt.\",\"terms\":\"Dolorem quis labore vitae vel quasi placeat ut. Enim numquam est assumenda voluptatibus quod. Dolores odio accusamus quas accusamus nam est.\",\"start_date\":null,\"end_date\":null,\"default\":true,\"rate\":3809}},{\"id\":26,\"company_name\":\"Mrs. Felicita Keeling\",\"target_url\":null,\"tracking_url\":null,\"image\":\"http:\\\/\\\/white.biz\\\/sit-qui-suscipit-cupiditate-vitae-ut-dignissimos.html\",\"max_commission_details\":{\"id\":82,\"retailer_id\":26,\"type\":\"fixed\",\"description\":\"Sequi odit sequi eos consequatur. Veritatis officia molestias nulla officiis ut facere ea. Aliquam et et laudantium est voluptas tenetur in.\",\"terms\":\"Dolorum sint soluta qui vel. Sit error quia neque nihil. Voluptas sapiente qui iure voluptas labore nihil voluptates. Cum et eaque aut sed.\",\"start_date\":\"1970-02-22T00:00:00.000000Z\",\"end_date\":\"2020-09-06T00:00:00.000000Z\",\"default\":true,\"rate\":4243}},{\"id\":27,\"company_name\":\"Ardith Schowalter\",\"target_url\":\"http:\\\/\\\/reynolds.com\\\/officiis-corporis-placeat-ducimus-rerum-cupiditate-commodi-ducimus\",\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":89,\"retailer_id\":27,\"type\":\"fixed\",\"description\":\"Qui doloremque consequuntur quo pariatur atque ut suscipit. Dolorum amet et velit eius velit minus cupiditate. A a debitis mollitia repellendus distinctio. Ea quas adipisci eos labore laudantium.\",\"terms\":\"Qui sint et eum rerum ad et. Hic quia tempora incidunt debitis architecto nostrum. Dolores eum maxime sint accusantium voluptas tempora.\",\"start_date\":\"1982-04-04T00:00:00.000000Z\",\"end_date\":null,\"default\":false,\"rate\":4959}},{\"id\":28,\"company_name\":\"Mrs. Alexandrea Batz\",\"target_url\":\"http:\\\/\\\/www.dickinson.com\\\/\",\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":95,\"retailer_id\":28,\"type\":\"percent\",\"description\":null,\"terms\":null,\"start_date\":\"1984-01-18T00:00:00.000000Z\",\"end_date\":\"1995-12-20T00:00:00.000000Z\",\"default\":false,\"rate\":4601}},{\"id\":29,\"company_name\":\"Ward Brakus III\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":96,\"retailer_id\":29,\"type\":\"percent\",\"description\":\"Quos a eos delectus quod culpa consectetur. Omnis odit ea quia architecto aliquam. Itaque minus consequatur dolores. Sunt id quod et autem nam et. Aut et impedit at ut quis.\",\"terms\":null,\"start_date\":\"2014-01-30T00:00:00.000000Z\",\"end_date\":null,\"default\":true,\"rate\":4423}},{\"id\":30,\"company_name\":\"Krystel Grady I\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":97,\"retailer_id\":30,\"type\":\"percent\",\"description\":\"Et autem laborum ex. Officia est saepe deserunt quia qui quaerat possimus. In in qui dignissimos minus quis numquam. Sed sit fugiat et. Reprehenderit suscipit mollitia consequatur eum error nulla.\",\"terms\":null,\"start_date\":\"1986-11-11T00:00:00.000000Z\",\"end_date\":null,\"default\":true,\"rate\":3931}},{\"id\":31,\"company_name\":\"Conrad Torphy\",\"target_url\":null,\"tracking_url\":\"http:\\\/\\\/www.gutkowski.net\\\/recusandae-voluptas-inventore-perspiciatis-quia\",\"image\":null,\"max_commission_details\":{\"id\":103,\"retailer_id\":31,\"type\":\"fixed\",\"description\":null,\"terms\":\"Excepturi voluptas ut quaerat quia cumque dolorum dignissimos. Quis aperiam nulla qui doloribus illo.\",\"start_date\":null,\"end_date\":\"2003-10-19T00:00:00.000000Z\",\"default\":false,\"rate\":4968}},{\"id\":32,\"company_name\":\"Mrs. Nicolette Ullrich\",\"target_url\":\"https:\\\/\\\/predovic.biz\\\/veniam-autem-atque-velit-nobis-blanditiis-doloremque.html\",\"tracking_url\":\"http:\\\/\\\/bergstrom.com\\\/dolorum-dolore-consequuntur-excepturi-fuga-quasi\",\"image\":null,\"max_commission_details\":{\"id\":104,\"retailer_id\":32,\"type\":\"fixed\",\"description\":\"Non non ullam vel aliquam aut voluptates officiis. Est facere nulla ea non dolorem et blanditiis. Dignissimos incidunt voluptate accusamus odit rerum.\",\"terms\":\"Impedit ut doloribus quaerat dolores pariatur nam. Commodi vero enim omnis cumque sapiente qui. Voluptas fugit ut dolor ut itaque minima.\",\"start_date\":null,\"end_date\":\"1998-03-21T00:00:00.000000Z\",\"default\":true,\"rate\":3624}}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/retailers?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/retailers?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/retailers?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/retailers\",\"per_page\":200,\"to\":32,\"total\":32}}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "GET api\/promos",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/promos",
-                            "query": [
-                                {
-                                    "key": "page",
-                                    "value": "1",
-                                    "description": "the page number to get.",
-                                    "disabled": false
-                                }
-                            ],
-                            "raw": "{{baseUrl}}\/api\/promos?page=1"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "53"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":[{\"id\":12,\"type\":\"promo\",\"description\":\"Quas numquam deserunt et soluta. Qui quaerat dicta quia ipsum. Ad beatae fugiat iusto.%\",\"terms\":null,\"target_url\":null,\"tracking_url\":null,\"coupon_code\":\"Esse non occaecati quod possimus. Voluptatibus similique ratione aut unde eaque. Suscipit modi qui rem.\",\"start_date\":null,\"end_date\":null,\"retailer_id\":4},{\"id\":29,\"type\":\"promo\",\"description\":\"Qui consequatur corporis nostrum quibusdam tempora. Voluptatem voluptas repellendus non enim.%\",\"terms\":\"Doloribus sunt exercitationem rem vitae neque. Et ipsa et est delectus natus et autem et. Et reprehenderit provident quis distinctio culpa placeat blanditiis numquam.\",\"target_url\":null,\"tracking_url\":null,\"coupon_code\":null,\"start_date\":null,\"end_date\":null,\"retailer_id\":6},{\"id\":106,\"type\":\"promo\",\"description\":\"Natus cupiditate consequuntur est quia officiis. Possimus suscipit modi voluptate ut.$\",\"terms\":null,\"target_url\":null,\"tracking_url\":\"http:\\\/\\\/moore.net\\\/\",\"coupon_code\":null,\"start_date\":null,\"end_date\":null,\"retailer_id\":20},{\"id\":115,\"type\":\"promo\",\"description\":\"Reprehenderit aliquam recusandae aperiam. Dicta ab ratione pariatur et vel.%\",\"terms\":null,\"target_url\":null,\"tracking_url\":null,\"coupon_code\":null,\"start_date\":null,\"end_date\":null,\"retailer_id\":22},{\"id\":124,\"type\":\"promo\",\"description\":\"Eos doloribus rem ut. Aut nam voluptas qui. Perferendis iste illum modi omnis ut et qui.%\",\"terms\":null,\"target_url\":null,\"tracking_url\":null,\"coupon_code\":null,\"start_date\":null,\"end_date\":null,\"retailer_id\":23},{\"id\":138,\"type\":\"promo\",\"description\":\"Sit est et ullam laborum. Nihil pariatur quasi eos consequatur odit.$\",\"terms\":\"Quia quidem distinctio dolores praesentium. Occaecati mollitia quasi accusamus aut facilis soluta optio. Eos quia magnam assumenda vitae. Ullam fuga ab itaque laboriosam.\",\"target_url\":null,\"tracking_url\":null,\"coupon_code\":\"Porro suscipit in omnis eos et. Amet voluptate qui aliquam quia excepturi qui alias. Non vitae sed deserunt ut. Ut consectetur id incidunt sed.\",\"start_date\":null,\"end_date\":null,\"retailer_id\":25},{\"id\":169,\"type\":\"promo\",\"description\":\"Et ut qui voluptatem nihil labore sint quia. Ut autem omnis dolorem.%\",\"terms\":\"Necessitatibus sunt accusantium a nesciunt eius esse natus laudantium. Aut enim veniam ea porro. Eos quod illo dicta eum dolorem ipsum.\",\"target_url\":null,\"tracking_url\":\"https:\\\/\\\/berge.net\\\/dolor-dolor-distinctio-esse-quaerat-alias.html\",\"coupon_code\":\"Consequatur harum non omnis incidunt sed. Aut voluptas recusandae aut sapiente aut nihil qui et. Perferendis commodi voluptas ipsam earum.\",\"start_date\":null,\"end_date\":null,\"retailer_id\":32}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/promos?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/promos?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/promos?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/promos\",\"per_page\":200,\"to\":7,\"total\":7}}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "GET api\/commissions",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/commissions",
-                            "query": [
-                                {
-                                    "key": "page",
-                                    "value": "1",
-                                    "description": "the page number to get.",
-                                    "disabled": false
-                                }
-                            ],
-                            "raw": "{{baseUrl}}\/api\/commissions?page=1"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "52"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":[{\"id\":9,\"retailer_id\":3,\"type\":\"fixed\",\"description\":\"Delectus commodi commodi libero eligendi odio. Ut quidem molestias laboriosam voluptate. Odit eos quisquam dolorum et. Error blanditiis ut qui libero incidunt est architecto.\",\"terms\":null,\"start_date\":\"2016-08-07T00:00:00.000000Z\",\"end_date\":\"1987-06-25T00:00:00.000000Z\",\"default\":true,\"rate\":4517},{\"id\":10,\"retailer_id\":3,\"type\":\"percent\",\"description\":null,\"terms\":null,\"start_date\":\"1985-05-08T00:00:00.000000Z\",\"end_date\":null,\"default\":false,\"rate\":3552},{\"id\":11,\"retailer_id\":3,\"type\":\"fixed\",\"description\":\"Debitis placeat ea natus facere eaque rerum autem optio. Dicta accusantium omnis error libero aut facere soluta. Voluptatibus repudiandae cupiditate tempora exercitationem iusto.\",\"terms\":\"Nulla odit voluptas molestias. Id eos eum numquam rerum praesentium et. Temporibus adipisci qui sed natus nostrum rerum.\",\"start_date\":null,\"end_date\":null,\"default\":false,\"rate\":281},{\"id\":13,\"retailer_id\":4,\"type\":\"percent\",\"description\":\"Voluptates qui fugiat qui cumque sit laboriosam. Quis consequuntur ex ut ad sunt.\",\"terms\":null,\"start_date\":null,\"end_date\":null,\"default\":true,\"rate\":4368},{\"id\":16,\"retailer_id\":5,\"type\":\"fixed\",\"description\":\"Illo harum beatae sed commodi rerum est. Vitae nisi rem qui id exercitationem natus dolore. Ut neque in saepe omnis. Aut ut delectus quis necessitatibus.\",\"terms\":\"Ullam ut eum et perspiciatis consequatur harum. Modi maxime aut explicabo sit perferendis sequi. Autem facere reprehenderit veniam consequatur. Ipsum neque molestiae omnis ut beatae.\",\"start_date\":\"2004-07-23T00:00:00.000000Z\",\"end_date\":\"1976-01-25T00:00:00.000000Z\",\"default\":true,\"rate\":2879},{\"id\":17,\"retailer_id\":5,\"type\":\"percent\",\"description\":\"Culpa ut ut unde totam. Voluptatem maxime incidunt pariatur dignissimos dolore est. Enim ratione sint architecto nam molestiae ipsa. Eum odio consequatur ad repellat quidem consequatur.\",\"terms\":\"Temporibus iusto et fuga voluptates necessitatibus asperiores. Cum eum repellendus perferendis cumque autem. Sed qui ea at aut.\",\"start_date\":\"2014-03-28T00:00:00.000000Z\",\"end_date\":null,\"default\":false,\"rate\":3404},{\"id\":19,\"retailer_id\":6,\"type\":\"fixed\",\"description\":null,\"terms\":null,\"start_date\":null,\"end_date\":null,\"default\":true,\"rate\":3584},{\"id\":40,\"retailer_id\":13,\"type\":\"percent\",\"description\":\"Autem suscipit iusto eos provident. Inventore quo enim aut et in. Nulla esse illum eligendi qui sed consequuntur et sequi.\",\"terms\":null,\"start_date\":\"2007-05-08T00:00:00.000000Z\",\"end_date\":null,\"default\":true,\"rate\":2281},{\"id\":43,\"retailer_id\":13,\"type\":\"fixed\",\"description\":\"Iste reprehenderit tempora unde hic ab numquam. Aliquam ex sint aut eaque autem voluptas velit. Nesciunt eos rem enim et quis.\",\"terms\":\"Aspernatur alias assumenda in officiis in eos. Soluta laborum dolorem aut rem. Tempore tempore rem facere rerum minus et.\",\"start_date\":null,\"end_date\":null,\"default\":false,\"rate\":2394},{\"id\":46,\"retailer_id\":14,\"type\":\"percent\",\"description\":\"Reiciendis animi a architecto perferendis. Voluptas perferendis nisi aperiam. Libero sequi in numquam.\",\"terms\":\"Aliquid perferendis laborum temporibus voluptas optio labore. Unde ut sit aut quas adipisci eum dolore. Similique et temporibus non sunt tenetur. Ex consequatur est quam reprehenderit.\",\"start_date\":\"2022-01-11T00:00:00.000000Z\",\"end_date\":null,\"default\":true,\"rate\":2737},{\"id\":49,\"retailer_id\":16,\"type\":\"percent\",\"description\":\"Quas quae quo molestiae eum et architecto. Sit deserunt temporibus vel fugit blanditiis praesentium. Voluptatem soluta aperiam eligendi nemo eum.\",\"terms\":null,\"start_date\":\"2016-12-18T00:00:00.000000Z\",\"end_date\":\"2019-12-06T00:00:00.000000Z\",\"default\":true,\"rate\":3232},{\"id\":52,\"retailer_id\":16,\"type\":\"percent\",\"description\":null,\"terms\":null,\"start_date\":null,\"end_date\":\"1993-11-13T00:00:00.000000Z\",\"default\":false,\"rate\":1444},{\"id\":54,\"retailer_id\":16,\"type\":\"fixed\",\"description\":null,\"terms\":null,\"start_date\":null,\"end_date\":null,\"default\":false,\"rate\":4665},{\"id\":55,\"retailer_id\":17,\"type\":\"percent\",\"description\":\"Enim quia nam et sed neque adipisci dolor. Quam odit error est quasi quam vel dolore nostrum. Quae non est recusandae earum quibusdam voluptatem ipsam. Rerum enim assumenda rerum eaque.\",\"terms\":\"Ut ut corporis ducimus modi autem. Voluptas ipsam dolor eos earum qui accusamus optio voluptas. Inventore similique eveniet minima dolores qui.\",\"start_date\":\"1997-09-06T00:00:00.000000Z\",\"end_date\":null,\"default\":true,\"rate\":2566},{\"id\":57,\"retailer_id\":17,\"type\":\"percent\",\"description\":\"Temporibus commodi sit tempora enim. Nostrum in velit occaecati. Enim ipsum magni repudiandae ut ut dolores amet. Quod maiores eaque non mollitia quia tempora.\",\"terms\":null,\"start_date\":null,\"end_date\":\"1977-12-19T00:00:00.000000Z\",\"default\":false,\"rate\":940},{\"id\":59,\"retailer_id\":17,\"type\":\"fixed\",\"description\":null,\"terms\":\"Recusandae rerum unde doloribus dolorem nemo nemo. Ea neque et maiores quas qui enim. Beatae omnis ut et quisquam. Nulla quia eos accusamus et ut.\",\"start_date\":\"1986-12-29T00:00:00.000000Z\",\"end_date\":null,\"default\":false,\"rate\":4899},{\"id\":60,\"retailer_id\":17,\"type\":\"percent\",\"description\":\"Atque dolorum ipsam aperiam rem dolor eligendi accusamus vel. Cumque fuga cupiditate dicta eos. Quos voluptatem consequuntur qui harum ex modi ducimus.\",\"terms\":\"Cumque quae nostrum quo tempora unde. Officiis totam nisi delectus tempore. Dolor quae maxime inventore est enim. Tempora architecto sit voluptates quia.\",\"start_date\":null,\"end_date\":null,\"default\":false,\"rate\":3861},{\"id\":69,\"retailer_id\":20,\"type\":\"percent\",\"description\":\"Voluptates laboriosam eius blanditiis vel autem dolorum assumenda. Explicabo dolorem sint vel consequatur odio. Ut odit enim nam quos et.\",\"terms\":null,\"start_date\":null,\"end_date\":\"1971-11-04T00:00:00.000000Z\",\"default\":true,\"rate\":832},{\"id\":70,\"retailer_id\":20,\"type\":\"percent\",\"description\":\"Qui quas assumenda autem sed sapiente a laborum reiciendis. In quaerat quasi asperiores. Architecto nihil nihil repellat sint.\",\"terms\":null,\"start_date\":\"1987-10-02T00:00:00.000000Z\",\"end_date\":null,\"default\":false,\"rate\":839},{\"id\":71,\"retailer_id\":21,\"type\":\"percent\",\"description\":null,\"terms\":null,\"start_date\":null,\"end_date\":null,\"default\":true,\"rate\":3963},{\"id\":72,\"retailer_id\":22,\"type\":\"fixed\",\"description\":\"Nihil repellendus consequuntur itaque et voluptatem aliquam. Modi mollitia distinctio consequuntur vitae ducimus fugiat ea nisi. Porro ex adipisci et. Et sit natus dolorem quo.\",\"terms\":null,\"start_date\":null,\"end_date\":null,\"default\":true,\"rate\":4017},{\"id\":73,\"retailer_id\":23,\"type\":\"percent\",\"description\":null,\"terms\":null,\"start_date\":\"2019-06-21T00:00:00.000000Z\",\"end_date\":null,\"default\":true,\"rate\":4105},{\"id\":75,\"retailer_id\":24,\"type\":\"fixed\",\"description\":\"Eum voluptas culpa error porro eum a voluptas. Quaerat illo dolorum nihil possimus quis qui. Repellendus voluptates est ut nisi fuga. Doloremque porro inventore magni sed nemo.\",\"terms\":null,\"start_date\":null,\"end_date\":\"1978-02-07T00:00:00.000000Z\",\"default\":true,\"rate\":906},{\"id\":76,\"retailer_id\":25,\"type\":\"fixed\",\"description\":\"Recusandae optio fugiat vel nobis. Est non consequuntur vero similique. Nihil illo qui dolorem sunt.\",\"terms\":\"Dolorem quis labore vitae vel quasi placeat ut. Enim numquam est assumenda voluptatibus quod. Dolores odio accusamus quas accusamus nam est.\",\"start_date\":null,\"end_date\":null,\"default\":true,\"rate\":3809},{\"id\":78,\"retailer_id\":25,\"type\":\"percent\",\"description\":\"Temporibus quis quaerat velit adipisci est nobis. Laudantium nam laboriosam et sint beatae consequuntur aliquid. Nostrum vel corporis assumenda.\",\"terms\":null,\"start_date\":null,\"end_date\":null,\"default\":false,\"rate\":1833},{\"id\":81,\"retailer_id\":25,\"type\":\"fixed\",\"description\":\"Temporibus ut repellat numquam iusto cupiditate. Aspernatur blanditiis deleniti nulla. Voluptatem impedit aut nemo natus laborum necessitatibus.\",\"terms\":\"Quaerat rerum at libero sed eligendi et et magni. Voluptas cupiditate rerum molestias. Officia doloribus enim cumque corrupti dolorem est eligendi. Vel quod voluptas inventore velit quo sed.\",\"start_date\":\"2015-05-24T00:00:00.000000Z\",\"end_date\":null,\"default\":false,\"rate\":3238},{\"id\":97,\"retailer_id\":30,\"type\":\"percent\",\"description\":\"Et autem laborum ex. Officia est saepe deserunt quia qui quaerat possimus. In in qui dignissimos minus quis numquam. Sed sit fugiat et. Reprehenderit suscipit mollitia consequatur eum error nulla.\",\"terms\":null,\"start_date\":\"1986-11-11T00:00:00.000000Z\",\"end_date\":null,\"default\":true,\"rate\":3931},{\"id\":99,\"retailer_id\":31,\"type\":\"percent\",\"description\":\"Aliquid beatae eum sapiente incidunt quis. Reprehenderit consectetur enim dolorem. In enim at ullam. Sed nobis exercitationem eaque velit est ea consequatur corrupti. Et facilis explicabo et.\",\"terms\":null,\"start_date\":null,\"end_date\":\"2021-10-27T00:00:00.000000Z\",\"default\":true,\"rate\":3349},{\"id\":101,\"retailer_id\":31,\"type\":\"fixed\",\"description\":\"Excepturi ut eligendi sequi dolores. Tempore molestiae et qui vel. Ad quis velit aliquid odit necessitatibus.\",\"terms\":null,\"start_date\":null,\"end_date\":\"2007-04-10T00:00:00.000000Z\",\"default\":false,\"rate\":1032},{\"id\":103,\"retailer_id\":31,\"type\":\"fixed\",\"description\":null,\"terms\":\"Excepturi voluptas ut quaerat quia cumque dolorum dignissimos. Quis aperiam nulla qui doloribus illo.\",\"start_date\":null,\"end_date\":\"2003-10-19T00:00:00.000000Z\",\"default\":false,\"rate\":4968},{\"id\":104,\"retailer_id\":32,\"type\":\"fixed\",\"description\":\"Non non ullam vel aliquam aut voluptates officiis. Est facere nulla ea non dolorem et blanditiis. Dignissimos incidunt voluptate accusamus odit rerum.\",\"terms\":\"Impedit ut doloribus quaerat dolores pariatur nam. Commodi vero enim omnis cumque sapiente qui. Voluptas fugit ut dolor ut itaque minima.\",\"start_date\":null,\"end_date\":\"1998-03-21T00:00:00.000000Z\",\"default\":true,\"rate\":3624}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/commissions?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/commissions?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/commissions?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/commissions\",\"per_page\":200,\"to\":31,\"total\":31}}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "GET api\/retailer\/{retailer_id}",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/retailer\/:retailer_id",
+                            "path": "api\/login",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/retailer\/:retailer_id",
-                            "variable": [
-                                {
-                                    "id": "retailer_id",
-                                    "key": "retailer_id",
-                                    "value": "17",
-                                    "description": "the id of the retailer."
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "51"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":{\"id\":17,\"company_name\":\"Nathen Huels\",\"target_url\":null,\"tracking_url\":null,\"image\":null,\"max_commission_details\":{\"id\":59,\"retailer_id\":17,\"type\":\"fixed\",\"description\":null,\"terms\":\"Recusandae rerum unde doloribus dolorem nemo nemo. Ea neque et maiores quas qui enim. Beatae omnis ut et quisquam. Nulla quia eos accusamus et ut.\",\"start_date\":\"1986-12-29T00:00:00.000000Z\",\"end_date\":null,\"default\":false,\"rate\":4899}}}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "GET api\/promo\/{promo_id}",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/promo\/:promo_id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/promo\/:promo_id",
-                            "variable": [
-                                {
-                                    "id": "promo_id",
-                                    "key": "promo_id",
-                                    "value": "12",
-                                    "description": "the id of the promo."
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "50"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":{\"id\":12,\"type\":\"promo\",\"description\":\"Quas numquam deserunt et soluta. Qui quaerat dicta quia ipsum. Ad beatae fugiat iusto.%\",\"terms\":null,\"target_url\":null,\"tracking_url\":null,\"coupon_code\":\"Esse non occaecati quod possimus. Voluptatibus similique ratione aut unde eaque. Suscipit modi qui rem.\",\"start_date\":null,\"end_date\":null,\"retailer_id\":4}}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "GET api\/click\/{promo_id}",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/click\/:promo_id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/click\/:promo_id",
-                            "variable": [
-                                {
-                                    "id": "promo_id",
-                                    "key": "promo_id",
-                                    "value": "12",
-                                    "description": "the id of the promo."
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "49"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":{\"id\":12,\"type\":\"promo\",\"description\":\"Quas numquam deserunt et soluta. Qui quaerat dicta quia ipsum. Ad beatae fugiat iusto.%\",\"terms\":null,\"target_url\":null,\"tracking_url\":null,\"coupon_code\":\"Esse non occaecati quod possimus. Voluptatibus similique ratione aut unde eaque. Suscipit modi qui rem.\",\"start_date\":null,\"end_date\":null,\"retailer_id\":4}}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "GET api\/commission\/{commission_id}",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/commission\/:commission_id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/commission\/:commission_id",
-                            "variable": [
-                                {
-                                    "id": "commission_id",
-                                    "key": "commission_id",
-                                    "value": "9",
-                                    "description": "the id of the commission."
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "48"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":{\"id\":9,\"retailer_id\":3,\"type\":\"fixed\",\"description\":\"Delectus commodi commodi libero eligendi odio. Ut quidem molestias laboriosam voluptate. Odit eos quisquam dolorum et. Error blanditiis ut qui libero incidunt est architecto.\",\"terms\":null,\"start_date\":\"2016-08-07T00:00:00.000000Z\",\"end_date\":\"1987-06-25T00:00:00.000000Z\",\"default\":true,\"rate\":4517}}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "POST api\/user\/redeem",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/user\/redeem",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/user\/redeem"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 201,
-                            "body": "{\"id\": 182, \"value\": 45483}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "POST api\/user\/promo\/{promo_id}\/click",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/user\/promo\/:promo_id\/click",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/user\/promo\/:promo_id\/click",
-                            "variable": [
-                                {
-                                    "id": "promo_id",
-                                    "key": "promo_id",
-                                    "value": "12",
-                                    "description": "the id of the promo."
-                                }
-                            ]
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 201,
-                            "body": "{ \"id\": 12856, \"app_user_id\": 18, \"promo_id\": 763}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "POST api\/user\/login",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/user\/login",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/user\/login"
+                            "raw": "{{baseUrl}}\/api\/login"
                         },
                         "method": "POST",
                         "header": [
@@ -660,9 +111,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"broderick.abbott@example.net\",\"password\":\"r3}Bd3=~\"}"
+                            "raw": "{\"email\":\"steuber.ray@example.net\",\"password\":\"].?j8Br9f\"}"
                         },
-                        "description": "",
+                        "description": "requires an email & password. returns an API token to use with the other endpoints\ncontact a wink admin to get your account setup",
                         "auth": {
                             "type": "noauth"
                         }
@@ -672,198 +123,6 @@
                             "header": [],
                             "code": 201,
                             "body": "{\"token\": \"2060|dEKg7dU3vespqTYTuGa1wpkUPGkKISJsWav2XH9p\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "POST api\/user\/delete",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/user\/delete",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/user\/delete"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"email\":\"pbode@example.org\",\"password\":\",s{j@aId)'@f5}c9WH\"}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 201,
-                            "body": "{\"message\": \"successfully deleted this user\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "POST api\/user\/reset",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/user\/reset",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/user\/reset"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"email\":\"branson93@example.org\",\"password\":\"ZQLb+*~fM{h\"}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 201,
-                            "body": "{\"message\": \"We have emailed your password reset link.\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "POST api\/user\/create",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/user\/create",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/user\/create"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"activation_code\":\"blanditiis\",\"email\":\"rhianna07@example.net\",\"password\":\"={`e\\\/\\\/f4{S,fg]b1H7H\",\"password_confirmation\":\"et\"}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 201,
-                            "body": "{\"token\": \"2060|dEKg7dU3vespqTYTuGa1wpkUPGkKISJsWav2XH9p\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "POST api\/visit\/create",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/visit\/create",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/visit\/create"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 201,
-                            "body": "{\"id\": 501, \"bounced\": true}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "POST api\/visit\/{visitor_id}\/update",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/visit\/:visitor_id\/update",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/visit\/:visitor_id\/update",
-                            "variable": [
-                                {
-                                    "id": "visitor_id",
-                                    "key": "visitor_id",
-                                    "value": "1",
-                                    "description": "The ID of the visitor."
-                                }
-                            ]
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 201,
-                            "body": "{\"id\": 1, \"bounced\": false}",
                             "name": ""
                         }
                     ]
@@ -876,7 +135,7 @@
         "bearer": [
             {
                 "key": "Authorization",
-                "value": "1247|zpgg507jjLvz1zJUzDYJIDVQ8DxgRVUTNC5siwQ7",
+                "value": "1|M40o0zzh7CkG0fOtYvSjxSxqSqL8JzG4byyDtrtx",
                 "type": "string"
             }
         ]

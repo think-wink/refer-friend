@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "https://wink-dashboard.tw-dev.com";
+        var tryItOutBaseUrl = "https://refer-friend.tw-dev.com";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -71,59 +71,14 @@
                     <a href="#endpoints">Endpoints</a>
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-profile">
-                                <a href="#endpoints-GETapi-profile">GET api/profile</a>
+                                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-referred-upsert">
+                                <a href="#endpoints-POSTapi-referred-upsert">Upsert Referred Friend's Status</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-profile-update">
-                                <a href="#endpoints-POSTapi-profile-update">POST api/profile/update</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-referrer-create">
+                                <a href="#endpoints-POSTapi-referrer-create">Create New Referrers</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-profile-updatePassword">
-                                <a href="#endpoints-POSTapi-profile-updatePassword">POST api/profile/updatePassword</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-retailers">
-                                <a href="#endpoints-GETapi-retailers">GET api/retailers</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-promos">
-                                <a href="#endpoints-GETapi-promos">GET api/promos</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-commissions">
-                                <a href="#endpoints-GETapi-commissions">GET api/commissions</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-retailer--retailer_id-">
-                                <a href="#endpoints-GETapi-retailer--retailer_id-">GET api/retailer/{retailer_id}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-promo--promo_id-">
-                                <a href="#endpoints-GETapi-promo--promo_id-">GET api/promo/{promo_id}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-click--promo_id-">
-                                <a href="#endpoints-GETapi-click--promo_id-">GET api/click/{promo_id}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-commission--commission_id-">
-                                <a href="#endpoints-GETapi-commission--commission_id-">GET api/commission/{commission_id}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-user-redeem">
-                                <a href="#endpoints-POSTapi-user-redeem">POST api/user/redeem</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-user-promo--promo_id--click">
-                                <a href="#endpoints-POSTapi-user-promo--promo_id--click">POST api/user/promo/{promo_id}/click</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-user-login">
-                                <a href="#endpoints-POSTapi-user-login">POST api/user/login</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-user-delete">
-                                <a href="#endpoints-POSTapi-user-delete">POST api/user/delete</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-user-reset">
-                                <a href="#endpoints-POSTapi-user-reset">POST api/user/reset</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-user-create">
-                                <a href="#endpoints-POSTapi-user-create">POST api/user/create</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-visit-create">
-                                <a href="#endpoints-POSTapi-visit-create">POST api/visit/create</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-visit--visitor_id--update">
-                                <a href="#endpoints-POSTapi-visit--visitor_id--update">POST api/visit/{visitor_id}/update</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-login">
+                                <a href="#endpoints-POSTapi-login">Login to the API</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -136,7 +91,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 31, 2023</li>
+        <li>Last updated: August 14, 2023</li>
     </ul>
 </div>
 
@@ -145,7 +100,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>https://wink-dashboard.tw-dev.com</code>
+    <strong>Base URL</strong>: <code>https://refer-friend.tw-dev.com</code>
 </aside>
 <p>This documentation aims to provide all the information you need to work with our API.</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
@@ -160,181 +115,42 @@ You can switch the language used with the tabs at the top right (or from the nav
 
     
 
-                                <h2 id="endpoints-GETapi-profile">GET api/profile</h2>
+                                <h2 id="endpoints-POSTapi-referred-upsert">Upsert Referred Friend&#039;s Status</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
+<p>Uses the match_* fields to update a Referred friend, and sets the status.
+If no match is found a new Referred Friend will be created with the given status.</p>
 
-
-<span id="example-requests-GETapi-profile">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "https://wink-dashboard.tw-dev.com/api/profile" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/profile"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-profile">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 55
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: {
-        &quot;id&quot;: 26,
-        &quot;name&quot;: &quot;afasdf&quot;,
-        &quot;profile_photo&quot;: null,
-        &quot;status&quot;: &quot;active&quot;,
-        &quot;balance&quot;: 43713
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-profile" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-profile"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-profile"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-profile" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-profile">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-profile" data-method="GET"
-      data-path="api/profile"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-profile', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-profile"
-                    onclick="tryItOut('GETapi-profile');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-profile"
-                    onclick="cancelTryOut('GETapi-profile');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-profile"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/profile</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-profile"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-profile"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-profile"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="endpoints-POSTapi-profile-update">POST api/profile/update</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-profile-update">
+<span id="example-requests-POSTapi-referred-upsert">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wink-dashboard.tw-dev.com/api/profile/update" \
+    "https://refer-friend.tw-dev.com/api/referred/upsert" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"asperiores\",
-    \"profile_photo\": \"https:\\/\\/media.istockphoto.com\\/id\\/1469947007\\/photo\\/holiday-in-hong-kong-ngong-ping-360-view.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=RnqpNmkSfz0cwK5tCZZKlzM-G_UF97lKHO7XvDkziLQ=\",
-    \"status\": \"active\"
+    \"referees\": [
+        {
+            \"match_email\": \"gerlach.johathan@example.com\",
+            \"match_phone_number\": \"+61 5054 43251\",
+            \"match_first_name\": \"cyviiatfvmmscxhr\",
+            \"match_last_name\": \"eotjtmrfrfb\",
+            \"new_status\": \"loan_eligible\"
+        }
+    ]
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/profile/update"
+    "https://refer-friend.tw-dev.com/api/referred/upsert"
 );
 
 const headers = {
@@ -344,9 +160,15 @@ const headers = {
 };
 
 let body = {
-    "name": "asperiores",
-    "profile_photo": "https:\/\/media.istockphoto.com\/id\/1469947007\/photo\/holiday-in-hong-kong-ngong-ping-360-view.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=RnqpNmkSfz0cwK5tCZZKlzM-G_UF97lKHO7XvDkziLQ=",
-    "status": "active"
+    "referees": [
+        {
+            "match_email": "gerlach.johathan@example.com",
+            "match_phone_number": "+61 5054 43251",
+            "match_first_name": "cyviiatfvmmscxhr",
+            "match_last_name": "eotjtmrfrfb",
+            "new_status": "loan_eligible"
+        }
+    ]
 };
 
 fetch(url, {
@@ -357,58 +179,54 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-profile-update">
+<span id="example-responses-POSTapi-referred-upsert">
             <blockquote>
             <p>Example response (201):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 26,
-    &quot;name&quot;: &quot;test user&quot;,
-    &quot;profile_photo&quot;: null,
-    &quot;status&quot;: &quot;active&quot;,
-    &quot;balance&quot;: 43713
+    &quot;message&quot;: &quot;Upsert Successful&quot;
 }</code>
  </pre>
     </span>
-<span id="execution-results-POSTapi-profile-update" hidden>
+<span id="execution-results-POSTapi-referred-upsert" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-profile-update"></span>:
+                id="execution-response-status-POSTapi-referred-upsert"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-profile-update"
+    <pre class="json"><code id="execution-response-content-POSTapi-referred-upsert"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-profile-update" hidden>
+<span id="execution-error-POSTapi-referred-upsert" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-profile-update">
+    <pre><code id="execution-error-message-POSTapi-referred-upsert">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-profile-update" data-method="POST"
-      data-path="api/profile/update"
+<form id="form-POSTapi-referred-upsert" data-method="POST"
+      data-path="api/referred/upsert"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-profile-update', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-referred-upsert', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-profile-update"
-                    onclick="tryItOut('POSTapi-profile-update');">Try it out ⚡
+                    id="btn-tryout-POSTapi-referred-upsert"
+                    onclick="tryItOut('POSTapi-referred-upsert');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-profile-update"
-                    onclick="cancelTryOut('POSTapi-profile-update');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-referred-upsert"
+                    onclick="cancelTryOut('POSTapi-referred-upsert');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-profile-update"
+                    id="btn-executetryout-POSTapi-referred-upsert"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -416,7 +234,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/profile/update</code></b>
+            <b><code>api/referred/upsert</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -424,7 +242,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-profile-update"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-referred-upsert"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -435,7 +253,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-profile-update"
+                              name="Content-Type"                data-endpoint="POSTapi-referred-upsert"
                value="application/json"
                data-component="header">
     <br>
@@ -446,7 +264,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-profile-update"
+                              name="Accept"                data-endpoint="POSTapi-referred-upsert"
                value="application/json"
                data-component="header">
     <br>
@@ -454,69 +272,103 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>referees</code></b>&nbsp;&nbsp;
+<small>object[]</small>&nbsp;
+ &nbsp;
+<br>
+<p>the list of Referred friends to upsert</p>
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>match_email</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="name"                data-endpoint="POSTapi-profile-update"
-               value="asperiores"
+                              name="referees.0.match_email"                data-endpoint="POSTapi-referred-upsert"
+               value="gerlach.johathan@example.com"
                data-component="body">
     <br>
-<p>new name, cannot be null. does nothing if not present. Example: <code>asperiores</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>profile_photo</code></b>&nbsp;&nbsp;
-<small>string,</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="profile_photo"                data-endpoint="POSTapi-profile-update"
-               value="https://media.istockphoto.com/id/1469947007/photo/holiday-in-hong-kong-ngong-ping-360-view.jpg?s=1024x1024&w=is&k=20&c=RnqpNmkSfz0cwK5tCZZKlzM-G_UF97lKHO7XvDkziLQ="
-               data-component="body">
-    <br>
-<p>the new profile photo url, must be a url or null. Example: <code>https://media.istockphoto.com/id/1469947007/photo/holiday-in-hong-kong-ngong-ping-360-view.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=RnqpNmkSfz0cwK5tCZZKlzM-G_UF97lKHO7XvDkziLQ=</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<p>Must be a valid email address. Example: <code>gerlach.johathan@example.com</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>match_phone_number</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="status"                data-endpoint="POSTapi-profile-update"
-               value="active"
+                              name="referees.0.match_phone_number"                data-endpoint="POSTapi-referred-upsert"
+               value="+61 5054 43251"
                data-component="body">
     <br>
-<p>the new status, cannot be null. does nothing if not present. Example: <code>active</code></p>
+<p>Must be at least 10 characters. Must not be greater than 50 characters. Example: <code>+61 5054 43251</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>match_first_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="referees.0.match_first_name"                data-endpoint="POSTapi-referred-upsert"
+               value="cyviiatfvmmscxhr"
+               data-component="body">
+    <br>
+<p>Must be at least 2 characters. Must not be greater than 50 characters. Example: <code>cyviiatfvmmscxhr</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>match_last_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="referees.0.match_last_name"                data-endpoint="POSTapi-referred-upsert"
+               value="eotjtmrfrfb"
+               data-component="body">
+    <br>
+<p>Must be at least 2 characters. Must not be greater than 50 characters. Example: <code>eotjtmrfrfb</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>new_status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="referees.0.new_status"                data-endpoint="POSTapi-referred-upsert"
+               value="loan_eligible"
+               data-component="body">
+    <br>
+<p>Must be one of <code>form_completed</code>, <code>not_interested</code>, <code>meeting_booked</code>, <code>ineligible</code>, <code>pension_boost_eligible</code>, <code>loan_eligible</code>, <code>loan_approved</code>, or <code>pension_boost_approved</code>. Example: <code>loan_eligible</code></p>
+                    </div>
+                                    </details>
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-profile-updatePassword">POST api/profile/updatePassword</h2>
+                    <h2 id="endpoints-POSTapi-referrer-create">Create New Referrers</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
+<p>creates new referrer from an email address.
+this referrer will be email a form to refer friends with</p>
 
-
-<span id="example-requests-POSTapi-profile-updatePassword">
+<span id="example-requests-POSTapi-referrer-create">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wink-dashboard.tw-dev.com/api/profile/updatePassword" \
+    "https://refer-friend.tw-dev.com/api/referrer/create" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"password\": \"password\",
-    \"old_password\": \"quia\",
-    \"password_confirmation\": \"password\"
+    \"referrers\": [
+        \"quidem\"
+    ]
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/profile/updatePassword"
+    "https://refer-friend.tw-dev.com/api/referrer/create"
 );
 
 const headers = {
@@ -526,9 +378,9 @@ const headers = {
 };
 
 let body = {
-    "password": "password",
-    "old_password": "quia",
-    "password_confirmation": "password"
+    "referrers": [
+        "quidem"
+    ]
 };
 
 fetch(url, {
@@ -539,54 +391,54 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-profile-updatePassword">
+<span id="example-responses-POSTapi-referrer-create">
             <blockquote>
             <p>Example response (201):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;successfully updated the password&quot;
+    &quot;message&quot;: &quot;created x new referrers&quot;
 }</code>
  </pre>
     </span>
-<span id="execution-results-POSTapi-profile-updatePassword" hidden>
+<span id="execution-results-POSTapi-referrer-create" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-profile-updatePassword"></span>:
+                id="execution-response-status-POSTapi-referrer-create"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-profile-updatePassword"
+    <pre class="json"><code id="execution-response-content-POSTapi-referrer-create"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-profile-updatePassword" hidden>
+<span id="execution-error-POSTapi-referrer-create" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-profile-updatePassword">
+    <pre><code id="execution-error-message-POSTapi-referrer-create">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-profile-updatePassword" data-method="POST"
-      data-path="api/profile/updatePassword"
+<form id="form-POSTapi-referrer-create" data-method="POST"
+      data-path="api/referrer/create"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-profile-updatePassword', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-referrer-create', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-profile-updatePassword"
-                    onclick="tryItOut('POSTapi-profile-updatePassword');">Try it out ⚡
+                    id="btn-tryout-POSTapi-referrer-create"
+                    onclick="tryItOut('POSTapi-referrer-create');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-profile-updatePassword"
-                    onclick="cancelTryOut('POSTapi-profile-updatePassword');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-referrer-create"
+                    onclick="cancelTryOut('POSTapi-referrer-create');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-profile-updatePassword"
+                    id="btn-executetryout-POSTapi-referrer-create"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -594,7 +446,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/profile/updatePassword</code></b>
+            <b><code>api/referrer/create</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -602,7 +454,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-profile-updatePassword"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-referrer-create"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -613,7 +465,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-profile-updatePassword"
+                              name="Content-Type"                data-endpoint="POSTapi-referrer-create"
                value="application/json"
                data-component="header">
     <br>
@@ -624,7 +476,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-profile-updatePassword"
+                              name="Accept"                data-endpoint="POSTapi-referrer-create"
                value="application/json"
                data-component="header">
     <br>
@@ -632,2574 +484,56 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="password"                data-endpoint="POSTapi-profile-updatePassword"
-               value="password"
-               data-component="body">
-    <br>
-<p>the new password. Example: <code>password</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>old_password</code></b>&nbsp;&nbsp;
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>referrers</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+ &nbsp;
+<br>
+
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="old_password"                data-endpoint="POSTapi-profile-updatePassword"
-               value="quia"
+                              name="referrers.0.email"                data-endpoint="POSTapi-referrer-create"
+               value="sven65@example.com"
                data-component="body">
     <br>
-<p>the users password. Example: <code>quia</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
-<small>required</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="password_confirmation"                data-endpoint="POSTapi-profile-updatePassword"
-               value="password"
-               data-component="body">
-    <br>
-<p>the password confirmation. Example: <code>password</code></p>
+<p>Must be a valid email address. Example: <code>sven65@example.com</code></p>
+                    </div>
+                                    </details>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi-retailers">GET api/retailers</h2>
+                    <h2 id="endpoints-POSTapi-login">Login to the API</h2>
 
 <p>
-<small class="badge badge-darkred">requires authentication</small>
 </p>
 
+<p>requires an email &amp; password. returns an API token to use with the other endpoints
+contact a wink admin to get your account setup</p>
 
-
-<span id="example-requests-GETapi-retailers">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "https://wink-dashboard.tw-dev.com/api/retailers?page=1" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/retailers"
-);
-
-const params = {
-    "page": "1",
-};
-Object.keys(params)
-    .forEach(key =&gt; url.searchParams.append(key, params[key]));
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-retailers">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 54
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 1,
-            &quot;company_name&quot;: &quot;Kaya Schiller&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 3,
-                &quot;retailer_id&quot;: 1,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: null,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: &quot;2005-07-17T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: &quot;1971-08-24T00:00:00.000000Z&quot;,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 4463
-            }
-        },
-        {
-            &quot;id&quot;: 2,
-            &quot;company_name&quot;: &quot;Madelynn Bayer&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 8,
-                &quot;retailer_id&quot;: 2,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: &quot;Qui quia non facilis in dicta. Sint occaecati eum ducimus neque distinctio. Id et est ipsa dolor ullam libero.&quot;,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 4993
-            }
-        },
-        {
-            &quot;id&quot;: 3,
-            &quot;company_name&quot;: &quot;Wiley Stark&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 9,
-                &quot;retailer_id&quot;: 3,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: &quot;Delectus commodi commodi libero eligendi odio. Ut quidem molestias laboriosam voluptate. Odit eos quisquam dolorum et. Error blanditiis ut qui libero incidunt est architecto.&quot;,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: &quot;2016-08-07T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: &quot;1987-06-25T00:00:00.000000Z&quot;,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 4517
-            }
-        },
-        {
-            &quot;id&quot;: 4,
-            &quot;company_name&quot;: &quot;Brisa Lynch&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: &quot;http://www.mann.info/iste-eius-possimus-nulla-quis-in&quot;,
-            &quot;image&quot;: &quot;http://www.ullrich.com/explicabo-at-ab-est-rerum-ullam-est&quot;,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 14,
-                &quot;retailer_id&quot;: 4,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: &quot;Ex consequatur tempora quos omnis laborum nisi. Dolor voluptas corrupti non. Eveniet consequatur a sint sapiente nulla non.&quot;,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: &quot;2000-11-05T00:00:00.000000Z&quot;,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 4722
-            }
-        },
-        {
-            &quot;id&quot;: 5,
-            &quot;company_name&quot;: &quot;Violette Douglas I&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 18,
-                &quot;retailer_id&quot;: 5,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: &quot;Quia ea aut sunt enim unde ea distinctio quidem. Libero qui eaque alias illum nobis dolores. Sed incidunt sit ipsum atque magnam. Autem tempore at quia sint iusto hic tempora.&quot;,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: &quot;1995-03-24T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: &quot;1980-07-30T00:00:00.000000Z&quot;,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 3681
-            }
-        },
-        {
-            &quot;id&quot;: 6,
-            &quot;company_name&quot;: &quot;Miss Natasha Gusikowski&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: &quot;http://www.hansen.com/porro-explicabo-iste-omnis&quot;,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 20,
-                &quot;retailer_id&quot;: 6,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: &quot;Optio unde corrupti quam consectetur quia earum iusto. Dolorem nihil totam totam voluptas quae omnis. Tempore id quisquam iste fugiat consequatur animi voluptatem soluta. Unde sed at atque dolor.&quot;,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: &quot;2023-01-05T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 4516
-            }
-        },
-        {
-            &quot;id&quot;: 7,
-            &quot;company_name&quot;: &quot;Dr. Ardith Wisoky PhD&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 23,
-                &quot;retailer_id&quot;: 7,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: null,
-                &quot;terms&quot;: &quot;Autem odit nihil quia quam iure. Reiciendis enim sunt quisquam in occaecati. Et alias doloribus tempora totam et. Voluptates facere rerum porro aut.&quot;,
-                &quot;start_date&quot;: &quot;2007-09-05T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 4919
-            }
-        },
-        {
-            &quot;id&quot;: 8,
-            &quot;company_name&quot;: &quot;Mateo Schumm Jr.&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 24,
-                &quot;retailer_id&quot;: 8,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: null,
-                &quot;terms&quot;: &quot;Libero id voluptas ex enim aut. Neque possimus aut voluptatem accusantium. Similique ut temporibus dolorum qui voluptatibus dolorem ut. Ea sit saepe nihil delectus reprehenderit.&quot;,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: &quot;1981-01-09T00:00:00.000000Z&quot;,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 4742
-            }
-        },
-        {
-            &quot;id&quot;: 9,
-            &quot;company_name&quot;: &quot;Deon Rempel&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 29,
-                &quot;retailer_id&quot;: 9,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: &quot;Odio explicabo odit perferendis saepe est. Laboriosam voluptatem molestiae enim occaecati. Fugit eaque sed nesciunt. Autem sed aut corrupti ex nostrum consequatur.&quot;,
-                &quot;terms&quot;: &quot;Qui corporis eius dolorem molestiae rem. Et alias saepe est sed. Labore corrupti neque quisquam rerum. Aliquam ea nemo ut iste.&quot;,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 3860
-            }
-        },
-        {
-            &quot;id&quot;: 10,
-            &quot;company_name&quot;: &quot;Prof. Jacey Cronin IV&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 31,
-                &quot;retailer_id&quot;: 10,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: &quot;Ipsum ut porro non consectetur ex dolorem. Voluptas est a at nesciunt voluptatem aut. Enim necessitatibus dolorum voluptas officia doloribus voluptate id.&quot;,
-                &quot;terms&quot;: &quot;Suscipit enim iste officiis maxime. Nihil ut autem soluta et. Ut nesciunt amet iusto voluptatem reiciendis delectus. Doloremque enim illum possimus ratione sequi officiis exercitationem.&quot;,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: &quot;1993-02-20T00:00:00.000000Z&quot;,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 1820
-            }
-        },
-        {
-            &quot;id&quot;: 11,
-            &quot;company_name&quot;: &quot;Dr. Brad Hamill&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 32,
-                &quot;retailer_id&quot;: 11,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: &quot;Sed quia quo enim vel voluptatibus. Sequi unde deserunt nostrum animi esse dolorem possimus. Mollitia dolorum in dolor officia. Consequuntur est ut et qui.&quot;,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: &quot;1998-09-25T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: &quot;2018-08-25T00:00:00.000000Z&quot;,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 4755
-            }
-        },
-        {
-            &quot;id&quot;: 12,
-            &quot;company_name&quot;: &quot;Rosario Carroll&quot;,
-            &quot;target_url&quot;: &quot;http://www.reilly.info/&quot;,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: &quot;http://pacocha.com/&quot;,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 37,
-                &quot;retailer_id&quot;: 12,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: null,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: &quot;1972-07-08T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: &quot;2010-06-09T00:00:00.000000Z&quot;,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 4953
-            }
-        },
-        {
-            &quot;id&quot;: 13,
-            &quot;company_name&quot;: &quot;Mrs. Lenore Smith&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 43,
-                &quot;retailer_id&quot;: 13,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: &quot;Iste reprehenderit tempora unde hic ab numquam. Aliquam ex sint aut eaque autem voluptas velit. Nesciunt eos rem enim et quis.&quot;,
-                &quot;terms&quot;: &quot;Aspernatur alias assumenda in officiis in eos. Soluta laborum dolorem aut rem. Tempore tempore rem facere rerum minus et.&quot;,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 2394
-            }
-        },
-        {
-            &quot;id&quot;: 14,
-            &quot;company_name&quot;: &quot;Augustus Bernier DDS&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 46,
-                &quot;retailer_id&quot;: 14,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: &quot;Reiciendis animi a architecto perferendis. Voluptas perferendis nisi aperiam. Libero sequi in numquam.&quot;,
-                &quot;terms&quot;: &quot;Aliquid perferendis laborum temporibus voluptas optio labore. Unde ut sit aut quas adipisci eum dolore. Similique et temporibus non sunt tenetur. Ex consequatur est quam reprehenderit.&quot;,
-                &quot;start_date&quot;: &quot;2022-01-11T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 2737
-            }
-        },
-        {
-            &quot;id&quot;: 15,
-            &quot;company_name&quot;: &quot;Evalyn Dicki III&quot;,
-            &quot;target_url&quot;: &quot;http://www.romaguera.org/ut-aspernatur-fuga-non.html&quot;,
-            &quot;tracking_url&quot;: &quot;http://www.abshire.info/architecto-vel-dicta-maiores-consequatur-maxime-asperiores-laborum&quot;,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 47,
-                &quot;retailer_id&quot;: 15,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: &quot;Minus officiis dolorem explicabo praesentium. Eos incidunt ut perspiciatis adipisci iusto eligendi rerum.&quot;,
-                &quot;terms&quot;: &quot;Aut qui minus odit iste. Alias necessitatibus sunt qui quia est. Cum aut commodi assumenda ipsum repellat quis.&quot;,
-                &quot;start_date&quot;: &quot;2017-01-19T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: &quot;2011-12-02T00:00:00.000000Z&quot;,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 4618
-            }
-        },
-        {
-            &quot;id&quot;: 16,
-            &quot;company_name&quot;: &quot;Mrs. Verlie Reinger DDS&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 54,
-                &quot;retailer_id&quot;: 16,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: null,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 4665
-            }
-        },
-        {
-            &quot;id&quot;: 17,
-            &quot;company_name&quot;: &quot;Nathen Huels&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 59,
-                &quot;retailer_id&quot;: 17,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: null,
-                &quot;terms&quot;: &quot;Recusandae rerum unde doloribus dolorem nemo nemo. Ea neque et maiores quas qui enim. Beatae omnis ut et quisquam. Nulla quia eos accusamus et ut.&quot;,
-                &quot;start_date&quot;: &quot;1986-12-29T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 4899
-            }
-        },
-        {
-            &quot;id&quot;: 18,
-            &quot;company_name&quot;: &quot;Kevon Koepp&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 62,
-                &quot;retailer_id&quot;: 18,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: null,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: &quot;1982-08-15T00:00:00.000000Z&quot;,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 4219
-            }
-        },
-        {
-            &quot;id&quot;: 19,
-            &quot;company_name&quot;: &quot;Gage Mraz IV&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 68,
-                &quot;retailer_id&quot;: 19,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: &quot;Et ipsum aut consequatur voluptatem magni nulla aperiam at. Et nostrum voluptatem facere dicta sint ut. Nisi cum quibusdam et dignissimos porro perspiciatis esse. Tenetur ea iusto autem natus.&quot;,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: &quot;1994-05-12T00:00:00.000000Z&quot;,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 2502
-            }
-        },
-        {
-            &quot;id&quot;: 20,
-            &quot;company_name&quot;: &quot;Caesar Cole&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 70,
-                &quot;retailer_id&quot;: 20,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: &quot;Qui quas assumenda autem sed sapiente a laborum reiciendis. In quaerat quasi asperiores. Architecto nihil nihil repellat sint.&quot;,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: &quot;1987-10-02T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 839
-            }
-        },
-        {
-            &quot;id&quot;: 21,
-            &quot;company_name&quot;: &quot;Ena Fisher V&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 71,
-                &quot;retailer_id&quot;: 21,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: null,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 3963
-            }
-        },
-        {
-            &quot;id&quot;: 22,
-            &quot;company_name&quot;: &quot;Jailyn Breitenberg&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 72,
-                &quot;retailer_id&quot;: 22,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: &quot;Nihil repellendus consequuntur itaque et voluptatem aliquam. Modi mollitia distinctio consequuntur vitae ducimus fugiat ea nisi. Porro ex adipisci et. Et sit natus dolorem quo.&quot;,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 4017
-            }
-        },
-        {
-            &quot;id&quot;: 23,
-            &quot;company_name&quot;: &quot;Afton Hintz&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 73,
-                &quot;retailer_id&quot;: 23,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: null,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: &quot;2019-06-21T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 4105
-            }
-        },
-        {
-            &quot;id&quot;: 24,
-            &quot;company_name&quot;: &quot;Ms. Hilma Watsica DDS&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: &quot;http://champlin.com/&quot;,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 75,
-                &quot;retailer_id&quot;: 24,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: &quot;Eum voluptas culpa error porro eum a voluptas. Quaerat illo dolorum nihil possimus quis qui. Repellendus voluptates est ut nisi fuga. Doloremque porro inventore magni sed nemo.&quot;,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: &quot;1978-02-07T00:00:00.000000Z&quot;,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 906
-            }
-        },
-        {
-            &quot;id&quot;: 25,
-            &quot;company_name&quot;: &quot;Roselyn Daniel&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 76,
-                &quot;retailer_id&quot;: 25,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: &quot;Recusandae optio fugiat vel nobis. Est non consequuntur vero similique. Nihil illo qui dolorem sunt.&quot;,
-                &quot;terms&quot;: &quot;Dolorem quis labore vitae vel quasi placeat ut. Enim numquam est assumenda voluptatibus quod. Dolores odio accusamus quas accusamus nam est.&quot;,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 3809
-            }
-        },
-        {
-            &quot;id&quot;: 26,
-            &quot;company_name&quot;: &quot;Mrs. Felicita Keeling&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: &quot;http://white.biz/sit-qui-suscipit-cupiditate-vitae-ut-dignissimos.html&quot;,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 82,
-                &quot;retailer_id&quot;: 26,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: &quot;Sequi odit sequi eos consequatur. Veritatis officia molestias nulla officiis ut facere ea. Aliquam et et laudantium est voluptas tenetur in.&quot;,
-                &quot;terms&quot;: &quot;Dolorum sint soluta qui vel. Sit error quia neque nihil. Voluptas sapiente qui iure voluptas labore nihil voluptates. Cum et eaque aut sed.&quot;,
-                &quot;start_date&quot;: &quot;1970-02-22T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: &quot;2020-09-06T00:00:00.000000Z&quot;,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 4243
-            }
-        },
-        {
-            &quot;id&quot;: 27,
-            &quot;company_name&quot;: &quot;Ardith Schowalter&quot;,
-            &quot;target_url&quot;: &quot;http://reynolds.com/officiis-corporis-placeat-ducimus-rerum-cupiditate-commodi-ducimus&quot;,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 89,
-                &quot;retailer_id&quot;: 27,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: &quot;Qui doloremque consequuntur quo pariatur atque ut suscipit. Dolorum amet et velit eius velit minus cupiditate. A a debitis mollitia repellendus distinctio. Ea quas adipisci eos labore laudantium.&quot;,
-                &quot;terms&quot;: &quot;Qui sint et eum rerum ad et. Hic quia tempora incidunt debitis architecto nostrum. Dolores eum maxime sint accusantium voluptas tempora.&quot;,
-                &quot;start_date&quot;: &quot;1982-04-04T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 4959
-            }
-        },
-        {
-            &quot;id&quot;: 28,
-            &quot;company_name&quot;: &quot;Mrs. Alexandrea Batz&quot;,
-            &quot;target_url&quot;: &quot;http://www.dickinson.com/&quot;,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 95,
-                &quot;retailer_id&quot;: 28,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: null,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: &quot;1984-01-18T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: &quot;1995-12-20T00:00:00.000000Z&quot;,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 4601
-            }
-        },
-        {
-            &quot;id&quot;: 29,
-            &quot;company_name&quot;: &quot;Ward Brakus III&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 96,
-                &quot;retailer_id&quot;: 29,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: &quot;Quos a eos delectus quod culpa consectetur. Omnis odit ea quia architecto aliquam. Itaque minus consequatur dolores. Sunt id quod et autem nam et. Aut et impedit at ut quis.&quot;,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: &quot;2014-01-30T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 4423
-            }
-        },
-        {
-            &quot;id&quot;: 30,
-            &quot;company_name&quot;: &quot;Krystel Grady I&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 97,
-                &quot;retailer_id&quot;: 30,
-                &quot;type&quot;: &quot;percent&quot;,
-                &quot;description&quot;: &quot;Et autem laborum ex. Officia est saepe deserunt quia qui quaerat possimus. In in qui dignissimos minus quis numquam. Sed sit fugiat et. Reprehenderit suscipit mollitia consequatur eum error nulla.&quot;,
-                &quot;terms&quot;: null,
-                &quot;start_date&quot;: &quot;1986-11-11T00:00:00.000000Z&quot;,
-                &quot;end_date&quot;: null,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 3931
-            }
-        },
-        {
-            &quot;id&quot;: 31,
-            &quot;company_name&quot;: &quot;Conrad Torphy&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: &quot;http://www.gutkowski.net/recusandae-voluptas-inventore-perspiciatis-quia&quot;,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 103,
-                &quot;retailer_id&quot;: 31,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: null,
-                &quot;terms&quot;: &quot;Excepturi voluptas ut quaerat quia cumque dolorum dignissimos. Quis aperiam nulla qui doloribus illo.&quot;,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: &quot;2003-10-19T00:00:00.000000Z&quot;,
-                &quot;default&quot;: false,
-                &quot;rate&quot;: 4968
-            }
-        },
-        {
-            &quot;id&quot;: 32,
-            &quot;company_name&quot;: &quot;Mrs. Nicolette Ullrich&quot;,
-            &quot;target_url&quot;: &quot;https://predovic.biz/veniam-autem-atque-velit-nobis-blanditiis-doloremque.html&quot;,
-            &quot;tracking_url&quot;: &quot;http://bergstrom.com/dolorum-dolore-consequuntur-excepturi-fuga-quasi&quot;,
-            &quot;image&quot;: null,
-            &quot;max_commission_details&quot;: {
-                &quot;id&quot;: 104,
-                &quot;retailer_id&quot;: 32,
-                &quot;type&quot;: &quot;fixed&quot;,
-                &quot;description&quot;: &quot;Non non ullam vel aliquam aut voluptates officiis. Est facere nulla ea non dolorem et blanditiis. Dignissimos incidunt voluptate accusamus odit rerum.&quot;,
-                &quot;terms&quot;: &quot;Impedit ut doloribus quaerat dolores pariatur nam. Commodi vero enim omnis cumque sapiente qui. Voluptas fugit ut dolor ut itaque minima.&quot;,
-                &quot;start_date&quot;: null,
-                &quot;end_date&quot;: &quot;1998-03-21T00:00:00.000000Z&quot;,
-                &quot;default&quot;: true,
-                &quot;rate&quot;: 3624
-            }
-        }
-    ],
-    &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://localhost/api/retailers?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost/api/retailers?page=1&quot;,
-        &quot;prev&quot;: null,
-        &quot;next&quot;: null
-    },
-    &quot;meta&quot;: {
-        &quot;current_page&quot;: 1,
-        &quot;from&quot;: 1,
-        &quot;last_page&quot;: 1,
-        &quot;links&quot;: [
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-                &quot;active&quot;: false
-            },
-            {
-                &quot;url&quot;: &quot;http://localhost/api/retailers?page=1&quot;,
-                &quot;label&quot;: &quot;1&quot;,
-                &quot;active&quot;: true
-            },
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-                &quot;active&quot;: false
-            }
-        ],
-        &quot;path&quot;: &quot;http://localhost/api/retailers&quot;,
-        &quot;per_page&quot;: 200,
-        &quot;to&quot;: 32,
-        &quot;total&quot;: 32
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-retailers" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-retailers"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-retailers"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-retailers" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-retailers">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-retailers" data-method="GET"
-      data-path="api/retailers"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-retailers', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-retailers"
-                    onclick="tryItOut('GETapi-retailers');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-retailers"
-                    onclick="cancelTryOut('GETapi-retailers');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-retailers"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/retailers</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-retailers"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-retailers"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-retailers"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
-                                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="page"                data-endpoint="GETapi-retailers"
-               value="1"
-               data-component="query">
-    <br>
-<p>the page number to get. Example: <code>1</code></p>
-            </div>
-                </form>
-
-                    <h2 id="endpoints-GETapi-promos">GET api/promos</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-promos">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "https://wink-dashboard.tw-dev.com/api/promos?page=1" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/promos"
-);
-
-const params = {
-    "page": "1",
-};
-Object.keys(params)
-    .forEach(key =&gt; url.searchParams.append(key, params[key]));
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-promos">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 53
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 12,
-            &quot;type&quot;: &quot;promo&quot;,
-            &quot;description&quot;: &quot;Quas numquam deserunt et soluta. Qui quaerat dicta quia ipsum. Ad beatae fugiat iusto.%&quot;,
-            &quot;terms&quot;: null,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;coupon_code&quot;: &quot;Esse non occaecati quod possimus. Voluptatibus similique ratione aut unde eaque. Suscipit modi qui rem.&quot;,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;retailer_id&quot;: 4
-        },
-        {
-            &quot;id&quot;: 29,
-            &quot;type&quot;: &quot;promo&quot;,
-            &quot;description&quot;: &quot;Qui consequatur corporis nostrum quibusdam tempora. Voluptatem voluptas repellendus non enim.%&quot;,
-            &quot;terms&quot;: &quot;Doloribus sunt exercitationem rem vitae neque. Et ipsa et est delectus natus et autem et. Et reprehenderit provident quis distinctio culpa placeat blanditiis numquam.&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;coupon_code&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;retailer_id&quot;: 6
-        },
-        {
-            &quot;id&quot;: 106,
-            &quot;type&quot;: &quot;promo&quot;,
-            &quot;description&quot;: &quot;Natus cupiditate consequuntur est quia officiis. Possimus suscipit modi voluptate ut.$&quot;,
-            &quot;terms&quot;: null,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: &quot;http://moore.net/&quot;,
-            &quot;coupon_code&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;retailer_id&quot;: 20
-        },
-        {
-            &quot;id&quot;: 115,
-            &quot;type&quot;: &quot;promo&quot;,
-            &quot;description&quot;: &quot;Reprehenderit aliquam recusandae aperiam. Dicta ab ratione pariatur et vel.%&quot;,
-            &quot;terms&quot;: null,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;coupon_code&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;retailer_id&quot;: 22
-        },
-        {
-            &quot;id&quot;: 124,
-            &quot;type&quot;: &quot;promo&quot;,
-            &quot;description&quot;: &quot;Eos doloribus rem ut. Aut nam voluptas qui. Perferendis iste illum modi omnis ut et qui.%&quot;,
-            &quot;terms&quot;: null,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;coupon_code&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;retailer_id&quot;: 23
-        },
-        {
-            &quot;id&quot;: 138,
-            &quot;type&quot;: &quot;promo&quot;,
-            &quot;description&quot;: &quot;Sit est et ullam laborum. Nihil pariatur quasi eos consequatur odit.$&quot;,
-            &quot;terms&quot;: &quot;Quia quidem distinctio dolores praesentium. Occaecati mollitia quasi accusamus aut facilis soluta optio. Eos quia magnam assumenda vitae. Ullam fuga ab itaque laboriosam.&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: null,
-            &quot;coupon_code&quot;: &quot;Porro suscipit in omnis eos et. Amet voluptate qui aliquam quia excepturi qui alias. Non vitae sed deserunt ut. Ut consectetur id incidunt sed.&quot;,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;retailer_id&quot;: 25
-        },
-        {
-            &quot;id&quot;: 169,
-            &quot;type&quot;: &quot;promo&quot;,
-            &quot;description&quot;: &quot;Et ut qui voluptatem nihil labore sint quia. Ut autem omnis dolorem.%&quot;,
-            &quot;terms&quot;: &quot;Necessitatibus sunt accusantium a nesciunt eius esse natus laudantium. Aut enim veniam ea porro. Eos quod illo dicta eum dolorem ipsum.&quot;,
-            &quot;target_url&quot;: null,
-            &quot;tracking_url&quot;: &quot;https://berge.net/dolor-dolor-distinctio-esse-quaerat-alias.html&quot;,
-            &quot;coupon_code&quot;: &quot;Consequatur harum non omnis incidunt sed. Aut voluptas recusandae aut sapiente aut nihil qui et. Perferendis commodi voluptas ipsam earum.&quot;,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;retailer_id&quot;: 32
-        }
-    ],
-    &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://localhost/api/promos?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost/api/promos?page=1&quot;,
-        &quot;prev&quot;: null,
-        &quot;next&quot;: null
-    },
-    &quot;meta&quot;: {
-        &quot;current_page&quot;: 1,
-        &quot;from&quot;: 1,
-        &quot;last_page&quot;: 1,
-        &quot;links&quot;: [
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-                &quot;active&quot;: false
-            },
-            {
-                &quot;url&quot;: &quot;http://localhost/api/promos?page=1&quot;,
-                &quot;label&quot;: &quot;1&quot;,
-                &quot;active&quot;: true
-            },
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-                &quot;active&quot;: false
-            }
-        ],
-        &quot;path&quot;: &quot;http://localhost/api/promos&quot;,
-        &quot;per_page&quot;: 200,
-        &quot;to&quot;: 7,
-        &quot;total&quot;: 7
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-promos" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-promos"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-promos"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-promos" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-promos">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-promos" data-method="GET"
-      data-path="api/promos"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-promos', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-promos"
-                    onclick="tryItOut('GETapi-promos');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-promos"
-                    onclick="cancelTryOut('GETapi-promos');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-promos"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/promos</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-promos"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-promos"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-promos"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
-                                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="page"                data-endpoint="GETapi-promos"
-               value="1"
-               data-component="query">
-    <br>
-<p>the page number to get. Example: <code>1</code></p>
-            </div>
-                </form>
-
-                    <h2 id="endpoints-GETapi-commissions">GET api/commissions</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-commissions">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "https://wink-dashboard.tw-dev.com/api/commissions?page=1" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/commissions"
-);
-
-const params = {
-    "page": "1",
-};
-Object.keys(params)
-    .forEach(key =&gt; url.searchParams.append(key, params[key]));
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-commissions">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 52
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 9,
-            &quot;retailer_id&quot;: 3,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: &quot;Delectus commodi commodi libero eligendi odio. Ut quidem molestias laboriosam voluptate. Odit eos quisquam dolorum et. Error blanditiis ut qui libero incidunt est architecto.&quot;,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: &quot;2016-08-07T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: &quot;1987-06-25T00:00:00.000000Z&quot;,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 4517
-        },
-        {
-            &quot;id&quot;: 10,
-            &quot;retailer_id&quot;: 3,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: null,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: &quot;1985-05-08T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 3552
-        },
-        {
-            &quot;id&quot;: 11,
-            &quot;retailer_id&quot;: 3,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: &quot;Debitis placeat ea natus facere eaque rerum autem optio. Dicta accusantium omnis error libero aut facere soluta. Voluptatibus repudiandae cupiditate tempora exercitationem iusto.&quot;,
-            &quot;terms&quot;: &quot;Nulla odit voluptas molestias. Id eos eum numquam rerum praesentium et. Temporibus adipisci qui sed natus nostrum rerum.&quot;,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 281
-        },
-        {
-            &quot;id&quot;: 13,
-            &quot;retailer_id&quot;: 4,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: &quot;Voluptates qui fugiat qui cumque sit laboriosam. Quis consequuntur ex ut ad sunt.&quot;,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 4368
-        },
-        {
-            &quot;id&quot;: 16,
-            &quot;retailer_id&quot;: 5,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: &quot;Illo harum beatae sed commodi rerum est. Vitae nisi rem qui id exercitationem natus dolore. Ut neque in saepe omnis. Aut ut delectus quis necessitatibus.&quot;,
-            &quot;terms&quot;: &quot;Ullam ut eum et perspiciatis consequatur harum. Modi maxime aut explicabo sit perferendis sequi. Autem facere reprehenderit veniam consequatur. Ipsum neque molestiae omnis ut beatae.&quot;,
-            &quot;start_date&quot;: &quot;2004-07-23T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: &quot;1976-01-25T00:00:00.000000Z&quot;,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 2879
-        },
-        {
-            &quot;id&quot;: 17,
-            &quot;retailer_id&quot;: 5,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: &quot;Culpa ut ut unde totam. Voluptatem maxime incidunt pariatur dignissimos dolore est. Enim ratione sint architecto nam molestiae ipsa. Eum odio consequatur ad repellat quidem consequatur.&quot;,
-            &quot;terms&quot;: &quot;Temporibus iusto et fuga voluptates necessitatibus asperiores. Cum eum repellendus perferendis cumque autem. Sed qui ea at aut.&quot;,
-            &quot;start_date&quot;: &quot;2014-03-28T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 3404
-        },
-        {
-            &quot;id&quot;: 19,
-            &quot;retailer_id&quot;: 6,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: null,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 3584
-        },
-        {
-            &quot;id&quot;: 40,
-            &quot;retailer_id&quot;: 13,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: &quot;Autem suscipit iusto eos provident. Inventore quo enim aut et in. Nulla esse illum eligendi qui sed consequuntur et sequi.&quot;,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: &quot;2007-05-08T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 2281
-        },
-        {
-            &quot;id&quot;: 43,
-            &quot;retailer_id&quot;: 13,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: &quot;Iste reprehenderit tempora unde hic ab numquam. Aliquam ex sint aut eaque autem voluptas velit. Nesciunt eos rem enim et quis.&quot;,
-            &quot;terms&quot;: &quot;Aspernatur alias assumenda in officiis in eos. Soluta laborum dolorem aut rem. Tempore tempore rem facere rerum minus et.&quot;,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 2394
-        },
-        {
-            &quot;id&quot;: 46,
-            &quot;retailer_id&quot;: 14,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: &quot;Reiciendis animi a architecto perferendis. Voluptas perferendis nisi aperiam. Libero sequi in numquam.&quot;,
-            &quot;terms&quot;: &quot;Aliquid perferendis laborum temporibus voluptas optio labore. Unde ut sit aut quas adipisci eum dolore. Similique et temporibus non sunt tenetur. Ex consequatur est quam reprehenderit.&quot;,
-            &quot;start_date&quot;: &quot;2022-01-11T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 2737
-        },
-        {
-            &quot;id&quot;: 49,
-            &quot;retailer_id&quot;: 16,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: &quot;Quas quae quo molestiae eum et architecto. Sit deserunt temporibus vel fugit blanditiis praesentium. Voluptatem soluta aperiam eligendi nemo eum.&quot;,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: &quot;2016-12-18T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: &quot;2019-12-06T00:00:00.000000Z&quot;,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 3232
-        },
-        {
-            &quot;id&quot;: 52,
-            &quot;retailer_id&quot;: 16,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: null,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: &quot;1993-11-13T00:00:00.000000Z&quot;,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 1444
-        },
-        {
-            &quot;id&quot;: 54,
-            &quot;retailer_id&quot;: 16,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: null,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 4665
-        },
-        {
-            &quot;id&quot;: 55,
-            &quot;retailer_id&quot;: 17,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: &quot;Enim quia nam et sed neque adipisci dolor. Quam odit error est quasi quam vel dolore nostrum. Quae non est recusandae earum quibusdam voluptatem ipsam. Rerum enim assumenda rerum eaque.&quot;,
-            &quot;terms&quot;: &quot;Ut ut corporis ducimus modi autem. Voluptas ipsam dolor eos earum qui accusamus optio voluptas. Inventore similique eveniet minima dolores qui.&quot;,
-            &quot;start_date&quot;: &quot;1997-09-06T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 2566
-        },
-        {
-            &quot;id&quot;: 57,
-            &quot;retailer_id&quot;: 17,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: &quot;Temporibus commodi sit tempora enim. Nostrum in velit occaecati. Enim ipsum magni repudiandae ut ut dolores amet. Quod maiores eaque non mollitia quia tempora.&quot;,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: &quot;1977-12-19T00:00:00.000000Z&quot;,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 940
-        },
-        {
-            &quot;id&quot;: 59,
-            &quot;retailer_id&quot;: 17,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: null,
-            &quot;terms&quot;: &quot;Recusandae rerum unde doloribus dolorem nemo nemo. Ea neque et maiores quas qui enim. Beatae omnis ut et quisquam. Nulla quia eos accusamus et ut.&quot;,
-            &quot;start_date&quot;: &quot;1986-12-29T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 4899
-        },
-        {
-            &quot;id&quot;: 60,
-            &quot;retailer_id&quot;: 17,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: &quot;Atque dolorum ipsam aperiam rem dolor eligendi accusamus vel. Cumque fuga cupiditate dicta eos. Quos voluptatem consequuntur qui harum ex modi ducimus.&quot;,
-            &quot;terms&quot;: &quot;Cumque quae nostrum quo tempora unde. Officiis totam nisi delectus tempore. Dolor quae maxime inventore est enim. Tempora architecto sit voluptates quia.&quot;,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 3861
-        },
-        {
-            &quot;id&quot;: 69,
-            &quot;retailer_id&quot;: 20,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: &quot;Voluptates laboriosam eius blanditiis vel autem dolorum assumenda. Explicabo dolorem sint vel consequatur odio. Ut odit enim nam quos et.&quot;,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: &quot;1971-11-04T00:00:00.000000Z&quot;,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 832
-        },
-        {
-            &quot;id&quot;: 70,
-            &quot;retailer_id&quot;: 20,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: &quot;Qui quas assumenda autem sed sapiente a laborum reiciendis. In quaerat quasi asperiores. Architecto nihil nihil repellat sint.&quot;,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: &quot;1987-10-02T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 839
-        },
-        {
-            &quot;id&quot;: 71,
-            &quot;retailer_id&quot;: 21,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: null,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 3963
-        },
-        {
-            &quot;id&quot;: 72,
-            &quot;retailer_id&quot;: 22,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: &quot;Nihil repellendus consequuntur itaque et voluptatem aliquam. Modi mollitia distinctio consequuntur vitae ducimus fugiat ea nisi. Porro ex adipisci et. Et sit natus dolorem quo.&quot;,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 4017
-        },
-        {
-            &quot;id&quot;: 73,
-            &quot;retailer_id&quot;: 23,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: null,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: &quot;2019-06-21T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 4105
-        },
-        {
-            &quot;id&quot;: 75,
-            &quot;retailer_id&quot;: 24,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: &quot;Eum voluptas culpa error porro eum a voluptas. Quaerat illo dolorum nihil possimus quis qui. Repellendus voluptates est ut nisi fuga. Doloremque porro inventore magni sed nemo.&quot;,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: &quot;1978-02-07T00:00:00.000000Z&quot;,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 906
-        },
-        {
-            &quot;id&quot;: 76,
-            &quot;retailer_id&quot;: 25,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: &quot;Recusandae optio fugiat vel nobis. Est non consequuntur vero similique. Nihil illo qui dolorem sunt.&quot;,
-            &quot;terms&quot;: &quot;Dolorem quis labore vitae vel quasi placeat ut. Enim numquam est assumenda voluptatibus quod. Dolores odio accusamus quas accusamus nam est.&quot;,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 3809
-        },
-        {
-            &quot;id&quot;: 78,
-            &quot;retailer_id&quot;: 25,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: &quot;Temporibus quis quaerat velit adipisci est nobis. Laudantium nam laboriosam et sint beatae consequuntur aliquid. Nostrum vel corporis assumenda.&quot;,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 1833
-        },
-        {
-            &quot;id&quot;: 81,
-            &quot;retailer_id&quot;: 25,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: &quot;Temporibus ut repellat numquam iusto cupiditate. Aspernatur blanditiis deleniti nulla. Voluptatem impedit aut nemo natus laborum necessitatibus.&quot;,
-            &quot;terms&quot;: &quot;Quaerat rerum at libero sed eligendi et et magni. Voluptas cupiditate rerum molestias. Officia doloribus enim cumque corrupti dolorem est eligendi. Vel quod voluptas inventore velit quo sed.&quot;,
-            &quot;start_date&quot;: &quot;2015-05-24T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 3238
-        },
-        {
-            &quot;id&quot;: 97,
-            &quot;retailer_id&quot;: 30,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: &quot;Et autem laborum ex. Officia est saepe deserunt quia qui quaerat possimus. In in qui dignissimos minus quis numquam. Sed sit fugiat et. Reprehenderit suscipit mollitia consequatur eum error nulla.&quot;,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: &quot;1986-11-11T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 3931
-        },
-        {
-            &quot;id&quot;: 99,
-            &quot;retailer_id&quot;: 31,
-            &quot;type&quot;: &quot;percent&quot;,
-            &quot;description&quot;: &quot;Aliquid beatae eum sapiente incidunt quis. Reprehenderit consectetur enim dolorem. In enim at ullam. Sed nobis exercitationem eaque velit est ea consequatur corrupti. Et facilis explicabo et.&quot;,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: &quot;2021-10-27T00:00:00.000000Z&quot;,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 3349
-        },
-        {
-            &quot;id&quot;: 101,
-            &quot;retailer_id&quot;: 31,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: &quot;Excepturi ut eligendi sequi dolores. Tempore molestiae et qui vel. Ad quis velit aliquid odit necessitatibus.&quot;,
-            &quot;terms&quot;: null,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: &quot;2007-04-10T00:00:00.000000Z&quot;,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 1032
-        },
-        {
-            &quot;id&quot;: 103,
-            &quot;retailer_id&quot;: 31,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: null,
-            &quot;terms&quot;: &quot;Excepturi voluptas ut quaerat quia cumque dolorum dignissimos. Quis aperiam nulla qui doloribus illo.&quot;,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: &quot;2003-10-19T00:00:00.000000Z&quot;,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 4968
-        },
-        {
-            &quot;id&quot;: 104,
-            &quot;retailer_id&quot;: 32,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: &quot;Non non ullam vel aliquam aut voluptates officiis. Est facere nulla ea non dolorem et blanditiis. Dignissimos incidunt voluptate accusamus odit rerum.&quot;,
-            &quot;terms&quot;: &quot;Impedit ut doloribus quaerat dolores pariatur nam. Commodi vero enim omnis cumque sapiente qui. Voluptas fugit ut dolor ut itaque minima.&quot;,
-            &quot;start_date&quot;: null,
-            &quot;end_date&quot;: &quot;1998-03-21T00:00:00.000000Z&quot;,
-            &quot;default&quot;: true,
-            &quot;rate&quot;: 3624
-        }
-    ],
-    &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://localhost/api/commissions?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost/api/commissions?page=1&quot;,
-        &quot;prev&quot;: null,
-        &quot;next&quot;: null
-    },
-    &quot;meta&quot;: {
-        &quot;current_page&quot;: 1,
-        &quot;from&quot;: 1,
-        &quot;last_page&quot;: 1,
-        &quot;links&quot;: [
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-                &quot;active&quot;: false
-            },
-            {
-                &quot;url&quot;: &quot;http://localhost/api/commissions?page=1&quot;,
-                &quot;label&quot;: &quot;1&quot;,
-                &quot;active&quot;: true
-            },
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-                &quot;active&quot;: false
-            }
-        ],
-        &quot;path&quot;: &quot;http://localhost/api/commissions&quot;,
-        &quot;per_page&quot;: 200,
-        &quot;to&quot;: 31,
-        &quot;total&quot;: 31
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-commissions" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-commissions"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-commissions"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-commissions" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-commissions">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-commissions" data-method="GET"
-      data-path="api/commissions"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-commissions', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-commissions"
-                    onclick="tryItOut('GETapi-commissions');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-commissions"
-                    onclick="cancelTryOut('GETapi-commissions');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-commissions"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/commissions</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-commissions"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-commissions"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-commissions"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
-                                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="page"                data-endpoint="GETapi-commissions"
-               value="1"
-               data-component="query">
-    <br>
-<p>the page number to get. Example: <code>1</code></p>
-            </div>
-                </form>
-
-                    <h2 id="endpoints-GETapi-retailer--retailer_id-">GET api/retailer/{retailer_id}</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-retailer--retailer_id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "https://wink-dashboard.tw-dev.com/api/retailer/17" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/retailer/17"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-retailer--retailer_id-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 51
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: {
-        &quot;id&quot;: 17,
-        &quot;company_name&quot;: &quot;Nathen Huels&quot;,
-        &quot;target_url&quot;: null,
-        &quot;tracking_url&quot;: null,
-        &quot;image&quot;: null,
-        &quot;max_commission_details&quot;: {
-            &quot;id&quot;: 59,
-            &quot;retailer_id&quot;: 17,
-            &quot;type&quot;: &quot;fixed&quot;,
-            &quot;description&quot;: null,
-            &quot;terms&quot;: &quot;Recusandae rerum unde doloribus dolorem nemo nemo. Ea neque et maiores quas qui enim. Beatae omnis ut et quisquam. Nulla quia eos accusamus et ut.&quot;,
-            &quot;start_date&quot;: &quot;1986-12-29T00:00:00.000000Z&quot;,
-            &quot;end_date&quot;: null,
-            &quot;default&quot;: false,
-            &quot;rate&quot;: 4899
-        }
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-retailer--retailer_id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-retailer--retailer_id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-retailer--retailer_id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-retailer--retailer_id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-retailer--retailer_id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-retailer--retailer_id-" data-method="GET"
-      data-path="api/retailer/{retailer_id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-retailer--retailer_id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-retailer--retailer_id-"
-                    onclick="tryItOut('GETapi-retailer--retailer_id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-retailer--retailer_id-"
-                    onclick="cancelTryOut('GETapi-retailer--retailer_id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-retailer--retailer_id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/retailer/{retailer_id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-retailer--retailer_id-"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-retailer--retailer_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-retailer--retailer_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>retailer_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="retailer_id"                data-endpoint="GETapi-retailer--retailer_id-"
-               value="17"
-               data-component="url">
-    <br>
-<p>the id of the retailer. Example: <code>17</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-GETapi-promo--promo_id-">GET api/promo/{promo_id}</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-promo--promo_id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "https://wink-dashboard.tw-dev.com/api/promo/12" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/promo/12"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-promo--promo_id-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 50
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: {
-        &quot;id&quot;: 12,
-        &quot;type&quot;: &quot;promo&quot;,
-        &quot;description&quot;: &quot;Quas numquam deserunt et soluta. Qui quaerat dicta quia ipsum. Ad beatae fugiat iusto.%&quot;,
-        &quot;terms&quot;: null,
-        &quot;target_url&quot;: null,
-        &quot;tracking_url&quot;: null,
-        &quot;coupon_code&quot;: &quot;Esse non occaecati quod possimus. Voluptatibus similique ratione aut unde eaque. Suscipit modi qui rem.&quot;,
-        &quot;start_date&quot;: null,
-        &quot;end_date&quot;: null,
-        &quot;retailer_id&quot;: 4
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-promo--promo_id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-promo--promo_id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-promo--promo_id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-promo--promo_id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-promo--promo_id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-promo--promo_id-" data-method="GET"
-      data-path="api/promo/{promo_id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-promo--promo_id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-promo--promo_id-"
-                    onclick="tryItOut('GETapi-promo--promo_id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-promo--promo_id-"
-                    onclick="cancelTryOut('GETapi-promo--promo_id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-promo--promo_id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/promo/{promo_id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-promo--promo_id-"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-promo--promo_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-promo--promo_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>promo_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="promo_id"                data-endpoint="GETapi-promo--promo_id-"
-               value="12"
-               data-component="url">
-    <br>
-<p>the id of the promo. Example: <code>12</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-GETapi-click--promo_id-">GET api/click/{promo_id}</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-click--promo_id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "https://wink-dashboard.tw-dev.com/api/click/12" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/click/12"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-click--promo_id-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 49
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: {
-        &quot;id&quot;: 12,
-        &quot;type&quot;: &quot;promo&quot;,
-        &quot;description&quot;: &quot;Quas numquam deserunt et soluta. Qui quaerat dicta quia ipsum. Ad beatae fugiat iusto.%&quot;,
-        &quot;terms&quot;: null,
-        &quot;target_url&quot;: null,
-        &quot;tracking_url&quot;: null,
-        &quot;coupon_code&quot;: &quot;Esse non occaecati quod possimus. Voluptatibus similique ratione aut unde eaque. Suscipit modi qui rem.&quot;,
-        &quot;start_date&quot;: null,
-        &quot;end_date&quot;: null,
-        &quot;retailer_id&quot;: 4
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-click--promo_id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-click--promo_id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-click--promo_id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-click--promo_id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-click--promo_id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-click--promo_id-" data-method="GET"
-      data-path="api/click/{promo_id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-click--promo_id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-click--promo_id-"
-                    onclick="tryItOut('GETapi-click--promo_id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-click--promo_id-"
-                    onclick="cancelTryOut('GETapi-click--promo_id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-click--promo_id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/click/{promo_id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-click--promo_id-"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-click--promo_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-click--promo_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>promo_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="promo_id"                data-endpoint="GETapi-click--promo_id-"
-               value="12"
-               data-component="url">
-    <br>
-<p>the id of the promo. Example: <code>12</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-GETapi-commission--commission_id-">GET api/commission/{commission_id}</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-commission--commission_id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "https://wink-dashboard.tw-dev.com/api/commission/9" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/commission/9"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-commission--commission_id-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 48
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: {
-        &quot;id&quot;: 9,
-        &quot;retailer_id&quot;: 3,
-        &quot;type&quot;: &quot;fixed&quot;,
-        &quot;description&quot;: &quot;Delectus commodi commodi libero eligendi odio. Ut quidem molestias laboriosam voluptate. Odit eos quisquam dolorum et. Error blanditiis ut qui libero incidunt est architecto.&quot;,
-        &quot;terms&quot;: null,
-        &quot;start_date&quot;: &quot;2016-08-07T00:00:00.000000Z&quot;,
-        &quot;end_date&quot;: &quot;1987-06-25T00:00:00.000000Z&quot;,
-        &quot;default&quot;: true,
-        &quot;rate&quot;: 4517
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-commission--commission_id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-commission--commission_id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-commission--commission_id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-commission--commission_id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-commission--commission_id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-commission--commission_id-" data-method="GET"
-      data-path="api/commission/{commission_id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-commission--commission_id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-commission--commission_id-"
-                    onclick="tryItOut('GETapi-commission--commission_id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-commission--commission_id-"
-                    onclick="cancelTryOut('GETapi-commission--commission_id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-commission--commission_id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/commission/{commission_id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-commission--commission_id-"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-commission--commission_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-commission--commission_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>commission_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="commission_id"                data-endpoint="GETapi-commission--commission_id-"
-               value="9"
-               data-component="url">
-    <br>
-<p>the id of the commission. Example: <code>9</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-POSTapi-user-redeem">POST api/user/redeem</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-user-redeem">
+<span id="example-requests-POSTapi-login">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wink-dashboard.tw-dev.com/api/user/redeem" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/user/redeem"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-user-redeem">
-            <blockquote>
-            <p>Example response (201):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 182,
-    &quot;value&quot;: 45483
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-user-redeem" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-user-redeem"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-user-redeem"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-user-redeem" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-user-redeem">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-user-redeem" data-method="POST"
-      data-path="api/user/redeem"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-user-redeem', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-user-redeem"
-                    onclick="tryItOut('POSTapi-user-redeem');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-user-redeem"
-                    onclick="cancelTryOut('POSTapi-user-redeem');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-user-redeem"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/user/redeem</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-user-redeem"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-user-redeem"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-user-redeem"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="endpoints-POSTapi-user-promo--promo_id--click">POST api/user/promo/{promo_id}/click</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-user-promo--promo_id--click">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "https://wink-dashboard.tw-dev.com/api/user/promo/12/click" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/user/promo/12/click"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-user-promo--promo_id--click">
-            <blockquote>
-            <p>Example response (201):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 12856,
-    &quot;app_user_id&quot;: 18,
-    &quot;promo_id&quot;: 763
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-user-promo--promo_id--click" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-user-promo--promo_id--click"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-user-promo--promo_id--click"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-user-promo--promo_id--click" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-user-promo--promo_id--click">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-user-promo--promo_id--click" data-method="POST"
-      data-path="api/user/promo/{promo_id}/click"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-user-promo--promo_id--click', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-user-promo--promo_id--click"
-                    onclick="tryItOut('POSTapi-user-promo--promo_id--click');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-user-promo--promo_id--click"
-                    onclick="cancelTryOut('POSTapi-user-promo--promo_id--click');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-user-promo--promo_id--click"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/user/promo/{promo_id}/click</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-user-promo--promo_id--click"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-user-promo--promo_id--click"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-user-promo--promo_id--click"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>promo_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="promo_id"                data-endpoint="POSTapi-user-promo--promo_id--click"
-               value="12"
-               data-component="url">
-    <br>
-<p>the id of the promo. Example: <code>12</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-POSTapi-user-login">POST api/user/login</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-user-login">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "https://wink-dashboard.tw-dev.com/api/user/login" \
+    "https://refer-friend.tw-dev.com/api/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"broderick.abbott@example.net\",
-    \"password\": \"r3}Bd3=~\"
+    \"email\": \"steuber.ray@example.net\",
+    \"password\": \"].?j8Br9f\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/user/login"
+    "https://refer-friend.tw-dev.com/api/login"
 );
 
 const headers = {
@@ -3208,8 +542,8 @@ const headers = {
 };
 
 let body = {
-    "email": "broderick.abbott@example.net",
-    "password": "r3}Bd3=~"
+    "email": "steuber.ray@example.net",
+    "password": "].?j8Br9f"
 };
 
 fetch(url, {
@@ -3220,7 +554,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-user-login">
+<span id="example-responses-POSTapi-login">
             <blockquote>
             <p>Example response (201):</p>
         </blockquote>
@@ -3231,43 +565,43 @@ fetch(url, {
 }</code>
  </pre>
     </span>
-<span id="execution-results-POSTapi-user-login" hidden>
+<span id="execution-results-POSTapi-login" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-user-login"></span>:
+                id="execution-response-status-POSTapi-login"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-user-login"
+    <pre class="json"><code id="execution-response-content-POSTapi-login"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-user-login" hidden>
+<span id="execution-error-POSTapi-login" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-user-login">
+    <pre><code id="execution-error-message-POSTapi-login">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-user-login" data-method="POST"
-      data-path="api/user/login"
+<form id="form-POSTapi-login" data-method="POST"
+      data-path="api/login"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-user-login', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-login', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-user-login"
-                    onclick="tryItOut('POSTapi-user-login');">Try it out ⚡
+                    id="btn-tryout-POSTapi-login"
+                    onclick="tryItOut('POSTapi-login');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-user-login"
-                    onclick="cancelTryOut('POSTapi-user-login');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-login"
+                    onclick="cancelTryOut('POSTapi-login');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-user-login"
+                    id="btn-executetryout-POSTapi-login"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -3275,7 +609,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/user/login</code></b>
+            <b><code>api/login</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -3283,7 +617,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-user-login"
+                              name="Content-Type"                data-endpoint="POSTapi-login"
                value="application/json"
                data-component="header">
     <br>
@@ -3294,7 +628,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-user-login"
+                              name="Accept"                data-endpoint="POSTapi-login"
                value="application/json"
                data-component="header">
     <br>
@@ -3306,751 +640,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="email"                data-endpoint="POSTapi-user-login"
-               value="broderick.abbott@example.net"
+                              name="email"                data-endpoint="POSTapi-login"
+               value="steuber.ray@example.net"
                data-component="body">
     <br>
-<p>the email to user. Example: <code>broderick.abbott@example.net</code></p>
+<p>the email to user. Example: <code>steuber.ray@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="password"                data-endpoint="POSTapi-user-login"
-               value="r3}Bd3=~"
+                              name="password"                data-endpoint="POSTapi-login"
+               value="].?j8Br9f"
                data-component="body">
     <br>
-<p>the users password. Example: <code>r3}Bd3=~</code></p>
+<p>the users password. Example: <code>].?j8Br9f</code></p>
         </div>
         </form>
-
-                    <h2 id="endpoints-POSTapi-user-delete">POST api/user/delete</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-user-delete">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "https://wink-dashboard.tw-dev.com/api/user/delete" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"email\": \"pbode@example.org\",
-    \"password\": \",s{j@aId)\'@f5}c9WH\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/user/delete"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "email": "pbode@example.org",
-    "password": ",s{j@aId)'@f5}c9WH"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-user-delete">
-            <blockquote>
-            <p>Example response (201):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;successfully deleted this user&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-user-delete" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-user-delete"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-user-delete"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-user-delete" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-user-delete">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-user-delete" data-method="POST"
-      data-path="api/user/delete"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-user-delete', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-user-delete"
-                    onclick="tryItOut('POSTapi-user-delete');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-user-delete"
-                    onclick="cancelTryOut('POSTapi-user-delete');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-user-delete"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/user/delete</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-user-delete"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-user-delete"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="email"                data-endpoint="POSTapi-user-delete"
-               value="pbode@example.org"
-               data-component="body">
-    <br>
-<p>the email to user. Example: <code>pbode@example.org</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="password"                data-endpoint="POSTapi-user-delete"
-               value=",s{j@aId)'@f5}c9WH"
-               data-component="body">
-    <br>
-<p>the users password. Example: <code>,s{j@aId)'@f5}c9WH</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-POSTapi-user-reset">POST api/user/reset</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-user-reset">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "https://wink-dashboard.tw-dev.com/api/user/reset" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"email\": \"branson93@example.org\",
-    \"password\": \"ZQLb+*~fM{h\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/user/reset"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "email": "branson93@example.org",
-    "password": "ZQLb+*~fM{h"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-user-reset">
-            <blockquote>
-            <p>Example response (201):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;We have emailed your password reset link.&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-user-reset" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-user-reset"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-user-reset"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-user-reset" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-user-reset">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-user-reset" data-method="POST"
-      data-path="api/user/reset"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-user-reset', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-user-reset"
-                    onclick="tryItOut('POSTapi-user-reset');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-user-reset"
-                    onclick="cancelTryOut('POSTapi-user-reset');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-user-reset"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/user/reset</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-user-reset"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-user-reset"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="email"                data-endpoint="POSTapi-user-reset"
-               value="branson93@example.org"
-               data-component="body">
-    <br>
-<p>the email to user. Example: <code>branson93@example.org</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="password"                data-endpoint="POSTapi-user-reset"
-               value="ZQLb+*~fM{h"
-               data-component="body">
-    <br>
-<p>the users password. Example: <code>ZQLb+*~fM{h</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-POSTapi-user-create">POST api/user/create</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-user-create">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "https://wink-dashboard.tw-dev.com/api/user/create" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"activation_code\": \"blanditiis\",
-    \"email\": \"rhianna07@example.net\",
-    \"password\": \"={`e\\/\\/f4{S,fg]b1H7H\",
-    \"password_confirmation\": \"et\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/user/create"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "activation_code": "blanditiis",
-    "email": "rhianna07@example.net",
-    "password": "={`e\/\/f4{S,fg]b1H7H",
-    "password_confirmation": "et"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-user-create">
-            <blockquote>
-            <p>Example response (201):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;token&quot;: &quot;2060|dEKg7dU3vespqTYTuGa1wpkUPGkKISJsWav2XH9p&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-user-create" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-user-create"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-user-create"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-user-create" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-user-create">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-user-create" data-method="POST"
-      data-path="api/user/create"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-user-create', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-user-create"
-                    onclick="tryItOut('POSTapi-user-create');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-user-create"
-                    onclick="cancelTryOut('POSTapi-user-create');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-user-create"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/user/create</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-user-create"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-user-create"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>activation_code</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="activation_code"                data-endpoint="POSTapi-user-create"
-               value="blanditiis"
-               data-component="body">
-    <br>
-<p>the code to activate this user. Example: <code>blanditiis</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="email"                data-endpoint="POSTapi-user-create"
-               value="rhianna07@example.net"
-               data-component="body">
-    <br>
-<p>the email to user. Example: <code>rhianna07@example.net</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="password"                data-endpoint="POSTapi-user-create"
-               value="={`e//f4{S,fg]b1H7H"
-               data-component="body">
-    <br>
-<p>the users password. Example: <code>={</code>e//f4{S,fg]b1H7H`</p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
-<small>required</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="password_confirmation"                data-endpoint="POSTapi-user-create"
-               value="et"
-               data-component="body">
-    <br>
-<p>the pass word confirm. Example: <code>et</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-POSTapi-visit-create">POST api/visit/create</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-visit-create">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "https://wink-dashboard.tw-dev.com/api/visit/create" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/visit/create"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-visit-create">
-            <blockquote>
-            <p>Example response (201):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 501,
-    &quot;bounced&quot;: true
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-visit-create" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-visit-create"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-visit-create"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-visit-create" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-visit-create">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-visit-create" data-method="POST"
-      data-path="api/visit/create"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-visit-create', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-visit-create"
-                    onclick="tryItOut('POSTapi-visit-create');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-visit-create"
-                    onclick="cancelTryOut('POSTapi-visit-create');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-visit-create"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/visit/create</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-visit-create"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-visit-create"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="endpoints-POSTapi-visit--visitor_id--update">POST api/visit/{visitor_id}/update</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-visit--visitor_id--update">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "https://wink-dashboard.tw-dev.com/api/visit/1/update" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://wink-dashboard.tw-dev.com/api/visit/1/update"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-visit--visitor_id--update">
-            <blockquote>
-            <p>Example response (201):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 1,
-    &quot;bounced&quot;: false
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-visit--visitor_id--update" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-visit--visitor_id--update"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-visit--visitor_id--update"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-visit--visitor_id--update" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-visit--visitor_id--update">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-visit--visitor_id--update" data-method="POST"
-      data-path="api/visit/{visitor_id}/update"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-visit--visitor_id--update', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-visit--visitor_id--update"
-                    onclick="tryItOut('POSTapi-visit--visitor_id--update');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-visit--visitor_id--update"
-                    onclick="cancelTryOut('POSTapi-visit--visitor_id--update');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-visit--visitor_id--update"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/visit/{visitor_id}/update</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-visit--visitor_id--update"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-visit--visitor_id--update"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>visitor_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="visitor_id"                data-endpoint="POSTapi-visit--visitor_id--update"
-               value="1"
-               data-component="url">
-    <br>
-<p>The ID of the visitor. Example: <code>1</code></p>
-            </div>
-                    </form>
 
             
 
