@@ -24,7 +24,7 @@ class UserController extends Controller
     public function index()
     {
 
-        return Inertia::render('Admin/UsersTable', [
+        return Inertia::render('Admin/Users/UsersTable', [
             'table' => [
                 'table_url' => route('dashboard.users'),
                 'box_filter_column' => 'email'

@@ -20,7 +20,7 @@ class Customer extends Controller
      * 
      * creates new referrer from an email address. 
      * this referrer will be email a form to refer friends with
-     *  
+     * @bodyParam referrers object[] required the list of referrers to create
      * @response 201 {"message": "created x new referrers"}
      */
     public function createReferrer(CreateReferrer $request){

@@ -2,18 +2,16 @@
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 
-import ConfirmationModel from '../../Components/ConfirmationModel.vue';
-import PopupButton from '../../Components/PopupButton.vue';
+import ConfirmationModel from '../../../Components/ConfirmationModel.vue';
+import PopupButton from '../../../Components/PopupButton.vue';
 
-import AppLayout from '../../Layouts/AppLayout.vue';
-import SyncedTable from '../../Components/SyncedTable/SyncedTable.vue';
-import RowHeading from '../../Components/SyncedTable/HeadingRow/RowHeading.vue';
-import ColumnSelect from '../../Components/SyncedTable/ActionsRow/ColumnSelect.vue';
-import TextFilter from '../../Components/SyncedTable/ActionsRow/TextFilter.vue';
-import FilterEnums from '../../Components/SyncedTable/ActionsRow/FilterEnums.vue';
-import TextCell from '../../Components/SyncedTable/DataRow/TextCell.vue';
-import ListCell from '../../Components/SyncedTable/DataRow/ListCell.vue';
-import DateCell from '../../Components/SyncedTable/DataRow/DateCell.vue';
+import AppLayout from '../../../Layouts/AppLayout.vue';
+import SyncedTable from '../../../Components/SyncedTable/SyncedTable.vue';
+import RowHeading from '../../../Components/SyncedTable/HeadingRow/RowHeading.vue';
+import ColumnSelect from '../../../Components/SyncedTable/ActionsRow/ColumnSelect.vue';
+import TextFilter from '../../../Components/SyncedTable/ActionsRow/TextFilter.vue';
+import FilterEnums from '../../../Components/SyncedTable/ActionsRow/FilterEnums.vue';
+import UserRow from './UserRow.vue';
 
 export default {
   components: {
@@ -25,9 +23,7 @@ export default {
     ColumnSelect,
     TextFilter,
     FilterEnums,
-    ListCell,
-    DateCell,
-    TextCell,
+    UserRow
   },
   props: {
     table: Object,
@@ -48,7 +44,7 @@ export default {
       this.show_create = value;
     },
     createNewUser() {
-      this.new_user_form.post('/dashboard/users/admin/create', {
+      this.new_user_form.post('/dashboard/users/create', {
         preserveScroll: true,
         onSuccess: () => {
           this.setCreate(false);
@@ -66,6 +62,7 @@ export default {
       <SyncedTable
         columns_url="/dashboard/users/columns"
         data_url="/dashboard/users/data"
+        :key="table_key"
       >
         <template #actions="action_props">
           <ColumnSelect
@@ -81,7 +78,10 @@ export default {
             :update="action_props.updateFilters"
             column_name="email"
           />
-          <button class="px-2 text-white bg-orange rounded my-2" @click="create(true)">
+          <button
+            class="px-2 text-white bg-orange rounded my-2" 
+            @click="setCreate(true)"
+          >
             New User
           </button>
           <ConfirmationModel
@@ -121,11 +121,7 @@ export default {
             <th> Actions </th>
         </template>
         <template #row="row_props">
-          <TextCell :data="row_props.row.id" />
-          <TextCell :data="row_props.row.name" />
-          <TextCell :data="row_props.row.email" />
-          <DateCell :data="row_props.row.updated_at" />
-          <DateCell :data="row_props.row.created_at" />
+          <UserRow :row="row_props.row" /> 
         </template>
       </SyncedTable>
     </Suspense>

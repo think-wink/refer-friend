@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "WinkDashboard",
-        "_postman_id": "6d183a69-efc6-463e-904f-0e846244d951",
+        "_postman_id": "09f31c28-8fe4-4be2-8ed1-9bfa79a7dca2",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"referees\":[{\"match_email\":\"gerlach.johathan@example.com\",\"match_phone_number\":\"+61 5054 43251\",\"match_first_name\":\"cyviiatfvmmscxhr\",\"match_last_name\":\"eotjtmrfrfb\",\"new_status\":\"loan_eligible\"}]}"
+                            "raw": "{\"referees\":[{\"match_email\":\"leonie40@example.org\",\"match_phone_number\":\"+61 5054 43251\",\"match_first_name\":\"crhbrefeuikbgbqnh\",\"match_last_name\":\"noas\",\"new_status\":\"form_completed\"}]}"
                         },
                         "description": "Uses the match_* fields to update a Referred friend, and sets the status.\nIf no match is found a new Referred Friend will be created with the given status."
                     },
@@ -76,7 +76,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"referrers\":[\"quidem\"]}"
+                            "raw": "{\"referrers\":[{\"email\":\"cesar.morissette@example.com\"}]}"
                         },
                         "description": "creates new referrer from an email address.\nthis referrer will be email a form to refer friends with"
                     },
@@ -111,7 +111,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"steuber.ray@example.net\",\"password\":\"].?j8Br9f\"}"
+                            "raw": "{\"email\":\"ymante@example.com\",\"password\":\"DK\\\"w,.`Egm;P\"}"
                         },
                         "description": "requires an email & password. returns an API token to use with the other endpoints\ncontact a wink admin to get your account setup",
                         "auth": {

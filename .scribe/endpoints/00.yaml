@@ -37,7 +37,7 @@ endpoints:
         name: 'referees[].match_email'
         description: 'Must be a valid email address.'
         required: true
-        example: gerlach.johathan@example.com
+        example: leonie40@example.org
         type: string
         custom: []
       'referees[].match_phone_number':
@@ -51,31 +51,31 @@ endpoints:
         name: 'referees[].match_first_name'
         description: 'Must be at least 2 characters. Must not be greater than 50 characters.'
         required: true
-        example: cyviiatfvmmscxhr
+        example: crhbrefeuikbgbqnh
         type: string
         custom: []
       'referees[].match_last_name':
         name: 'referees[].match_last_name'
         description: 'Must be at least 2 characters. Must not be greater than 50 characters.'
         required: true
-        example: eotjtmrfrfb
+        example: noas
         type: string
         custom: []
       'referees[].new_status':
         name: 'referees[].new_status'
         description: 'Must be one of <code>form_completed</code>, <code>not_interested</code>, <code>meeting_booked</code>, <code>ineligible</code>, <code>pension_boost_eligible</code>, <code>loan_eligible</code>, <code>loan_approved</code>, or <code>pension_boost_approved</code>.'
         required: true
-        example: loan_eligible
+        example: form_completed
         type: string
         custom: []
     cleanBodyParameters:
       referees:
         -
-          match_email: gerlach.johathan@example.com
+          match_email: leonie40@example.org
           match_phone_number: '+61 5054 43251'
-          match_first_name: cyviiatfvmmscxhr
-          match_last_name: eotjtmrfrfb
-          new_status: loan_eligible
+          match_first_name: crhbrefeuikbgbqnh
+          match_last_name: noas
+          new_status: form_completed
     fileParameters: []
     responses:
       -
@@ -119,22 +119,23 @@ endpoints:
     bodyParameters:
       referrers:
         name: referrers
-        description: ''
+        description: 'the list of referrers to create'
         required: true
         example:
-          - quidem
-        type: 'string[]'
+          - []
+        type: 'object[]'
         custom: []
       'referrers[].email':
         name: 'referrers[].email'
         description: 'Must be a valid email address.'
         required: true
-        example: sven65@example.com
+        example: cesar.morissette@example.com
         type: string
         custom: []
     cleanBodyParameters:
       referrers:
-        - quidem
+        -
+          email: cesar.morissette@example.com
     fileParameters: []
     responses:
       -
@@ -179,19 +180,19 @@ endpoints:
         name: email
         description: 'the email to user.'
         required: true
-        example: steuber.ray@example.net
+        example: ymante@example.com
         type: string
         custom: []
       password:
         name: password
         description: 'the users password.'
         required: true
-        example: '].?j8Br9f'
+        example: 'DK"w,.`Egm;P'
         type: string
         custom: []
     cleanBodyParameters:
-      email: steuber.ray@example.net
-      password: '].?j8Br9f'
+      email: ymante@example.com
+      password: 'DK"w,.`Egm;P'
     fileParameters: []
     responses:
       -

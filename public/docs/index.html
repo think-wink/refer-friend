@@ -91,7 +91,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: August 14, 2023</li>
+        <li>Last updated: August 15, 2023</li>
     </ul>
 </div>
 
@@ -137,11 +137,11 @@ If no match is found a new Referred Friend will be created with the given status
     --data "{
     \"referees\": [
         {
-            \"match_email\": \"gerlach.johathan@example.com\",
+            \"match_email\": \"leonie40@example.org\",
             \"match_phone_number\": \"+61 5054 43251\",
-            \"match_first_name\": \"cyviiatfvmmscxhr\",
-            \"match_last_name\": \"eotjtmrfrfb\",
-            \"new_status\": \"loan_eligible\"
+            \"match_first_name\": \"crhbrefeuikbgbqnh\",
+            \"match_last_name\": \"noas\",
+            \"new_status\": \"form_completed\"
         }
     ]
 }"
@@ -162,11 +162,11 @@ const headers = {
 let body = {
     "referees": [
         {
-            "match_email": "gerlach.johathan@example.com",
+            "match_email": "leonie40@example.org",
             "match_phone_number": "+61 5054 43251",
-            "match_first_name": "cyviiatfvmmscxhr",
-            "match_last_name": "eotjtmrfrfb",
-            "new_status": "loan_eligible"
+            "match_first_name": "crhbrefeuikbgbqnh",
+            "match_last_name": "noas",
+            "new_status": "form_completed"
         }
     ]
 };
@@ -286,10 +286,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="referees.0.match_email"                data-endpoint="POSTapi-referred-upsert"
-               value="gerlach.johathan@example.com"
+               value="leonie40@example.org"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>gerlach.johathan@example.com</code></p>
+<p>Must be a valid email address. Example: <code>leonie40@example.org</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>match_phone_number</code></b>&nbsp;&nbsp;
@@ -308,10 +308,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="referees.0.match_first_name"                data-endpoint="POSTapi-referred-upsert"
-               value="cyviiatfvmmscxhr"
+               value="crhbrefeuikbgbqnh"
                data-component="body">
     <br>
-<p>Must be at least 2 characters. Must not be greater than 50 characters. Example: <code>cyviiatfvmmscxhr</code></p>
+<p>Must be at least 2 characters. Must not be greater than 50 characters. Example: <code>crhbrefeuikbgbqnh</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>match_last_name</code></b>&nbsp;&nbsp;
@@ -319,10 +319,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="referees.0.match_last_name"                data-endpoint="POSTapi-referred-upsert"
-               value="eotjtmrfrfb"
+               value="noas"
                data-component="body">
     <br>
-<p>Must be at least 2 characters. Must not be greater than 50 characters. Example: <code>eotjtmrfrfb</code></p>
+<p>Must be at least 2 characters. Must not be greater than 50 characters. Example: <code>noas</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>new_status</code></b>&nbsp;&nbsp;
@@ -330,10 +330,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="referees.0.new_status"                data-endpoint="POSTapi-referred-upsert"
-               value="loan_eligible"
+               value="form_completed"
                data-component="body">
     <br>
-<p>Must be one of <code>form_completed</code>, <code>not_interested</code>, <code>meeting_booked</code>, <code>ineligible</code>, <code>pension_boost_eligible</code>, <code>loan_eligible</code>, <code>loan_approved</code>, or <code>pension_boost_approved</code>. Example: <code>loan_eligible</code></p>
+<p>Must be one of <code>form_completed</code>, <code>not_interested</code>, <code>meeting_booked</code>, <code>ineligible</code>, <code>pension_boost_eligible</code>, <code>loan_eligible</code>, <code>loan_approved</code>, or <code>pension_boost_approved</code>. Example: <code>form_completed</code></p>
                     </div>
                                     </details>
         </div>
@@ -360,7 +360,9 @@ this referrer will be email a form to refer friends with</p>
     --header "Accept: application/json" \
     --data "{
     \"referrers\": [
-        \"quidem\"
+        {
+            \"email\": \"cesar.morissette@example.com\"
+        }
     ]
 }"
 </code></pre></div>
@@ -379,7 +381,9 @@ const headers = {
 
 let body = {
     "referrers": [
-        "quidem"
+        {
+            "email": "cesar.morissette@example.com"
+        }
     ]
 };
 
@@ -487,10 +491,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
         <details>
             <summary style="padding-bottom: 10px;">
                 <b style="line-height: 2;"><code>referrers</code></b>&nbsp;&nbsp;
-<small>string[]</small>&nbsp;
+<small>object[]</small>&nbsp;
  &nbsp;
 <br>
-
+<p>the list of referrers to create</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -498,10 +502,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="referrers.0.email"                data-endpoint="POSTapi-referrer-create"
-               value="sven65@example.com"
+               value="cesar.morissette@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>sven65@example.com</code></p>
+<p>Must be a valid email address. Example: <code>cesar.morissette@example.com</code></p>
                     </div>
                                     </details>
         </div>
@@ -525,8 +529,8 @@ contact a wink admin to get your account setup</p>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"steuber.ray@example.net\",
-    \"password\": \"].?j8Br9f\"
+    \"email\": \"ymante@example.com\",
+    \"password\": \"DK\\\"w,.`Egm;P\"
 }"
 </code></pre></div>
 
@@ -542,8 +546,8 @@ const headers = {
 };
 
 let body = {
-    "email": "steuber.ray@example.net",
-    "password": "].?j8Br9f"
+    "email": "ymante@example.com",
+    "password": "DK\"w,.`Egm;P"
 };
 
 fetch(url, {
@@ -641,10 +645,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-login"
-               value="steuber.ray@example.net"
+               value="ymante@example.com"
                data-component="body">
     <br>
-<p>the email to user. Example: <code>steuber.ray@example.net</code></p>
+<p>the email to user. Example: <code>ymante@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -652,10 +656,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-login"
-               value="].?j8Br9f"
+               value="DK"w,.`Egm;P"
                data-component="body">
     <br>
-<p>the users password. Example: <code>].?j8Br9f</code></p>
+<p>the users password. Example: <code>DK"w,.</code>Egm;P`</p>
         </div>
         </form>
 

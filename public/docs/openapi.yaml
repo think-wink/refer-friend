@@ -53,7 +53,7 @@ paths:
                       match_email:
                         type: string
                         description: 'Must be a valid email address.'
-                        example: gerlach.johathan@example.com
+                        example: leonie40@example.org
                       match_phone_number:
                         type: string
                         description: 'Must be at least 10 characters. Must not be greater than 50 characters.'
@@ -61,15 +61,15 @@ paths:
                       match_first_name:
                         type: string
                         description: 'Must be at least 2 characters. Must not be greater than 50 characters.'
-                        example: cyviiatfvmmscxhr
+                        example: crhbrefeuikbgbqnh
                       match_last_name:
                         type: string
                         description: 'Must be at least 2 characters. Must not be greater than 50 characters.'
-                        example: eotjtmrfrfb
+                        example: noas
                       new_status:
                         type: string
                         description: 'Must be one of <code>form_completed</code>, <code>not_interested</code>, <code>meeting_booked</code>, <code>ineligible</code>, <code>pension_boost_eligible</code>, <code>loan_eligible</code>, <code>loan_approved</code>, or <code>pension_boost_approved</code>.'
-                        example: loan_eligible
+                        example: form_completed
                     required:
                       - match_email
                       - match_phone_number
@@ -115,11 +115,18 @@ paths:
               properties:
                 referrers:
                   type: array
-                  description: ''
+                  description: 'the list of referrers to create'
                   example:
-                    - quidem
+                    - []
                   items:
-                    type: string
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        description: 'Must be a valid email address.'
+                        example: cesar.morissette@example.com
+                    required:
+                      - email
               required:
                 - referrers
   /api/login:
@@ -153,11 +160,11 @@ paths:
                 email:
                   type: string
                   description: 'the email to user.'
-                  example: steuber.ray@example.net
+                  example: ymante@example.com
                 password:
                   type: string
                   description: 'the users password.'
-                  example: '].?j8Br9f'
+                  example: 'DK"w,.`Egm;P'
               required:
                 - email
                 - password
