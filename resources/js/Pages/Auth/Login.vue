@@ -73,14 +73,6 @@ const submit = () => {
         </PrimaryButton>
       </div>
       </div>
-      <div class="flex flex-col items-center justify-end mt-8">
-        <p class="ml-5 text-text-second"> Forgotten your username or password?</p>
-
-        <Link v-if="canResetPassword" :href="route('password.request')"
-          class="border border-orange text-orange px-4 py-2 m-2 rounded font-medium">
-        RESET PASSWORD
-        </Link>
-      </div>
     </form>
   </AuthenticationCard>
 </template>
