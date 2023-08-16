@@ -34,7 +34,6 @@ class CreateReferred extends FormRequest
             ],
             'referees.*.phone_number' => [
                 'required',
-                'distinct:strict',
                 'digits:10'
             ],
             'referees.*.first_name' => [

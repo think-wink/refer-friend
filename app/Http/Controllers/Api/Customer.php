@@ -10,6 +10,7 @@ use App\Http\Requests\Api\Customer\UpdateReferred;
 
 use App\Models\Customer\Referrer;
 use App\Models\Customer\Referred;
+use App\Models\Customer\ReferredAlias;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
 
@@ -37,16 +38,22 @@ class Customer extends Controller
     */
     public function createReferred(string $uuid, CreateReferred $request){
         $referrer = Referrer::where('uuid', $uuid)->first();
-        
+        Log::info($uuid);
+        Log::info($referrer);
         if(! $referrer instanceof Referrer){
-            return response(['error' => "no referrer found with uuid: $uuid", 404]);
-        } 
+            return response(['error' => "no referrer found with uuid: $uuid"], 404);
+        }
         $referees = $request['referees'];
         foreach(array_keys($request['referees']) as $key) {
             $referees[$key]['match_status'] = 'not_updated';
         }
         $new = $referrer->referred()->createMany($referees);
         return response(['message' => 'created'.count($new).' new referrals'], 201);
+    }
+
+    public function mergeReferrers(Referred $referred, $request) 
+    {
+        
     }
 
     /**
@@ -73,6 +80,12 @@ class Customer extends Controller
         if($referred) {
            return $referred->setAutoStatus();
         }
+
+        $alias = ReferredAlias::where('email', $search_terms['match_email'])->first();
+
+        if($alias) {
+            return $alias->referred->setAutoStatus();
+         }
 
         $phone_search = fn(Builder $inner) => $inner->where('phone_number', preg_replace("/[^0-9]/", "", $search_terms['match_phone_number']));
         $name_search = fn(Builder $inner) => $inner

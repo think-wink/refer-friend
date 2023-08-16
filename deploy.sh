@@ -15,6 +15,7 @@ sudo chown -R www-data:www-data /var/www/refer-friend/
 sudo find /var/www/refer-friend/ -type f -exec chmod 644 {} \;    
 sudo find /var/www/refer-friend/ -type d -exec chmod 755 {} \;
 sudo chmod 770 /var/www/refer-friend/deploy.sh 
+sudo chmod 660 /var/www/refer-friend/.env 
 sudo -u www-data php artisan up
 
 

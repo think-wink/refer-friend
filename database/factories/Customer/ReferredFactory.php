@@ -68,13 +68,13 @@ class ReferredFactory extends Factory
         });
     }
 
-    public function manualMatch() {
+    public function manualMatch(int $count = 1, array $attributes = []) {
         return $this->state(function (array $attributes) {
             return [
                 'match_status' => 'manual',
             ];
         })->has(
-            ReferredAlias::factory(2)
+            ReferredAlias::factory($count, $attributes)
         );
     }
 }

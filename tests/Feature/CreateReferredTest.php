@@ -39,7 +39,7 @@ class CreateReferredTest extends TestCase
         $this->postJson("/api/referrer/$referrer->uuid/referred/create", ['referees' => [
             'email' => 'test@mail.com'
         ]], ['Accept' => 'application/json'])
-            ->assertStatus(422);
+            ->assertStatus(401);
     }
 
     /**
@@ -152,5 +152,47 @@ class CreateReferredTest extends TestCase
         $item = Referred::first();
         $this->assertInstanceOf(Referred::class, $item);
         $this->assertEquals('test@mail.com', $item->email);
+    }
+
+    public function test_create_referrals(): void
+    {   
+        $referrer = Referrer::factory()->create();
+        $this->postJson("/api/referrer/$referrer->uuid/referred/create", ['referees' => [
+           [ 
+                'email' => 'test@mail.com',
+                'phone_number' => '1231113123',
+                'first_name' => 'xxxyyycccc',
+                'last_name' => "asdfadsf",
+            ],
+            [ 
+                'email' => 'test2@mail.com',
+                'phone_number' => '1232113123',
+                'first_name' => 'xxxyyycccc',
+                'last_name' => "asdfadsf",
+            ],
+        ]], $this->headers)
+            ->assertStatus(201);
+        $this->assertEquals(Referred::count(), 2);
+    }
+
+    public function test_create_referrals_dupliates(): void
+    {   
+        $referrer = Referrer::factory()->create();
+        $this->postJson("/api/referrer/$referrer->uuid/referred/create", ['referees' => [
+           [ 
+                'email' => 'test@mail.com',
+                'phone_number' => '1231113123',
+                'first_name' => 'xxxyyycccc',
+                'last_name' => "asdfadsf",
+            ],
+            [ 
+                'email' => 'test@mail.com',
+                'phone_number' => '1232113123',
+                'first_name' => 'xxxyyycccc',
+                'last_name' => "asdfadsf",
+            ],
+        ]], $this->headers)
+            ->assertStatus(422);
+        $this->assertEquals(Referred::count(), 0);
     }
 }
