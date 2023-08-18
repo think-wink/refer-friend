@@ -37,7 +37,7 @@ class Referred extends Model
         'auto', // the status was auto set.
         'manual', // the status was manually matched & has aliases
         'failed', // the match failed 
-        'not_updated', // 
+        'not_updated', // this item has not be updated via a 3rd party yet
     ];
 
     use HasFactory;
@@ -48,6 +48,7 @@ class Referred extends Model
         'first_name',
         'last_name',
         'match_status',
+        'reward_status'
     ];
 
     public function referredAlias(): HasMany

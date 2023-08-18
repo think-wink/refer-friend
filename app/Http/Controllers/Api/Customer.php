@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Customer\CreateReferrer;
 use App\Http\Requests\Api\Customer\CreateReferred;
 use App\Http\Requests\Api\Customer\UpdateReferred;
+use App\Http\Requests\Api\Customer\UpdateReferredStatus;
 
 
 use App\Models\Customer\Referrer;
@@ -38,8 +39,6 @@ class Customer extends Controller
     */
     public function createReferred(string $uuid, CreateReferred $request){
         $referrer = Referrer::where('uuid', $uuid)->first();
-        Log::info($uuid);
-        Log::info($referrer);
         if(! $referrer instanceof Referrer){
             return response(['error' => "no referrer found with uuid: $uuid"], 404);
         }
@@ -51,9 +50,24 @@ class Customer extends Controller
         return response(['message' => 'created'.count($new).' new referrals'], 201);
     }
 
-    public function mergeReferrers(Referred $referred, $request) 
+    /**
+     * @hideFromAPIDocumentation
+     * this endpoint doesn't update status, as status updates are controlled else where
+     * 
+    */
+    public function updateReferred(Referred $referred, UpdateReferred $request) 
     {
-        
+        $items = $request->all();
+        if(empty($items)) {
+            return response('', 422);
+        }
+        if (array_key_exists('merge_email', $items)) {
+            $this->merge($referred, $items['merge_email']);
+            unset($items['merge_email']);
+        }
+        $referred->fill($items)->save();
+        return response($referred, 201);
+
     }
 
     /**
@@ -65,7 +79,7 @@ class Customer extends Controller
      * @bodyParam referees[].match_phone_number string required Must be at least 10 characters. Must not be greater than 50 characters. Example: +61 5054 43251
      * @response 201 {"message": "Upsert Successful"}
      */
-    public function updateReferredStatus(UpdateReferred $request) {
+    public function updateReferredStatus(UpdateReferredStatus $request) {
         foreach($request['referees'] as $referred_request) {
             $referred = $this->referrerSearch($referred_request);
             $referred->reward_status = $referred_request['new_status'];
@@ -114,6 +128,15 @@ class Customer extends Controller
             'phone_number' => $search_terms['match_phone_number'],
             'match_status' => 'failed'
         ]);
+    }
 
+    protected function merge(Referred $original, string $email)
+    {
+        $new = Referred::where('email', $email)->first();
+        $new->delete();
+        $original->match_status = 'manual';
+        $original->referredAlias()->create(['email' => $email]);
     }
 }
+
+
