@@ -24,9 +24,6 @@ class UserTable extends TableController
         ], 'updated_at' => [
             'search' => 'none', 
             'default' => true
-        ], 'role_names' => [
-            'search' => 'none',
-            'default' => true,
         ], 'created_at' => [
             'search' => 'like', 
             'default' => true

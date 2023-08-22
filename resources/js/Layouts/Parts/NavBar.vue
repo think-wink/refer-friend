@@ -9,6 +9,7 @@ import {
   ArrowDownCircleIcon as ArrowDownCircleIconFill,
   GlobeAltIcon as GlobeAltIconFill,
   WrenchIcon as WrenchIconFill,
+  TagIcon as TagIconFill
 } from '@heroicons/vue/24/solid';
 
 import {
@@ -20,6 +21,7 @@ import {
   ArrowDownCircleIcon as ArrowDownCircleIconOutline,
   GlobeAltIcon as GlobeAltOutline,
   WrenchIcon as WrenchIconOutline,
+  TagIcon as TagIconOutline
 } from '@heroicons/vue/24/outline';
 
 export default {
@@ -35,6 +37,8 @@ export default {
     };
   },
   components: {
+    TagIconOutline,
+    TagIconFill,
     WrenchIconOutline,
     ArrowDownCircleIconOutline,
     GlobeAltOutline,
@@ -98,7 +102,17 @@ export default {
     />
     <p :class="text_style"> API </p>
   </ILink>
-
+  <ILink href="/dashboard/referred/" :class="row_style"  >
+    <TagIconFill
+      v-if="title === 'dashboard'"
+      :class="icon_style"
+    />
+    <TagIconOutline
+      v-if="title !== 'dashboard'"
+      :class="icon_style"
+    />
+    <p :class="text_style"> Referred Friends </p>
+  </ILink>
   <ILink href="/dashboard/" :class="row_style"  >
     <HomeIconFill
       v-if="title === 'dashboard'"
@@ -110,4 +124,5 @@ export default {
     />
     <p :class="text_style"> Dashboard </p>
   </ILink>
+  
 </template>

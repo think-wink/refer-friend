@@ -5,18 +5,10 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\AppDetailsController;
-use App\Http\Controllers\Source\TransactionController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Source\RetailerController;
-use App\Http\Controllers\Source\PromoController;
-use App\Http\Controllers\Source\CommissionController;
-use Illuminate\Support\Facades\Log;
-use App\Http\Controllers;
-use App\Http\Controllers\Tables\PromoTable;
-use App\Http\Controllers\Tables\CommissionTable;
-use App\Http\Controllers\Tables\RetailerTable;
-use App\Http\Controllers\Tables\TransactionTable;
+use App\Http\Controllers\Admin\ReferredController;
+
+use App\Http\Controllers\Tables\ReferredTable;
+
 use App\Http\Controllers\Tables\UserTable;
 use App\Models\Source\Retailer;
 use App\Http\Controllers\ImageController;
@@ -43,7 +35,14 @@ Route::prefix('dashboard')->name('dashboard.')->middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-   
+    
+    Route::controller(ReferredTable::class)->group(function() {
+        Route::get('referred/columns', 'columns');
+        Route::get('referred/data', 'data');
+        Route::get('referred/{referred}/get', 'get');
+        Route::get('referred', 'index');
+    });
+
     Route::controller(UserTable::class)->group(function () {
         Route::get('/users/columns', 'columns');
         Route::get('/users/data', 'data');
