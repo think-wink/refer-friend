@@ -33,6 +33,8 @@ class ReferredFactory extends Factory
             'phone_number' => $this->faker->phoneNumber(),
             'reward_status' => $this->faker->randomElement($reward_status),
             'match_status' => 'auto',
+            'uuid' => $this->faker->unique()->uuid(),
+            'subscribed' => $this->faker->boolean(),
             'referrer_id' => Referrer::factory(),
         ];
     }

@@ -16,6 +16,10 @@ class Referrer extends Model
 
     public $fillable = ['email'];
 
+    public $casts = [
+        'subscribed' => 'boolean'
+    ];
+
     public function referred(): HasMany
     {
         return $this->hasMany(Referred::class);

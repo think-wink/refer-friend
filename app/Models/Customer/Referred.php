@@ -2,6 +2,7 @@
 
 namespace App\Models\Customer;
 
+use App\Models\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,6 +10,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Referred extends Model
 {    
+    use HasFactory;
+
+    use HasUUID;
+
+    public $casts = [
+        'subscribed' => 'boolean'
+    ];
+
+    
     // set by us
     const INTERNAL_STATUS = [
         'eligibly_email_1_sent', 
@@ -39,8 +49,6 @@ class Referred extends Model
         'failed', // the match failed 
         'not_updated', // this item has not be updated via a 3rd party yet
     ];
-
-    use HasFactory;
 
     public $fillable = [
         'email',

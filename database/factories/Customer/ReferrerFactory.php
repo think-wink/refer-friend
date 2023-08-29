@@ -19,6 +19,7 @@ class ReferrerFactory extends Factory
     {
         return [
             'email' => $this->faker->unique()->safeEmail(),
+            'subscribed' => $this->faker->boolean(),
             'uuid' => $this->faker->unique()->uuid()
         ];
     }

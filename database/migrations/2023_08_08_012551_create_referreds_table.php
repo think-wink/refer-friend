@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('referreds', function (Blueprint $table) {
             $table->id();
+            $table->uuid();
             $table->timestamps();
             $table->string('email')->unique();
             $table->string('phone_number');
             $table->string('first_name');
             $table->string('last_name');
+            $table->boolean('subscribed')->default(true);
             $table->enum('reward_status', array_merge(Referred::INTERNAL_STATUS, Referred::EXTERNAL_STATUS));
             $table->enum('match_status', Referred::MATCH_STATUS);
             $table->foreignId('referrer_id')->nullable();

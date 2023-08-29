@@ -13,34 +13,10 @@ class CreateReferredTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $headers;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-        $token = User::factory()
-            ->create()
-            ->createToken('test')
-            ->plainTextToken;
-
-        $this->headers = [
-            'Accept' => 'application/json',
-            'Authorization' => 'Bearer '.$token,
-            'Content-Type' => 'application/json',
-        ];
-    }
-
-    /**
-     * A basic feature test example.
-     */
-    public function test_unauthenticated(): void
-    {
-        $referrer =Referrer::factory()->create();
-        $this->postJson("/api/referrer/$referrer->uuid/referred/create", ['referees' => [
-            'email' => 'test@mail.com'
-        ]], ['Accept' => 'application/json'])
-            ->assertStatus(401);
-    }
+    protected $headers = [
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
+    ];
 
     /**
      * A basic feature test example.

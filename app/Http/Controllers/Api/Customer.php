@@ -88,6 +88,22 @@ class Customer extends Controller
         return response(['message' => 'Upset Successful'], 201);
     }
 
+    public function unsubscribeReferred(string $uuid)
+    {
+        $referred = Referred::where('uuid', $uuid)->first();
+        $referred->subscribed = false;
+        $referred->save();
+        return response(['message' => 'Unsubscribed Referred'], 201);
+    }
+
+    public function unsubscribeReferrer(string $uuid)
+    {
+        $referrer = Referrer::where('uuid', $uuid)->first();
+        $referrer->subscribed = false;
+        $referrer->save();
+        return response(['message' => 'Unsubscribed Referrer'], 201);
+    }
+
     protected function referrerSearch(array $search_terms): Referred {
         
         $referred = Referred::where('email', $search_terms['match_email'])->first();
