@@ -64,3 +64,13 @@ Route::prefix('dashboard')->name('dashboard.')->middleware([
 
 Route::redirect('/', '/dashboard');
 
+Route::get('/refer-friend-form', function(){
+   return Inertia::render('ReferFriend/ReferFriendPage');
+});
+
+Route::get('/refer-friend-eligibility', function(){
+   return Inertia::render('ReferFriend/ReferFriendPage');
+});
+
+
+
