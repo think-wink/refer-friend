@@ -31,16 +31,16 @@
       <div class="flex justify-end items-center space-x-8 font-bold text-sm sectionSub">
 
         <div class="flex justify-end items-center space-x-8">
-          <a href="#" class="hover:underline decoration-gold">
+          <a href="https://householdcapital.com.au/about-us/" class="hover:underline decoration-gold">
             ABOUT US
           </a>
-          <a href="#" class="hover:underline decoration-gold">
+          <a href="https://householdcapital.com.au/frequently-asked-questions/" class="hover:underline decoration-gold">
             FAQ
           </a>
-          <a href="#" class="hover:underline decoration-gold">
+          <a href="https://householdcapital.com.au/about-us/customers/" class="hover:underline decoration-gold">
             CUSTOMER LOGIN
           </a>
-          <a href="#" class="hover:underline decoration-gold">
+          <a href="https://householdcapital.com.au/communications/" class="hover:underline decoration-gold">
             MEDIA
           </a>
         </div>
@@ -56,32 +56,37 @@
     <div class="bg-white">
 
       <div class="flex sectionSub py-5 link">
-        <img src="/img/household.svg" width="200px" alt="Household Image" />
+
+        <a href="https://householdcapital.com.au/">
+          <img src="/img/household.svg" width="200px" alt="Household Image" />
+        </a>
 
         <div class="p-4 flex space-x-12 font-bold">
 
           <div class="flex">
-            <a href="#" class="hover:underline decoration-gold flex-grow">
-              Household Loans
+            <a href="https://householdcapital.com.au/loans/" class="hover:underline decoration-gold flex-grow">
+              Products & Services
             </a>
-            <a href="#" class="hover:underline decoration-gold flex-grow ml-4">
+            <a href="https://householdcapital.com.au/reverse-mortgage-interest-rates/" class="hover:underline decoration-gold flex-grow ml-4">
               Interest Rates
             </a>
-            <a href="#" class="hover:underline decoration-gold flex-grow">
+            <a href="https://householdcapital.com.au/home-equity-calculators/" class="hover:underline decoration-gold flex-grow">
               Home Equity Calculator
             </a>
-            <a href="#" class="hover:underline decoration-gold flex-grow">
+            <a href="https://householdcapital.com.au/publications/" class="hover:underline decoration-gold flex-grow">
               Guides, Publications & Testimonials
             </a>
-            <a href="#" class="hover:underline decoration-gold flex-grow">
+            <a href="https://householdcapital.com.au/" class="hover:underline decoration-gold flex-grow">
               Professionals
             </a>
           </div>
 
           <div class="flex items-center">
-            <button type="button" class="bg-gold rounded-full px-3 py-1 font-bold hover:bg-hover hover:text-white whitespace-nowrap">
-              Get Started
-            </button>
+            <a href="https://householdcapital.com.au/reverse-mortgage-calculator/">
+              <button type="button" class="bg-gold rounded-full px-3 py-1 font-bold hover:bg-hover hover:text-white whitespace-nowrap">
+                Get Started
+              </button>
+            </a>
           </div>
         </div>
       </div>
@@ -151,53 +156,57 @@
           <div class="mr-8">
             <p class="text-xl font-bold">Loans</p>
             <div class="flex flex-col mt-2 text-grey-subLight font-bold">
-              <a href="#">Household Loan</a>
-              <a href="#">Refinance Home Loan</a>
-              <a href="#">Compare Loans</a>
-              <a href="#">Home Equity Access Scheme</a>
+              <a href="https://householdcapital.com.au/household-loan/">Household Loan</a>
+              <a href="https://householdcapital.com.au/refinance-home-loan/">Refinance Home Loan</a>
+              <a href="https://householdcapital.com.au/loans/">Compare Loans</a>
+              <a href="https://householdcapital.com.au/pension-loan-scheme-alt/">Home Equity Access Scheme</a>
             </div>
           </div>
 
           <div class="mr-8">
             <p class="text-xl font-bold">Uses</p>
             <div class="flex flex-col mt-2 text-grey-subLight font-bold">
-              <a href="#">Live</a>
-              <a href="#">Refinance Home Loan</a>
-              <a href="#">Super Top Up</a>
-              <a href="#">Aged Care Funding</a>
-              <a href="#">Bank of Mum & Dad</a>
+              <a href="https://householdcapital.com.au/lifestyle-expenses/">Live</a>
+              <a href="https://householdcapital.com.au/refinance-home-loan/">Refinance Home Loan</a>
+              <a href="https://householdcapital.com.au/superannuation-top-up/">Super Top Up</a>
+              <a href="https://householdcapital.com.au/aged-care-funding/">Aged Care Funding</a>
+              <a href="https://householdcapital.com.au/bank-mum-dad/">Bank of Mum & Dad</a>
             </div>
           </div>
 
           <div class="mr-8">
             <p class="text-xl font-bold">Information</p>
             <div class="flex flex-col mt-2 text-grey-subLight font-bold">
-               <a href="#">Customer Testimonials</a>
-               <a href="#">Guides</a>
-               <a href="#">Three Pillars Forum</a>
-               <a href="#">FAQs</a>
+               <a href="https://householdcapital.com.au/customer-testimonials/">Customer Testimonials</a>
+               <a href="https://householdcapital.com.au/publications/">Guides</a>
+               <a href="https://householdcapital.com.au/third-pillar-forum/">Three Pillars Forum</a>
+               <a href="https://householdcapital.com.au/frequently-asked-questions/">FAQs</a>
             </div>
           </div>
 
           <div class="mr-8">
             <p class="text-xl font-bold">About</p>
             <div class="flex flex-col mt-2 text-grey-subLight font-bold">
-               <a href="#">Contact Us</a>
-               <a href="#">About Us</a>
-               <a href="#">Reviews</a>
-               <a href="#">Customers</a>
-               <a href="#">Corporate</a>
-               <a href="#">Financial Advisers & Professionals</a>
+               <a href="https://householdcapital.com.au/contact/">Contact Us</a>
+               <a href="https://householdcapital.com.au/about-us/">About Us</a>
+               <a href="https://householdcapital.com.au/about-us/reviews/">Reviews</a>
+               <a href="https://householdcapital.com.au/about-us/customers/">Customers</a>
+               <a href="https://householdcapital.com.au/corporate/">Corporate</a>
+               <a href="https://householdcapital.com.au/partners/advisers/">Financial Advisers & Professionals</a>
             </div>
           </div>
 
           <div class="font-bold text-center">
-            <button class="border-2 border-white px-8 py-1.5 rounded-full w-48 mt-8 mb-4 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap">
-              Book a Call
-            </button>
-            <button class="border-2 border-white px-8 py-1.5 rounded-full w-48 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap">
-              Calculate Equity
-            </button>
+            <a href="https://householdcapital.com.au/schedule-a-call/">
+              <button class="border-2 border-white px-8 py-1.5 rounded-full w-48 mt-8 mb-4 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap">
+                Book a Call
+              </button>
+            </a>
+            <a href="https://householdcapital.com.au/reverse-mortgage-calculator/">
+              <button class="border-2 border-white px-8 py-1.5 rounded-full w-48 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap">
+                Calculate Equity
+              </button>
+            </a>
           </div>
         </div>
 
@@ -214,16 +223,16 @@
               <p class="text-xl font-bold">Connect</p>
 
               <div class="flex flex-row space-x-8 mt-2 ml-8">
-                <a href="#" title="" target="_blank">
+                <a href="https://www.facebook.com/HouseholdCap?_gl=1*neqiq*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
                   <img src="https://householdcapital.com.au/wp-content/uploads/2020/08/social-media-facebook.png" alt="social-media-facebook" title="social-media-facebook" />
                 </a>
-                <a href="#" title="" target="_blank">
+                <a href="https://twitter.com/HouseholdCapit1?_gl=1*neqiq*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
                   <img src="https://householdcapital.com.au/wp-content/uploads/2020/08/social-media-twitter.png" alt="social-media-twitter" title="social-media-twitter" />
                 </a>
-                <a href="#" title="" target="_blank">
+                <a href="http://www.linkedin.com/company/household-capital/?_gl=1*17jo4h9*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
                   <img src="https://householdcapital.com.au/wp-content/uploads/2020/08/social-media-linkedin.png" alt="social-media-linkedin" title="social-media-linkedin" />
                 </a>
-                <a href="#" title="" target="_blank">
+                <a href="https://www.youtube.com/channel/UC0i5Trr2mDYi_T47LwcX4cQ?_gl=1*17jo4h9*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
                   <img src="https://householdcapital.com.au/wp-content/uploads/2020/08/social-media-youtube.png" alt="social-media-youtube" title="social-media-youtube" />
                 </a>
               </div>
@@ -240,31 +249,31 @@
 
         <div class="flex align-center whitespace-nowrap my-5 text-xs">
 
-          <a class="p-1 underline">
+          <a class="p-1 underline" href="https://householdcapital.com.au/sitemap/">
             Sitemap
           </a>
           <p class="p-1">
             |
           </p>
-          <a class="p-1 underline">
+          <a class="p-1 underline" href="https://householdcapital.com.au/website-privacy-policy/">
             Website Terms of Use
           </a>
           <p class="p-1">
             |
           </p>
-          <a class="p-1 underline">
+          <a class="p-1 underline" href="https://householdcapital.com.au/privacy-credit-reporting-policy/">
             Privacy and Credit Reporting Policy
           </a>
           <p class="p-1">
             |
           </p>
-          <a class="p-1 underline">
+          <a class="p-1 underline" href="https://householdcapital.com.au/wp-content/uploads/2023/03/HHC-Target-Market-Determination-Policy.pdf">
             Target Market Determination
           </a>
           <p class="p-1">
             |
           </p>
-          <a class="p-1 underline">
+          <a class="p-1 underline" href="https://householdcapital.com.au/wp-content/uploads/2021/10/HHC-Public-Complaints-Policy.pdf">
             Public Complaints Policy
           </a>
         </div>
@@ -273,7 +282,6 @@
           <p>
             Copyright Household Capital™ 2023
           </p>
-
         </div>
 
       </div>
