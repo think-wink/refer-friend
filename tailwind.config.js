@@ -14,13 +14,28 @@ module.exports = {
     colors: {
       primary: '#282828',
       input: '#121212',
+
+      grey: {
+        light: '#f9f8f6',
+        subLight: '#bcc1c7',
+        DEFAULT: '#b2b5bc',
+        dark: '#58595b'
+      },
+
       white: '#FFFFFF',
       orange: '#FF4929',
+      toolbar: '#19263f',
+      footer: '#dee3e9',
+      gold: '#f7b515',
+      hover: '#5184a1',
+
       'text-second': '#FFFFFF99',
     },
     extend: {
       fontFamily: {
-        sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+        sans: ['serif', ...defaultTheme.fontFamily.sans],
+        merry: ['Merriweather'],
+        mont: ['Montserrat', 'sans-serif']
       },
     },
     screens: {
