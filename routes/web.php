@@ -64,7 +64,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware([
 
 Route::redirect('/', '/dashboard');
 
-Route::get('/refer-friend-form', function(){
+Route::get('/refer-friend-form/{uuid}', function(){
    return Inertia::render('ReferFriend/ReferFriendPage');
 });
 

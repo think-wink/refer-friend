@@ -32,3 +32,7 @@ Route::controller(Customer::class)->group(function() {
 Route::controller(Auth::class)->group(function(){
     Route::post('login', 'login');
 });
+
+Route::controller(Customer::class)->group(function(){
+    Route::post('referrer/{uuid}/referred/create', 'createReferred');
+});

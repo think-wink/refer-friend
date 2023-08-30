@@ -24,6 +24,7 @@ module.exports = {
 
       white: '#FFFFFF',
       orange: '#FF4929',
+      red: '#ff0000',
       toolbar: '#19263f',
       footer: '#dee3e9',
       gold: '#f7b515',
