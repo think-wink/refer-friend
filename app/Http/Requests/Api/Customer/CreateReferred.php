@@ -47,7 +47,29 @@ class CreateReferred extends FormRequest
                 'string',
                 'min:2',
                 'max:50'
-            ]
+            ],
+            'terms' => [
+                'accepted',
+            ],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'referees.*.email.required' => 'Email is required.',
+            'referees.*.email.email' => 'Email must be a valid.',
+            'referees.*.email.unique' => 'This email has already been taken.',
+            'referees.*.phone_number.required' => 'Phone number is required.',
+            'referees.*.phone_number.digits' => 'Phone number should be at least 10 digits.',
+            'referees.*.first_name.required' => 'First name is required.',
+            'referees.*.first_name.string' => 'First name should be string only.',
+            'referees.*.first_name.min' => 'First name should be at least 2 characters.',
+            'referees.*.first_name.max' => 'First name should be no more than 50 characters.',
+            'referees.*.last_name.required' => 'Last name is required.',
+            'referees.*.last_name.string' => 'Last name should be string only.',
+            'referees.*.last_name.min' => 'Last name should be at least 2 characters.',
+            'referees.*.last_name.max' => 'Last name should be no more than 50 characters.',
         ];
     }
 }

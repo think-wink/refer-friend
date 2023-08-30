@@ -96,15 +96,15 @@
       <img alt="" :src=" '/img/' + (current_page === 'refer-friend-form' ? 'refer-page-form.jpg': 'refer-page-eligibility.jpg')" class="cover-image">
 
       <div class="absolute top-0 left-64 bottom-0 flex flex-col justify-center text-left text-white font-bold font-merry">
-        <template v-if="current_page === 'refer-friend-form'">
-          <h3 class="text-6xl">Refer your</h3>
-          <h3 class="text-6xl">friends</h3>
-          <p class="text-xl">Tell others and be rewarded</p>
-        </template>
-        <template v-else-if="current_page === 'refer-friend-eligibility'">
+        <template v-if="current_page === 'refer-friend-eligibility'">
           <h3 class="text-6xl">You've been referred,</h3>
           <h3 class="text-6xl">now be rewarded</h3>
           <p class="text-xl">Check eligibility and apply today</p>
+        </template>
+        <template v-else>
+          <h3 class="text-6xl">Refer your</h3>
+          <h3 class="text-6xl">friends</h3>
+          <p class="text-xl">Tell others and be rewarded</p>
         </template>
       </div>
     </div>
@@ -112,8 +112,9 @@
     <div class="w-full bg-white">
       <div class="sectionSub">
 
-        <ReferFriendForm v-if="current_page === 'refer-friend-form'" />
-        <ReferFriendEligible v-else-if="current_page === 'refer-friend-eligibility'" />
+
+        <ReferFriendEligible v-if="current_page === 'refer-friend-eligibility'" />
+        <ReferFriendForm v-else />
 
       </div>
     </div>

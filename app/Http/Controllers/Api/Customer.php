@@ -9,11 +9,14 @@ use App\Http\Requests\Api\Customer\UpdateReferred;
 use App\Http\Requests\Api\Customer\UpdateReferredStatus;
 
 
+use App\Mail\EligibilityEmail1;
 use App\Models\Customer\Referrer;
 use App\Models\Customer\Referred;
 use App\Models\Customer\ReferredAlias;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class Customer extends Controller
 {
@@ -38,6 +41,9 @@ class Customer extends Controller
      * 
     */
     public function createReferred(string $uuid, CreateReferred $request){
+
+//        Mail::to(User::where('id', 2)->first())->send(new EligibilityEmail1());
+
         $referrer = Referrer::where('uuid', $uuid)->first();
         if(! $referrer instanceof Referrer){
             return response(['error' => "no referrer found with uuid: $uuid"], 404);
