@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\EmailTemplates;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,12 +14,14 @@ class EligibilityEmail1 extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $email_template;
+
     /**
      * Create a new message instance.
      */
     public function __construct()
     {
-        //
+        $this->email_template = EmailTemplates::where('type', 'eligibility_email_1')->first();
     }
 
     /**
@@ -27,7 +30,7 @@ class EligibilityEmail1 extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Eligibility Email1',
+            subject: $this->email_template->subject,
         );
     }
 
@@ -39,7 +42,13 @@ class EligibilityEmail1 extends Mailable
         return new Content(
             markdown: 'emails.eligibility.email1',
             with: [
-                'url' => 'www.google.com'
+                'cover_image' => $this->email_template->cover_image,
+                'cover_image_text' => $this->email_template->cover_image_text,
+                'greeting_text' => $this->email_template->greeting_text,
+                'upper_text' => $this->email_template->upper_text,
+                'button_text' => $this->email_template->button_text,
+                'button_url' => $this->email_template->button_url,
+                'lower_text' => $this->email_template->lower_text,
             ],
         );
     }

@@ -42,7 +42,7 @@ class Customer extends Controller
     */
     public function createReferred(string $uuid, CreateReferred $request){
 
-//        Mail::to(User::where('id', 2)->first())->send(new EligibilityEmail1());
+//        Mail::to(User::where('id', 1)->first())->send(new EligibilityEmail1());
 
         $referrer = Referrer::where('uuid', $uuid)->first();
         if(! $referrer instanceof Referrer){

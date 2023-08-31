@@ -1,10 +1,10 @@
 <script>
 
-  import ReferFriendForm from "../../Components/ReferFriend/ReferFriendForm.vue";
-  import ReferFriendEligible from "../../Components/ReferFriend/ReferFriendEligible.vue";
+  // import ReferFriendForm from "../Components/ReferFriend/ReferFriendForm.vue";
+  // import ReferFriendEligible from "../Components/ReferFriend/ReferFriendEligible.vue";
 
   export default {
-    components: {ReferFriendForm, ReferFriendEligible},
+    // components: {ReferFriendForm, ReferFriendEligible},
     data() {
       return {
         current_page: '',
@@ -12,8 +12,8 @@
     },
     methods:{
       setPage(){
-        let urlParts = window.location.href.split('/');
-        this.current_page = urlParts[urlParts.length - 1].split('?')[0];
+        // let urlParts = window.location.href.split('/');
+        // this.current_page = urlParts[urlParts.length - 1].split('?')[0];
       }
     },
     beforeMount() {
@@ -111,11 +111,7 @@
 
     <div class="w-full bg-white">
       <div class="sectionSub">
-
-
-        <ReferFriendEligible v-if="current_page === 'refer-friend-eligibility'" />
-        <ReferFriendForm v-else />
-
+        <slot />
       </div>
     </div>
 
