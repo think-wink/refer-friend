@@ -96,32 +96,32 @@
                   <button type="button" class="border-2 border-red rounded-full px-2 py-1 text-xs text-toolbar" @click.prevent="removeFriend(index)">Remove Friend</button>
               </div>
 
-              <div class="grid grid-cols-2 place-content-between mb-2">
+              <div class="grid grid-cols-1 lg:grid-cols-2 place-content-between mb-2">
 
-                <div class="flex flex-col mr-5">
-                  <label class="required-label text-toolbar font-bold text-sm">Friend's First Name</label>
+                <div class="flex flex-col lg:mr-5">
+                  <label class="required-label text-toolbar font-bold text-sm m-1">Friend's First Name</label>
                   <input type="text" class="rounded-2xl border-grey" v-model="referees[index].first_name" />
                   <p class="text-red text-xs mt-1" v-if="errors['referees.'+index+'.first_name']">{{ errors['referees.'+index+'.first_name'][0] }}</p>
                 </div>
 
                 <div class="flex flex-col">
-                  <label class="required-label text-toolbar font-bold text-sm">Friend's Last Name</label>
+                  <label class="required-label text-toolbar font-bold text-sm m-1">Friend's Last Name</label>
                   <input type="text" class="rounded-2xl border-grey" v-model="referees[index].last_name" />
                   <p class="text-red text-xs mt-1" v-if="errors['referees.'+index+'.last_name']">{{ errors['referees.'+index+'.last_name'][0] }}</p>
                 </div>
 
               </div>
 
-              <div class="grid grid-cols-2">
+              <div class="grid grid-cols-1 lg:grid-cols-2">
 
-                <div class="flex flex-col mr-5">
-                  <label class="required-label text-toolbar font-bold text-sm">Friend's Phone Number</label>
+                <div class="flex flex-col lg:mr-5">
+                  <label class="required-label text-toolbar font-bold text-sm m-1">Friend's Phone Number</label>
                   <input type="text" class="rounded-2xl border-grey" v-model="referees[index].phone_number" />
                   <p class="text-red text-xs mt-1" v-if="errors['referees.'+index+'.phone_number']">{{ errors['referees.'+index+'.phone_number'][0] }}</p>
                 </div>
 
                 <div class="flex flex-col">
-                  <label class="required-label text-toolbar font-bold text-sm">Friend's Email</label>
+                  <label class="required-label text-toolbar font-bold text-sm m-1">Friend's Email</label>
                   <input type="text" class="rounded-2xl border-grey" v-model="referees[index].email" />
                   <p class="text-red text-xs mt-1" v-if="errors['referees.'+index+'.email']">{{ errors['referees.'+index+'.email'][0] }}</p>
                 </div>
@@ -151,16 +151,13 @@
             <p class="text-red text-xs mt-1"> {{ errors }} </p>
           </div>
 
-          <div class="flex space-x-2 justify-center">
-
-            <button @click.prevent="incrementFriends" class="border-2 border-toolbar font-bold px-8 py-1.5 rounded-full mt-8 mb-4 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap">
+          <div class="flex space-x-2 justify-center flex-col md:flex-row items-center">
+            <button @click.prevent="incrementFriends" class="border-2 border-toolbar font-bold px-8 py-1.5 rounded-full mt-8 mb-4 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap w-1/2">
               + ADD MORE FRIENDS
             </button>
-
-            <button @click.prevent="submitForm()" class="border-2 border-gold bg-gold font-bold px-8 py-1.5 rounded-full mt-8 mb-4 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap">
+            <button @click.prevent="submitForm()" class="border-2 border-gold bg-gold font-bold px-8 py-1.5 rounded-full mt-8 mb-4 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap w-1/2">
               SUBMIT FRIENDS
             </button>
-
           </div>
         </div>
 

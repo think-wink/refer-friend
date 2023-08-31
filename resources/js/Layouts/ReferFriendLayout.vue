@@ -1,10 +1,5 @@
 <script>
-
-  // import ReferFriendForm from "../Components/ReferFriend/ReferFriendForm.vue";
-  // import ReferFriendEligible from "../Components/ReferFriend/ReferFriendEligible.vue";
-
   export default {
-    // components: {ReferFriendForm, ReferFriendEligible},
     data() {
       return {
         current_page: '',
@@ -12,8 +7,8 @@
     },
     methods:{
       setPage(){
-        // let urlParts = window.location.href.split('/');
-        // this.current_page = urlParts[urlParts.length - 1].split('?')[0];
+        let urlParts = window.location.href.split('/');
+        this.current_page = urlParts[urlParts.length - 1].split('?')[0];
       }
     },
     beforeMount() {
@@ -26,7 +21,7 @@
 <template>
   <div class="h-screen w-screen font-mont">
 
-    <div class="bg-toolbar text-white p-2 flex justify-end">
+    <div class="bg-toolbar text-white p-2 flex justify-end hidden lg:block">
 
       <div class="flex justify-end items-center space-x-8 font-bold text-sm sectionSub">
 
@@ -55,13 +50,19 @@
 
     <div class="bg-white">
 
-      <div class="flex sectionSub py-5 link">
+      <div class="flex sectionSub py-5 link justify-between lg:justify-start">
+
+        <div class="lg:hidden block">
+        </div>
 
         <a href="https://householdcapital.com.au/">
           <img src="/img/household.svg" width="200px" alt="Household Image" />
         </a>
 
-        <div class="p-4 flex space-x-12 font-bold">
+        <div class="lg:hidden block">
+        </div>
+
+        <div class="p-4 flex space-x-12 font-bold hidden lg:block">
 
           <div class="flex">
             <a href="https://householdcapital.com.au/loans/" class="hover:underline decoration-gold flex-grow">
@@ -92,10 +93,10 @@
       </div>
     </div>
 
-    <div class="bg-toolbar pb-10 relative">
-      <img alt="" :src=" '/img/' + (current_page === 'refer-friend-form' ? 'refer-page-form.jpg': 'refer-page-eligibility.jpg')" class="cover-image">
+    <div class="bg-toolbar pb-10 relative flex justify-left">
+      <img alt="" :src="'/img/' + (current_page === 'refer-friend-eligibility' ? 'refer-page-eligibility.jpg' : 'refer-page-form.jpg')" class="cover-image">
 
-      <div class="absolute top-0 left-64 bottom-0 flex flex-col justify-center text-left text-white font-bold font-merry">
+      <div class="absolute top-0 right-60 sectionSub bottom-0 flex flex-col justify-center items-start text-white font-bold font-merry">
         <template v-if="current_page === 'refer-friend-eligibility'">
           <h3 class="text-6xl">You've been referred,</h3>
           <h3 class="text-6xl">now be rewarded</h3>
@@ -121,9 +122,9 @@
 
         <h3 class="text-center mb-4 font-merry text-5xl">Find out more</h3>
 
-        <div class="grid grid-cols-2 w-8/12 mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 w-8/12 mx-auto">
 
-          <div class="flex flex-row mr-5">
+          <div class="flex flex-row lg:mr-5 justify-start mb-4 lg:mb-0">
             <div class="flex">
               <img src="/img/footer-pic.png" alt="info icon" class="self-center" />
             </div>
@@ -133,7 +134,7 @@
             </div>
           </div>
 
-          <div class="flex flex-row">
+          <div class="flex flex-row justify-start ">
             <div class="flex">
               <img src="/img/footer-pic2.png" alt="info icon" class="self-center" />
             </div>
@@ -146,10 +147,10 @@
       </div>
     </div>
 
-    <div class="bg-toolbar pt-6">
+    <div class="bg-toolbar p-6 lg:p-0 lg:pt-6">
       <div class="sectionSub text-white mt-6">
 
-        <div class="grid grid-cols-5">
+        <div class="grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-4 ">
           <div class="mr-8">
             <p class="text-xl font-bold">Loans</p>
             <div class="flex flex-col mt-2 text-grey-subLight font-bold">
@@ -193,13 +194,13 @@
             </div>
           </div>
 
-          <div class="font-bold text-center">
-            <a href="https://householdcapital.com.au/schedule-a-call/">
+          <div class="font-bold text-center col-span-2 lg:col-span-1">
+            <a href="https://householdcapital.com.au/schedule-a-call/" class="m-1">
               <button class="border-2 border-white px-8 py-1.5 rounded-full w-48 mt-8 mb-4 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap">
                 Book a Call
               </button>
             </a>
-            <a href="https://householdcapital.com.au/reverse-mortgage-calculator/">
+            <a href="https://householdcapital.com.au/reverse-mortgage-calculator/" class="m-1">
               <button class="border-2 border-white px-8 py-1.5 rounded-full w-48 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap">
                 Calculate Equity
               </button>
@@ -207,7 +208,7 @@
           </div>
         </div>
 
-        <div class="border-t border-grey p-2 mt-2 pb-4 flex flex-row">
+        <div class="border-t border-grey p-2 mt-2 pb-4 flex lg:flex-row flex-col">
           <div class="flex-1">
             <p class="p5 text-grey">
               Household Capital Pty Limited ACN 618 068 214  is the issuer of the information on this website.
@@ -215,7 +216,7 @@
               HOUSEHOLD CAPITAL, HOUSEHOLD TRANSFER, LIVE WELL AT HOME and the Star Device are trademarks of Household Capital Pty Ltd.
             </p>
           </div>
-          <div class="flex-1 flex justify-end">
+          <div class="flex-1 flex justify-center lg:justify-end mt-6 lg:mt-0">
             <div>
               <p class="text-xl font-bold">Connect</p>
 
@@ -293,8 +294,14 @@
   .sectionSub {
     margin-left: auto;
     margin-right: auto;
-    min-width: 1200px;
+    min-width: 80vh;
     max-width: 1200px;
+  }
+
+  .cover-image {
+    height: 521px;
+    width: 100%;
+    object-fit: cover;
   }
 
   .link{
@@ -319,11 +326,4 @@
   h6 {
     font-size: 2em;
   }
-
-  .cover-image{
-    object-fit: cover;
-    width: 100%;
-    height: 521px;
-  }
-
 </style>

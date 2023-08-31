@@ -41,6 +41,7 @@ module.exports = {
     },
     screens: {
       laptop: '1085px',
+      lg: '1200px',
       md: '865px',
       sm: '450px',
     },
