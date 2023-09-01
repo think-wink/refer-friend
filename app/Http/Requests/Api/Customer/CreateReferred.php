@@ -48,6 +48,9 @@ class CreateReferred extends FormRequest
                 'min:2',
                 'max:50'
             ],
+            'permission' => [
+                'accepted',
+            ],
             'terms' => [
                 'accepted',
             ],
@@ -70,6 +73,7 @@ class CreateReferred extends FormRequest
             'referees.*.last_name.string' => 'Last name should be string only.',
             'referees.*.last_name.min' => 'Last name should be at least 2 characters.',
             'referees.*.last_name.max' => 'Last name should be no more than 50 characters.',
+            'permission' => 'This field must be confirmed.',
         ];
     }
 }
