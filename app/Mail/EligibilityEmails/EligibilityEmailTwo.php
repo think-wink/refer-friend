@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\EligibilityEmails;
 
 use App\Models\EmailTemplates;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class EligibilityEmail1 extends Mailable
+class EligibilityEmailTwo extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -21,7 +20,7 @@ class EligibilityEmail1 extends Mailable
      */
     public function __construct()
     {
-        $this->email_template = EmailTemplates::where('type', 'eligibility_email_1')->first();
+        $this->email_template = EmailTemplates::where('type', 'eligibility_email_2')->first();
     }
 
     /**
@@ -40,7 +39,7 @@ class EligibilityEmail1 extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.eligibility.email1',
+            markdown: 'emails.eligibility-email',
             with: [
                 'cover_image' => $this->email_template->cover_image,
                 'cover_image_text' => $this->email_template->cover_image_text,
