@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('email_status', function (Blueprint $table) {
+        Schema::create('email_jobs', function (Blueprint $table) {
             $table->id();
+            $table->morphs('customer');
+            $table->string('email_type');
+            $table->boolean('email_sent')->default(0);
+            $table->dateTime('scheduled_date_time', 0);
             $table->timestamps();
-            $table->string('referred_uuid')->unique();
-            $table->string('current_status');
-            $table->timestamp('last_email_at', 0)->default(now());
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('email_status');
+        Schema::dropIfExists('email_jobs');
     }
 };

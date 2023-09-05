@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('subject')->nullable();
             $table->string('greeting_text')->nullable();
             $table->text('cover_image')->nullable();
-            $table->text('cover_image_url')->nullable();
-            $table->text('cover_image_text')->nullable();
+            $table->text('cover_text')->nullable();
             $table->text('upper_text')->nullable();
             $table->text('button_text')->nullable();
             $table->text('button_url')->nullable();

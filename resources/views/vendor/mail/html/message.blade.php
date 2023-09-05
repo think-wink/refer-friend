@@ -1,8 +1,8 @@
-@props(['cover_image_text', 'cover_image'])
+@props(['header_cid', 'cover_cid','cover_text', 'pre_footer_cid_1', 'pre_footer_cid_2', 'footer_cid'])
 <x-mail::layout>
 {{-- Header --}}
 <x-slot:header>
-<x-mail::header :url="config('app.url')" :cover_image_text="$cover_image_text" :cover_image="$cover_image">
+<x-mail::header :header_cid="$header_cid" :cover_cid="$cover_cid" :cover_text="$cover_text">
 </x-mail::header>
 </x-slot:header>
 {{-- Body --}}
@@ -17,7 +17,7 @@
 @endisset
 {{-- Footer --}}
 <x-slot:footer>
-<x-mail::footer>
+<x-mail::footer :pre_footer_cid_1="$pre_footer_cid_1" :pre_footer_cid_2="$pre_footer_cid_2" :footer_cid="$footer_cid">
 </x-mail::footer>
 </x-slot:footer>
 </x-mail::layout>

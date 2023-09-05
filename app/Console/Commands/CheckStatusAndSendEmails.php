@@ -3,10 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Jobs\EligibilityEmails\SendEligibilityEmailFour;
+use App\Jobs\EligibilityEmails\SendEligibilityEmailOne;
 use App\Jobs\EligibilityEmails\SendEligibilityEmailThree;
 use App\Jobs\EligibilityEmails\SendEligibilityEmailTwo;
+use App\Models\EmailJobs;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
 class CheckStatusAndSendEmails extends Command
 {
@@ -29,43 +30,40 @@ class CheckStatusAndSendEmails extends Command
      */
     public function handle()
     {
+        // Unsubscribed people
 
-        // Get all the emails and status in the emails table that needs to be send out
-        $emails =  DB::table('email_status')
-            //                        ->whereNot('current_status', '')
-                        ->get();
+        // Get all the Email Jobs
+        $emails =  EmailJobs::where('email_sent', false)->get();
 
         // Send Emails based on their current status and their time
         foreach ($emails as $email){
-
-            // Only start sending emails after two days
-            if($email->current_status === 'eligibility_email') {
-
-                // Get the difference in days
-                $diff_days = now()->diffInDays($email->last_email_at);
-
-
-                if ($diff_days >= 2 && $diff_days <7 ) {
-
-                    logger('send email 2');
-                    SendEligibilityEmailTwo::dispatch($email->referred_uuid);
-
-                } elseif ($diff_days >= 7 && $diff_days < 14) {
-
-                    logger('send email 3');
-                    SendEligibilityEmailThree::dispatch($email->referred_uuid);
-
-                } elseif ($diff_days >= 14) {
-
-                    // this will keep spamming the user with email 4
-                    logger('send email 4');
-                    SendEligibilityEmailFour::dispatch($email->referred_uuid);
-
-                } else {
-                    // either it's not 2 days yet
-                    logger($email->id);
+            // If email is past its send time
+            if($email->scheduled_date_time < now()) {
+                switch ($email->email_type) {
+                    case 'eligibility_email_1':
+                        dispatch(new SendEligibilityEmailOne($email->customer_type, $email->customer_id));
+                        break;
+                    case 'eligibility_email_2':
+                        dispatch(new SendEligibilityEmailTwo($email->customer_type, $email->customer_id));
+                        break;
+                    case 'eligibility_email_3':
+                        dispatch(new SendEligibilityEmailThree($email->customer_type, $email->customer_id));
+                        break;
+                    case 'eligibility_email_4':
+                        dispatch(new SendEligibilityEmailFour($email->customer_type, $email->customer_id));
+                        break;
+                    case 'nurture_cycle_email_1':
+                        logger('nurture 1');
+                        break;
+                    case 'nurture_cycle_email_2':
+                        logger('nurture 2');
+                        break;
+                    case 'nurture_cycle_email_3':
+                        logger('nurture 3');
+                        break;
+                    default:
+                        break;
                 }
-
             }
         }
     }

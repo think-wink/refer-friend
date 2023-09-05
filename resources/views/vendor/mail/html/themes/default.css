@@ -159,7 +159,7 @@ body {
     font-weight: 500;
     display: inline-block;
     text-decoration: none;
-    margin-top: 1em;
+    margin: 1em 0;
     padding: 0.5em 1em;
     border-radius: 2em;
 }

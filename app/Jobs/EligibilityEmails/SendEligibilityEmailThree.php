@@ -3,6 +3,7 @@
 namespace App\Jobs\EligibilityEmails;
 
 use App\Mail\EligibilityEmails\EligibilityEmailThree;
+use App\Models\Customer\Referred;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -15,14 +16,16 @@ class SendEligibilityEmailThree implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private string $referred_uuid;
+    protected string $customer_type;
+    protected int $customer_id;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($referred_uuid)
+    public function __construct($customer_type, $customer_id)
     {
-        $this->referred_uuid = $referred_uuid;
+        $this->customer_type = $customer_type;
+        $this->customer_id = $customer_id;
     }
 
     /**
@@ -30,10 +33,21 @@ class SendEligibilityEmailThree implements ShouldQueue
      */
     public function handle(): void
     {
-        $referred = DB::table('referreds')->where('uuid', $this->referred_uuid)->first();
-        // If no referred exists then log this
-        logger($referred->first_name. " email 3");
-        // Send Mail to the user
-        Mail::to($referred)->send(new EligibilityEmailThree());
+        $model = app($this->customer_type)->find($this->customer_id);
+        if ($model && $model->subscribed) {
+            //If the record exists
+            $current_email = $model->emailJob()->where('email_type', 'eligibility_email_3')->where('email_sent', false)->first();
+            // Sent the email if it is not sent
+            if ($current_email) {
+                // Sent the eligibility email 1
+                Mail::to($model)->send(new EligibilityEmailThree($model->first_name));
+
+                // Update the record that the email has been sent out
+                $model->emailJob()->where('email_type', 'eligibility_email_3')->update(['email_sent' => true]);
+
+                // Create a record for the next email to be sent out
+                $model->emailJob()->create(['email_type' => 'eligibility_email_4', 'scheduled_date_time' => now()->addDays(7)]);
+            }
+        }
     }
 }

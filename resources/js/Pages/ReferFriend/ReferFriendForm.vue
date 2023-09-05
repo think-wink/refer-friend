@@ -1,11 +1,11 @@
 <script>
   import ReferFriendLayout from "../../Layouts/ReferFriendLayout.vue";
-  import {CheckBadgeIcon} from "@heroicons/vue/24/outline";
+  import {CheckBadgeIcon, XCircleIcon} from "@heroicons/vue/24/outline";
 
   export default {
     props: ['uuid'],
     components: {
-      ReferFriendLayout, CheckBadgeIcon
+      ReferFriendLayout, CheckBadgeIcon, XCircleIcon
     },
     data(){
       return {
@@ -96,7 +96,9 @@
               <div v-if="index !== 0" class="flex justify-between">
                   <p class="font-bold text-toolbar: text-lg">Friend {{ index+1 }} Details:</p>
 
-                  <button type="button" class="border-2 border-red rounded-full px-2 py-1 text-xs text-toolbar" @click.prevent="removeFriend(index)">Remove Friend</button>
+                  <button type="button" class="text-red px-2 py-1 text-xs flex items-center" @click.prevent="removeFriend(index)">
+                    <XCircleIcon class="w-4 h-4 " /> Remove Friend
+                  </button>
               </div>
 
               <div class="grid grid-cols-1 lg:grid-cols-2 place-content-between lg:mb-2">

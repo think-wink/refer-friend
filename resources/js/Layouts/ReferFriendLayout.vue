@@ -54,7 +54,7 @@
 
     <div class="bg-white">
 
-      <div class="flex sectionSub py-5 px-4 link justify-between lg:justify-start items-center mx-auto">
+      <div class="flex sectionSub py-5 px-4 link justify-between lg:justify-center items-center mx-auto">
         <div class="lg:hidden block text-sm">
           <a href="tel:1300057080" class="font-bold">
             <img alt="call-icon" src="	https://householdcapital.com.au/wp-content/themes/hhctheme/images/call-icon.svg" width="24" height="24" />
@@ -63,7 +63,7 @@
         </div>
 
         <a href="https://householdcapital.com.au/">
-          <img src="/img/household.svg" width="200px" alt="Household Image" />
+          <img src="/img/header-image.svg" width="200px" alt="Household Image" />
         </a>
 
         <div class="lg:hidden block font-bold text-sm" >
@@ -172,7 +172,7 @@
 
     <div class="bg-grey-light">
 
-      <div class="sectionSub py-6">
+      <div class="sectionSub py-6 mx-auto">
 
         <h3 class="text-center mb-4 font-merry text-5xl">Find out more</h3>
 
@@ -180,7 +180,7 @@
 
           <div class="flex flex-row lg:mr-5 justify-start mb-4 lg:mb-0">
             <div class="flex">
-              <img src="/img/footer-pic.png" alt="info icon" class="self-center" />
+              <img src="/img/pre-footer-image-1.png" alt="info icon" class="self-center" />
             </div>
             <div class="px-5">
               <h4>FAQs</h4>
@@ -190,7 +190,7 @@
 
           <div class="flex flex-row justify-start ">
             <div class="flex">
-              <img src="/img/footer-pic2.png" alt="info icon" class="self-center" />
+              <img src="/img/pre-footer-image-2.png" alt="info icon" class="self-center" />
             </div>
             <div class="px-5">
               <h4>Terms and Conditions</h4>
@@ -297,7 +297,7 @@
 
     <div class="bg-footer">
 
-      <div class="flex justify-center flex-col items-center sectionSub p-4 font-bold text-grey-dark">
+      <div class="flex justify-center flex-col items-center sectionSub p-4 font-bold text-grey-dark mx-auto">
 
         <div class="flex flex-col md:flex-row  align-center whitespace-nowrap my-5 text-xs text-center">
 
