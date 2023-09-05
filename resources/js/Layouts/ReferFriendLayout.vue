@@ -178,7 +178,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 w-8/12 mx-auto">
 
-          <div class="flex flex-row lg:mr-5 justify-start mb-4 lg:mb-0">
+          <div class="flex flex-row justify-center lg:justify-end lg:mr-5 mb-4 lg:mb-0">
             <div class="flex">
               <img src="/img/pre-footer-image-1.png" alt="info icon" class="self-center" />
             </div>
@@ -188,7 +188,7 @@
             </div>
           </div>
 
-          <div class="flex flex-row justify-start ">
+          <div class="flex flex-row justify-center lg:justify-end ">
             <div class="flex">
               <img src="/img/pre-footer-image-2.png" alt="info icon" class="self-center" />
             </div>

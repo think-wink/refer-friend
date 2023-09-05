@@ -3,13 +3,11 @@
 namespace App\Jobs\EligibilityEmails;
 
 use App\Mail\EligibilityEmails\EligibilityEmailTwo;
-use App\Models\Customer\Referred;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class SendEligibilityEmailTwo implements ShouldQueue

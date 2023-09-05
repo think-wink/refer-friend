@@ -40,9 +40,6 @@ class CheckStatusAndSendEmails extends Command
             // If email is past its send time
             if($email->scheduled_date_time < now()) {
                 switch ($email->email_type) {
-                    case 'eligibility_email_1':
-                        dispatch(new SendEligibilityEmailOne($email->customer_type, $email->customer_id));
-                        break;
                     case 'eligibility_email_2':
                         dispatch(new SendEligibilityEmailTwo($email->customer_type, $email->customer_id));
                         break;
