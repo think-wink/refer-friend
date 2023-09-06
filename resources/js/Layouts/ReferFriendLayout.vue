@@ -63,7 +63,7 @@
         </div>
 
         <a href="https://householdcapital.com.au/">
-          <img src="/img/header-image.svg" width="200px" alt="Household Image" />
+          <img src="/img/refer/header.png" width="200px" alt="Household Image" />
         </a>
 
         <div class="lg:hidden block font-bold text-sm" >
@@ -148,7 +148,7 @@
     </div>
 
     <div class="bg-toolbar pb-10 relative flex justify-center">
-      <img alt="" :src="'/img/' + (current_page === 'refer-friend-eligibility' ? 'refer-page-eligibility.jpg' : 'refer-page-form.jpg')" class="cover-image">
+      <img alt="" :src="'/img/refer/' + (current_page === 'refer-friend-eligibility' ? 'refer-page-eligibility.jpg' : 'refer-page-form.jpg')" class="cover-image">
 
       <div class="absolute top-0 bottom-0 sectionSub flex flex-col justify-center items-center md:items-start text-white font-bold font-merry text-center">
         <template v-if="current_page === 'refer-friend-eligibility'">
@@ -180,7 +180,7 @@
 
           <div class="flex flex-row justify-center lg:justify-end lg:mr-5 mb-4 lg:mb-0">
             <div class="flex">
-              <img src="/img/pre-footer-image-1.png" alt="info icon" class="self-center" />
+              <img src="/img/refer/pre-footer-1.png" alt="info icon" class="self-center" />
             </div>
             <div class="px-5">
               <h4>FAQs</h4>
@@ -190,7 +190,7 @@
 
           <div class="flex flex-row justify-center lg:justify-end ">
             <div class="flex">
-              <img src="/img/pre-footer-image-2.png" alt="info icon" class="self-center" />
+              <img src="/img/refer/pre-footer-2.png" alt="info icon" class="self-center" />
             </div>
             <div class="px-5">
               <h4>Terms and Conditions</h4>

@@ -3,10 +3,12 @@
 namespace App\Models\Customer;
 
 use App\Events\Referrer\ReferrerCreatedEvent;
+use App\Models\EmailJobs;
 use App\Models\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Referrer extends Model
 {
@@ -32,5 +34,10 @@ class Referrer extends Model
     public function referred(): HasMany
     {
         return $this->hasMany(Referred::class);
+    }
+
+    public function emailJob(): MorphMany
+    {
+        return $this->morphMany(EmailJobs::class, 'customer');
     }
 }

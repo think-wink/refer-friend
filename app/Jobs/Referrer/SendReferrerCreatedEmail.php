@@ -31,5 +31,6 @@ class SendReferrerCreatedEmail implements ShouldQueue
     public function handle(): void
     {
         Mail::to($this->referrer)->send(new ReferrerCreated());
+        $this->referrer->emailJob()->create(['email_type' => 'referrer_created', 'scheduled_date_time' => now(), 'email_sent' => true]);
     }
 }

@@ -46,6 +46,10 @@ body {
     width: 100%;
 }
 
+.body p {
+    color: black;
+}
+
 .top-text{
     text-align: center;
     background-color: #edf2f7;
@@ -88,29 +92,6 @@ body {
     height: 250px;
     display: block;
 }
-
-.cover-text {
-    position: absolute;
-    color: white;
-    top: 25%;
-    left: 10%;
-    height: 50%;
-    display: inline-flex;
-}
-
-.cover-text td {
-    margin: auto 0;
-}
-
-.cover-text h4 {
-    margin: 0;
-    font-size: 1.4em;
-}
-
-.cover-text p {
-    margin: 0;
-}
-
 /* Footer */
 
 .footer {

@@ -72,5 +72,7 @@ Route::get('/refer-friend-eligibility', function(){
    return Inertia::render('ReferFriend/ReferFriendEligibility');
 });
 
-
+Route::get('/referred/{uuid}/unsubscribe-emails', function(){
+    return Inertia::render('ReferFriend/UnsubscribeEmail');
+});
 

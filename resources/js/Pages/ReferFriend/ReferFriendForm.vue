@@ -163,7 +163,7 @@
             <button @click.prevent="incrementFriends" class="border-2 border-toolbar font-bold px-8 py-1.5 rounded-full my-2 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap md:w-1/2">
               + ADD MORE FRIENDS
             </button>
-            <button @click.prevent="submitForm()" class="border-2 border-gold bg-gold font-bold px-8 py-1.5 rounded-full my-2 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap md:w-1/2">
+            <button type="button" @click.prevent="submitForm" class="border-2 border-gold bg-gold font-bold px-8 py-1.5 rounded-full my-2 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap md:w-1/2">
               SUBMIT FRIENDS
             </button>
           </div>

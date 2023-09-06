@@ -31,7 +31,7 @@ class SendEligibilityEmailOne implements ShouldQueue
     public function handle(): void
     {
         // Sen the Eligibility Email One
-        Mail::to($this->referred)->send(new EligibilityEmailOne($this->referred->first_name));
+        Mail::to($this->referred)->send(new EligibilityEmailOne($this->referred));
         // Create a record for this email and the next email to be sent out
         $this->referred->emailJob()->create(['email_type' => 'eligibility_email_1', 'scheduled_date_time' => now(), 'email_sent' => true]);
         $this->referred->emailJob()->create(['email_type' => 'eligibility_email_2', 'scheduled_date_time' => now()->addDays(2)]);

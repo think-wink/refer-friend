@@ -5,6 +5,7 @@ namespace App\Mail\Referrer;
 use App\Models\EmailTemplates;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -39,7 +40,7 @@ class ReferrerCreated extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.eligibility-email',
+            markdown: 'emails.hsc-email-template',
             with: [
                 'cover_image' => $this->email_template->cover_image,
                 'cover_text' => $this->email_template->cover_text,
@@ -48,6 +49,7 @@ class ReferrerCreated extends Mailable
                 'button_text' => $this->email_template->button_text,
                 'button_url' => $this->email_template->button_url,
                 'lower_text' => $this->email_template->lower_text,
+                'receiver_uuid' => null,
             ],
         );
     }
@@ -55,10 +57,15 @@ class ReferrerCreated extends Mailable
     /**
      * Get the attachments for the message.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * @return array<int, Attachment>
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromPath(public_path('/img/refer/header.png'))->as('header.png')->withMime('image/png'),
+            Attachment::fromPath(public_path('/img/refer/footer.png'))->as('footer.png')->withMime('image/png'),
+            Attachment::fromPath(public_path('/img/refer/pre-footer-1.png'))->as('pre-footer-1.png')->withMime('image/png'),
+            Attachment::fromPath(public_path('/img/refer/pre-footer-2.png'))->as('pre-footer-2.png')->withMime('image/png'),
+        ];
     }
 }

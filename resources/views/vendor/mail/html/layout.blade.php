@@ -1,3 +1,4 @@
+@props(['receiver_uuid'])
 <!DOCTYPE>
 <html>
     <head>
@@ -53,7 +54,7 @@
         <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
             <tr>
                 <td class="top-text">
-                    Having trouble viewing this email? <a href="https://www.google.com"> View Online </a>
+                    Having trouble viewing this email? <a href="#"> View Online </a>
                 </td>
             </tr>
             <tr>
@@ -74,8 +75,8 @@
             <tr>
                 <td class="bottom-text">
                     <p>You're receiving this email because you opted-in for emails when you used our online calculator.</p>
-                    <p>You can update <a href="https://www.google.com">update your preferences</a> or</p>
-                    <p><a href="https://www.google.com">unsubscribe</a></p>
+                    <p>You can update <a href="#">update your preferences</a> or</p>
+                    <p><a href="{{ config('app.url') }}/referred/{{ $receiver_uuid }}/unsubscribe-emails">unsubscribe</a></p>
                 </td>
             </tr>
         </table>

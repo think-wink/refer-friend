@@ -1,4 +1,3 @@
-@props(['pre_footer_cid_1', 'pre_footer_cid_2', 'footer_cid'])
 <tr>
     <td class="pre-footer">
         <h2>Find out more</h2>
@@ -12,7 +11,7 @@
                     <table>
                         <tr>
                             <td>
-                                <img src="{{ $pre_footer_cid_1 }}" alt="Faqs image" />
+                                <img src="cid:pre-footer-1.png" alt="Faqs image" />
                             </td>
                             <td>
                                 <h4>FAQs</h4>
@@ -25,7 +24,7 @@
                     <table>
                         <tr>
                             <td>
-                                <img src="{{ $pre_footer_cid_2 }}" alt="T&C image" />
+                                <img src="cid:pre-footer-2.png" alt="T&C image" />
                             </td>
                             <td>
                                 <h4>Terms and Conditions</h4>
@@ -43,7 +42,7 @@
         <table>
             <tr class="footer-top">
                 <td class="footer-image">
-                    <img src="{{ $footer_cid }}" alt="company logo" />
+                    <img src="cid:footer.png" alt="company logo" />
                 </td>
                 <td>
                     <table class="footer-icons">

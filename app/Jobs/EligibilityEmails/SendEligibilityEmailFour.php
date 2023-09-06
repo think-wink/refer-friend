@@ -38,9 +38,10 @@ class SendEligibilityEmailFour implements ShouldQueue
             // Sent the email if it is not sent
             if ($current_email) {
                 // Sent the eligibility email 1
-                Mail::to($model)->send(new EligibilityEmailFour($model->first_name));
+                Mail::to($model)->send(new EligibilityEmailFour($model));
 
                 // Update the record that the email has been sent out
+                $model->update(['reward_status' => 'eligibility_email_4_sent']);
                 $model->emailJob()->where('email_type', 'eligibility_email_4')->update(['email_sent' => true]);
             }
         }
