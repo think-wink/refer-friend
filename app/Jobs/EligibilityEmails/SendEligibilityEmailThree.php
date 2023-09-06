@@ -32,20 +32,31 @@ class SendEligibilityEmailThree implements ShouldQueue
     public function handle(): void
     {
         $model = app($this->customer_type)->find($this->customer_id);
+
         if ($model && $model->subscribed) {
+
             //If the record exists
             $current_email = $model->emailJob()->where('email_type', 'eligibility_email_3')->where('email_sent', false)->first();
+
             // Sent the email if it is not sent
             if ($current_email) {
-                // Sent the eligibility email 1
-                Mail::to($model)->send(new EligibilityEmailThree($model));
 
-                // Update the record that the email has been sent out
-                $model->update(['reward_status' => 'eligibility_email_3_sent']);
-                $model->emailJob()->where('email_type', 'eligibility_email_3')->update(['email_sent' => true]);
+                // If they have filled form delete this job else send email
+                if ($model->reward_status === 'eligibility_email_2_sent') {
 
-                // Create a record for the next email to be sent out
-                $model->emailJob()->create(['email_type' => 'eligibility_email_4', 'scheduled_date_time' => now()->addDays(7)]);
+                    // Sent the eligibility email 3
+                    Mail::to($model)->send(new EligibilityEmailThree($model));
+
+                    // Update the record that the email has been sent out
+                    $model->update(['reward_status' => 'eligibility_email_3_sent']);
+                    $model->emailJob()->where('email_type', 'eligibility_email_3')->update(['email_sent' => true]);
+
+                    // Create a record for the next email to be sent out
+                    $model->emailJob()->create(['email_type' => 'eligibility_email_4', 'scheduled_date_time' => now()->addDays(7)]);
+
+                } else {
+                    $current_email->delete();
+                }
             }
         }
     }
