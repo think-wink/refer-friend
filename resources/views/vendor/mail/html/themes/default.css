@@ -72,9 +72,10 @@ body {
 }
 
 .header-bottom img {
-    margin: 1em auto;
+    margin: 0;
     object-fit: cover;
-    max-width: 200px;
+    width: 100%;
+    height: auto;
     display: block;
 }
 

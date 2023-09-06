@@ -64,10 +64,10 @@ class EligibilityEmailFour extends Mailable
     public function attachments(): array
     {
         $attachments = [
-            Attachment::fromPath(public_path('/img/refer/header.png'))->as('header.png')->withMime('image/png'),
-            Attachment::fromPath(public_path('/img/refer/footer.png'))->as('footer.png')->withMime('image/png'),
-            Attachment::fromPath(public_path('/img/refer/pre-footer-1.png'))->as('pre-footer-1.png')->withMime('image/png'),
-            Attachment::fromPath(public_path('/img/refer/pre-footer-2.png'))->as('pre-footer-2.png')->withMime('image/png'),
+            Attachment::fromPath(public_path('/img/refer-email/header.png'))->as('header.png')->withMime('image/png'),
+            Attachment::fromPath(public_path('/img/refer-email/footer.png'))->as('footer.png')->withMime('image/png'),
+            Attachment::fromPath(public_path('/img/refer-email/pre-footer-1.png'))->as('pre-footer-1.png')->withMime('image/png'),
+            Attachment::fromPath(public_path('/img/refer-email/pre-footer-2.png'))->as('pre-footer-2.png')->withMime('image/png'),
         ];
         if($this->email_template->cover_image){
            $attachments[] = Attachment::fromPath(public_path($this->email_template->cover_image))->as('cover');
