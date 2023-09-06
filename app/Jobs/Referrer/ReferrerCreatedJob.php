@@ -2,7 +2,7 @@
 
 namespace App\Jobs\Referrer;
 
-use App\Mail\Referrer\ReferrerCreated;
+use App\Mail\ReferrerCreated;
 use App\Models\Customer\Referrer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
-class SendReferrerCreatedEmail implements ShouldQueue
+class ReferrerCreatedJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -31,6 +31,6 @@ class SendReferrerCreatedEmail implements ShouldQueue
     public function handle(): void
     {
         Mail::to($this->referrer)->send(new ReferrerCreated());
-        $this->referrer->emailJob()->create(['email_type' => 'referrer_created', 'scheduled_date_time' => now(), 'email_sent' => true]);
+        $this->referrer->emailJobs()->create(['email_type' => 'referrer_created', 'scheduled_date_time' => now(), 'email_sent' => true]);
     }
 }

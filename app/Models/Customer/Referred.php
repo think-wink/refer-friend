@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Events\Referred\ReferredCreatedEvent;
+use App\Events\Referred\ReferredNotInterestedEvent;
 use App\Models\EmailJobs;
 use App\Models\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -71,6 +72,12 @@ class Referred extends Model
              static::created(function ($referred) {
                  ReferredCreatedEvent::dispatch($referred);
              });
+             // If the referred is not interested
+             static::updated(function ($referred) {
+                 if($referred->reward_status === 'not_interested') {
+                     ReferredNotInterestedEvent::dispatch($referred);
+                 }
+             });
          }
     }
 
@@ -92,7 +99,7 @@ class Referred extends Model
         return $this->refresh();
     }
 
-    public function emailJob(): MorphMany
+    public function emailJobs(): MorphMany
     {
         return $this->morphMany(EmailJobs::class, 'customer');
     }

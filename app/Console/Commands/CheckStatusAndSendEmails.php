@@ -2,10 +2,14 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\EligibilityEmails\SendEligibilityEmailFour;
-use App\Jobs\EligibilityEmails\SendEligibilityEmailOne;
-use App\Jobs\EligibilityEmails\SendEligibilityEmailThree;
-use App\Jobs\EligibilityEmails\SendEligibilityEmailTwo;
+use App\Jobs\EligibilityEmails\EligibilityEmailFourJob;
+use App\Jobs\EligibilityEmails\EligibilityEmailOneJob;
+use App\Jobs\EligibilityEmails\EligibilityEmailThreeJob;
+use App\Jobs\EligibilityEmails\EligibilityEmailTwoJob;
+use App\Jobs\NurtureCycleEmails\NurtureCycleEmailOneJob;
+use App\Jobs\NurtureCycleEmails\NurtureCycleEmailThreeJob;
+use App\Jobs\NurtureCycleEmails\NurtureCycleEmailTwoJob;
+use App\Models\Customer\Referred;
 use App\Models\EmailJobs;
 use Illuminate\Console\Command;
 
@@ -30,37 +34,42 @@ class CheckStatusAndSendEmails extends Command
      */
     public function handle()
     {
-        // Unsubscribed people
-
         // Get all the Email Jobs
-        $emails =  EmailJobs::where('email_sent', false)->get();
+        $emails =  EmailJobs::with('customer')->where('email_sent', false)->get();
 
         // Send Emails based on their current status and their time
         foreach ($emails as $email){
-            // If email is past its send time
-            if($email->scheduled_date_time < now()) {
+
+            // Get the referred
+            $customer = $email->customer;
+
+            if($email->scheduled_date_time <= now() && $customer && $customer->subscribed) {
+
                 switch ($email->email_type) {
                     case 'eligibility_email_2':
-                        dispatch(new SendEligibilityEmailTwo($email->customer_type, $email->customer_id));
+                        dispatch(new EligibilityEmailTwoJob($customer));
                         break;
                     case 'eligibility_email_3':
-                        dispatch(new SendEligibilityEmailThree($email->customer_type, $email->customer_id));
+                        dispatch(new EligibilityEmailThreeJob($customer));
                         break;
                     case 'eligibility_email_4':
-                        dispatch(new SendEligibilityEmailFour($email->customer_type, $email->customer_id));
+                        dispatch(new EligibilityEmailFourJob($customer));
                         break;
                     case 'nurture_cycle_email_1':
-                        logger('nurture 1');
+                        dispatch(new NurtureCycleEmailOneJob($customer));
                         break;
                     case 'nurture_cycle_email_2':
-                        logger('nurture 2');
+                        dispatch(new NurtureCycleEmailTwoJob($customer));
                         break;
                     case 'nurture_cycle_email_3':
-                        logger('nurture 3');
+                        dispatch(new NurtureCycleEmailThreeJob($customer));
                         break;
                     default:
                         break;
                 }
+
+            } elseif(!$customer || !$customer->subscribed){
+                $email->delete();
             }
         }
     }

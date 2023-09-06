@@ -3,7 +3,7 @@
 namespace App\Listeners\Referred;
 
 use App\Events\Referred\ReferredCreatedEvent;
-use App\Jobs\EligibilityEmails\SendEligibilityEmailOne;
+use App\Jobs\EligibilityEmails\EligibilityEmailOneJob;
 
 class ReferredCreatedListener
 {
@@ -20,6 +20,6 @@ class ReferredCreatedListener
      */
     public function handle(ReferredCreatedEvent $event): void
     {
-        dispatch(new SendEligibilityEmailOne($event->referred));
+        dispatch(new EligibilityEmailOneJob($event->referred));
     }
 }

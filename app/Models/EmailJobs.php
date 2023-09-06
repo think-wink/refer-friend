@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Customer\Referred;
 use Illuminate\Database\Eloquent\Model;
 
 class EmailJobs extends Model
@@ -16,5 +17,10 @@ class EmailJobs extends Model
     protected $casts = [
         'email_sent' => 'boolean',
     ];
+
+    public function customer()
+    {
+        return $this->morphTo();
+    }
 
 }

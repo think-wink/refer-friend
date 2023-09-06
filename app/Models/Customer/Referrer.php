@@ -39,7 +39,7 @@ class Referrer extends Model
         return $this->hasMany(Referred::class);
     }
 
-    public function emailJob(): MorphMany
+    public function emailJobs(): MorphMany
     {
         return $this->morphMany(EmailJobs::class, 'customer');
     }

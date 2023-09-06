@@ -75,7 +75,6 @@
             <tr>
                 <td class="bottom-text">
                     <p>You're receiving this email because you opted-in for emails when you used our online calculator.</p>
-                    <p>You can update <a href="#">update your preferences</a> or</p>
                     <p><a href="{{ config('app.url') }}/referred/{{ $receiver_uuid }}/unsubscribe-emails">unsubscribe</a></p>
                 </td>
             </tr>

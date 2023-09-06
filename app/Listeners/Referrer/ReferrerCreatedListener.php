@@ -3,7 +3,7 @@
 namespace App\Listeners\Referrer;
 
 use App\Events\Referrer\ReferrerCreatedEvent;
-use App\Jobs\Referrer\SendReferrerCreatedEmail;
+use App\Jobs\Referrer\ReferrerCreatedJob;
 
 class ReferrerCreatedListener
 {
@@ -20,6 +20,6 @@ class ReferrerCreatedListener
      */
     public function handle(ReferrerCreatedEvent $event): void
     {
-        dispatch(new SendReferrerCreatedEmail($event->referrer));
+        dispatch(new ReferrerCreatedJob($event->referrer));
     }
 }

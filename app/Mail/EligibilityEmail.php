@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail\EligibilityEmails;
+namespace App\Mail;
 
 use App\Models\Customer\Referred;
 use App\Models\EmailTemplates;
@@ -11,7 +11,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class EligibilityEmailFour extends Mailable
+class EligibilityEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -21,9 +21,9 @@ class EligibilityEmailFour extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($receiver)
+    public function __construct($receiver, $email_type)
     {
-        $this->email_template = EmailTemplates::where('type', 'eligibility_email_4')->first();
+        $this->email_template = EmailTemplates::where('type', $email_type)->first();
         $this->receiver = $receiver;
     }
 
