@@ -25,10 +25,13 @@ class Referrer extends Model
     protected static function booted()
     {
         parent::boot();
-        // This dispatches an event that send an email whenever a new referrer is created.
-        static::created(function ($referrer) {
-            ReferrerCreatedEvent::dispatch($referrer);
-        });
+        // This prevents events from being dispatcher when testing or reseeding,etc.
+        if (!app()->runningInConsole() || app()->runningUnitTests()) {
+            // This dispatches an event that send an email whenever a new referrer is created.
+            static::created(function ($referrer) {
+                ReferrerCreatedEvent::dispatch($referrer);
+            });
+        }
     }
 
     public function referred(): HasMany

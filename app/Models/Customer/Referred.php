@@ -65,10 +65,13 @@ class Referred extends Model
     protected static function booted()
     {
         parent::boot();
-        // Send an email to new referred
-        static::created(function ($referred) {
-            ReferredCreatedEvent::dispatch($referred);
-        });
+         // This prevents events from being dispatcher when testing or reseeding,etc.
+         if (!app()->runningInConsole() || app()->runningUnitTests()) {
+             // Email new referred
+             static::created(function ($referred) {
+                 ReferredCreatedEvent::dispatch($referred);
+             });
+         }
     }
 
     public function referredAlias(): HasMany

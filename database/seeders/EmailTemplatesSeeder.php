@@ -14,6 +14,13 @@ class EmailTemplatesSeeder extends Seeder
     {
         $email_jobs = [
             [
+                'type' => 'refer_created',
+                'subject' => 'Welcome',
+                'greeting_text' => '<p>Hello,</p>',
+                'upper_text' => '<p>This is our platform</p>',
+                'lower_text' => '<p>Hope you enjoy it</p>',
+            ],
+            [
                 'type' => 'eligibility_email_1',
                 'subject' => 'Eligibility Email 1',
                 'greeting_text' => '<p>Hello {receiver_first_name},</p>',
@@ -43,6 +50,7 @@ class EmailTemplatesSeeder extends Seeder
             ]
         ];
 
-        DB::table('email_templates')->insert($email_jobs);
+        // Need complete templates for emails
+        // DB::table('email_templates')->insert($email_jobs);
     }
 }
