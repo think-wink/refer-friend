@@ -21,7 +21,7 @@ module.exports = {
         DEFAULT: '#b2b5bc',
         dark: '#58595b'
       },
-
+      success: '#22c55e',
       white: '#FFFFFF',
       orange: '#FF4929',
       red: '#ff0000',
@@ -41,6 +41,7 @@ module.exports = {
     },
     screens: {
       laptop: '1085px',
+      lg: '1200px',
       md: '865px',
       sm: '450px',
     },

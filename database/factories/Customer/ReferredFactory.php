@@ -20,10 +20,10 @@ class ReferredFactory extends Factory
     {
         $reward_status = array_diff(
             array_merge(Referred::INTERNAL_STATUS, Referred::EXTERNAL_STATUS), [
-                'eligibly_email_1_sent',
-                'eligibly_email_2_sent',
-                'eligibly_email_3_sent',
-                'eligibly_email_4_sent'
+                'eligibility_email_1_sent',
+                'eligibility_email_2_sent',
+                'eligibility_email_3_sent',
+                'eligibility_email_4_sent'
         ]);
 
         return [
@@ -43,10 +43,10 @@ class ReferredFactory extends Factory
         return $this->state(function (array $attributes) {
             $reward_status = array_diff(
                 array_merge(Referred::INTERNAL_STATUS, Referred::EXTERNAL_STATUS), [
-                    'eligibly_email_1_sent',
-                    'eligibly_email_2_sent',
-                    'eligibly_email_3_sent',
-                    'eligibly_email_4_sent',
+                    'eligibility_email_1_sent',
+                    'eligibility_email_2_sent',
+                    'eligibility_email_3_sent',
+                    'eligibility_email_4_sent',
                     'reward_credited'
             ]);
             return [
@@ -61,10 +61,10 @@ class ReferredFactory extends Factory
             return [
                 'match_status' => 'not_updated',
                 'reward_status' =>  $this->faker->randomElement([
-                    'eligibly_email_1_sent',
-                    'eligibly_email_2_sent',
-                    'eligibly_email_3_sent',
-                    'eligibly_email_4_sent',
+                    'eligibility_email_1_sent',
+                    'eligibility_email_2_sent',
+                    'eligibility_email_3_sent',
+                    'eligibility_email_4_sent',
                 ])
             ];
         });

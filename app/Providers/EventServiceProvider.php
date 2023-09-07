@@ -2,10 +2,15 @@
 
 namespace App\Providers;
 
+use App\Events\Referred\ReferredCreatedEvent;
+use App\Events\Referred\ReferredNotInterestedEvent;
+use App\Events\Referrer\ReferrerCreatedEvent;
+use App\Listeners\Referred\ReferredCreatedListener;
+use App\Listeners\Referred\ReferredNotInterestedListener;
+use App\Listeners\Referrer\ReferrerCreatedListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -17,6 +22,15 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        ReferrerCreatedEvent::class => [
+          ReferrerCreatedListener::class,
+        ],
+        ReferredCreatedEvent::class => [
+          ReferredCreatedListener::class,
+        ],
+        ReferredNotInterestedEvent::class => [
+          ReferredNotInterestedListener::class,
         ],
     ];
 

@@ -1,65 +1,83 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>{{ config('app.name') }}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="color-scheme" content="light">
-<meta name="supported-color-schemes" content="light">
-<style>
-@media only screen and (max-width: 600px) {
-.inner-body {
-width: 100% !important;
-}
+@props(['referred_uuid'])
+<!DOCTYPE>
+<html>
+    <head>
+        <title>{{ config('app.name') }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="color-scheme" content="light">
+        <meta name="supported-color-schemes" content="light">
+        <style>
+            @media only screen and (max-width: 600px) {
 
-.footer {
-width: 100% !important;
-}
-}
+                 .table2 {
+                    display: block !important;
+                    margin-bottom: 1em !important;
+                }
 
-@media only screen and (max-width: 500px) {
-.button {
-width: 100% !important;
-}
-}
-</style>
-</head>
-<body>
+                .footer-image {
+                    text-align: center !important;
+                }
 
-    <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                .footer-top td {
+                    display: block !important;
+                    text-align: center !important;
+                }
 
-        <tr>
-            <td class="top-text">
-                Having trouble viewing this email? <a href="https://www.google.com"> View Online </a>
-            </td>
-        </tr>
+                .footer-icons {
+                    text-align: center !important;
+                }
 
-        <tr>
-            <td>
-                {{ $header ?? '' }}
-            </td>
-        </tr>
+                .footer-mid td {
+                    display: block !important;
+                    text-align: center !important;
+                    padding-top: 1em !important;
+                }
 
-        <tr>
-            <td class="body">
-                {{ $slot }}
-            </td>
-        </tr>
+                .inner-body {
+                    width: 100% !important;
+                }
 
-        <tr>
-            <td>
-                {{ $footer ?? '' }}
-            </td>
-        </tr>
+                .footer {
+                    width: 100% !important;
+                }
+            }
 
-        <tr>
-            <td class="bottom-text">
-                <p>You're receiving this email because you opted-in for emails when you used our online calculator.</p>
-                <p>You can update <a href="https://www.google.com">update your preferences</a> or</p>
-                <p><a href="https://www.google.com">unsubscribe</a></p>
-            </td>
-        </tr>
-
-    </table>
-</body>
+            @media only screen and (max-width: 500px) {
+                .button {
+                    width: 100% !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+            <tr>
+                <td class="top-text">
+                    Having trouble viewing this email? <a href="#"> View Online </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ $header ?? '' }}
+                </td>
+            </tr>
+            <tr>
+                <td class="body">
+                    {{ $slot }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ $footer ?? '' }}
+                </td>
+            </tr>
+            <tr>
+                <td class="bottom-text">
+                    <p>You're receiving this email because you opted-in for emails when you used our online calculator.</p>
+                    <p><a href="{{ config('app.url') }}/referred/{{ $referred_uuid }}/unsubscribe-emails">unsubscribe</a></p>
+                </td>
+            </tr>
+        </table>
+    </body>
 </html>

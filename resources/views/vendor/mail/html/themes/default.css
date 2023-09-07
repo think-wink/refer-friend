@@ -1,7 +1,4 @@
-/* Base */
-
-body,
-body *:not(html):not(style):not(br):not(tr):not(code) {
+body, body *:not(html):not(style):not(tr):not(code) {
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -28,7 +25,7 @@ body {
     margin: 0 auto;
     padding: 0;
     width: 100%;
-    max-width: 570px;
+    max-width: 600px;
 }
 
 .content {
@@ -45,8 +42,13 @@ body {
     -premailer-cellspacing: 0;
     -premailer-width: 100%;
     margin: 0;
-    padding: 0 2em;
+    padding: 1em 2em;
     width: 100%;
+    word-break: break-word;
+}
+
+.body p {
+    color: black;
 }
 
 .top-text{
@@ -61,57 +63,46 @@ body {
     padding: 1em 2em;
 }
 
+.header-top {
+    background-color: #19263f;
+    height: 2em;
+}
 
-.header {
+.header-bottom {
     background-color: white;
 }
 
-.header img {
-    margin: 1em auto;
+.header-bottom img {
+    margin: 0;
     object-fit: cover;
-    max-width: 200px;
+    width: 100%;
+    height: auto;
     display: block;
 }
-.coverImage img {
+
+.cover table {
+    border-spacing: 0;
+}
+
+.cover table {
+    border-spacing: 0;
+}
+
+.cover-image img {
     width: 100%;
     object-fit: cover;
-    min-height: 200px;
+    height: auto;
     display: block;
 }
-
-/* Logo */
-
-.logo {
-    height: 75px;
-    max-height: 75px;
-    width: 75px;
-}
-
-/* Body */
-
-
-
-/* Subcopy */
-
-.subcopy {
-    border-top: 1px solid #e8e5ef;
-    margin-top: 25px;
-    padding-top: 25px;
-}
-
-.subcopy p {
-    font-size: 14px;
-}
-
 /* Footer */
 
 .footer {
     -premailer-cellpadding: 0;
     -premailer-cellspacing: 0;
-    -premailer-width: 570px;
+    -premailer-width: 600px;
     margin: 0 auto;
     text-align: center;
-    width: 570px;
+    width: 600px;
     background-color: #19263f;
     color: white;
     padding: 2em;
@@ -138,26 +129,6 @@ body {
     width: 100%;
 }
 
-.table th {
-    border-bottom: 1px solid #edeff2;
-    margin: 0;
-    padding-bottom: 8px;
-}
-
-.table td {
-    color: #74787e;
-    font-size: 15px;
-    line-height: 18px;
-    margin: 0;
-    padding: 10px 0;
-}
-
-.content-cell {
-    max-width: 100vw;
-    padding: 32px;
-}
-
-/* Buttons */
 
 .button {
     text-align: center;
@@ -171,41 +142,9 @@ body {
     font-weight: 500;
     display: inline-block;
     text-decoration: none;
-    margin-top: 1em;
+    margin: 1em 0;
     padding: 0.5em 1em;
     border-radius: 2em;
-}
-
-/* Panels */
-
-.panel {
-    border-left: #2d3748 solid 4px;
-    margin: 21px 0;
-}
-
-.panel-content {
-    background-color: #edf2f7;
-    color: #718096;
-    padding: 16px;
-}
-
-.panel-content p {
-    color: #718096;
-}
-
-.panel-item {
-    padding: 0;
-}
-
-.panel-item p:last-of-type {
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-/* Utilities */
-
-.break-all {
-    word-break: break-all;
 }
 
 .pre-footer {
@@ -241,8 +180,49 @@ body {
     margin-right: 1em;
 }
 
+.col-1 {
+    text-align: left;
+}
+
+.col-2 {
+    text-align: right;
+    white-space: nowrap;
+}
+ .col-2 a {
+    display: block;
+}
+
+.footer-image {
+    text-align: left;
+}
+
+.footer-image img {
+    max-width: 200px;
+}
+
+.footer-icons {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: right;
+}
+
+.footer-icons td {
+    display: inline-flex;
+}
+
+.footer-icons td a {
+    margin: 0 0 0 1em;
+}
+
+.footer-mid td {
+    padding: 2em 0 1em;
+}
+
 .footer-bottom {
     border-top: 1px solid #a2a2a2;
     padding-top: 1em;
     font-style: italic;
+    text-align: left;
+    font-size: 0.8em;
 }

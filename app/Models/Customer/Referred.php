@@ -2,11 +2,15 @@
 
 namespace App\Models\Customer;
 
+use App\Events\Referred\ReferredCreatedEvent;
+use App\Events\Referred\ReferredNotInterestedEvent;
+use App\Models\EmailJobs;
 use App\Models\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Referred extends Model
 {    
@@ -21,10 +25,10 @@ class Referred extends Model
     
     // set by us
     const INTERNAL_STATUS = [
-        'eligibly_email_1_sent', 
-        'eligibly_email_2_sent',
-        'eligibly_email_3_sent',
-        'eligibly_email_4_sent',
+        'eligibility_email_1_sent',
+        'eligibility_email_2_sent',
+        'eligibility_email_3_sent',
+        'eligibility_email_4_sent',
         'nurture_cycle_email_1_sent',
         'nurture_cycle_email_2_sent',
         'nurture_cycle_email_3_sent',
@@ -59,6 +63,24 @@ class Referred extends Model
         'reward_status'
     ];
 
+    protected static function booted()
+    {
+        parent::boot();
+         // This prevents events from being dispatcher when testing or reseeding,etc.
+         if (!app()->runningInConsole() || app()->runningUnitTests()) {
+             // Email new referred
+             static::created(function ($referred) {
+                 ReferredCreatedEvent::dispatch($referred);
+             });
+             // If the referred is not interested
+             static::updated(function ($referred) {
+                 if($referred->reward_status === 'not_interested') {
+                     ReferredNotInterestedEvent::dispatch($referred);
+                 }
+             });
+         }
+    }
+
     public function referredAlias(): HasMany
     {
         return $this->hasMany(ReferredAlias::class);
@@ -75,5 +97,10 @@ class Referred extends Model
             $this->save();
         }
         return $this->refresh();
+    }
+
+    public function emailJobs(): MorphMany
+    {
+        return $this->morphMany(EmailJobs::class, 'customer');
     }
 }

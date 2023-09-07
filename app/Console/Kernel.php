@@ -13,6 +13,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+
+        // This command need to run every three hours.
+        $schedule->command('check-status:send-emails')->everyMinute()->withoutOverlapping();
     }
 
     /**

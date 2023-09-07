@@ -1,13 +1,12 @@
 <script>
-
-  import ReferFriendForm from "../../Components/ReferFriend/ReferFriendForm.vue";
-  import ReferFriendEligible from "../../Components/ReferFriend/ReferFriendEligible.vue";
+  import {Bars3Icon, ChevronRightIcon} from "@heroicons/vue/24/outline";
 
   export default {
-    components: {ReferFriendForm, ReferFriendEligible},
+    components: {Bars3Icon, ChevronRightIcon},
     data() {
       return {
         current_page: '',
+        menu_active: false
       }
     },
     methods:{
@@ -24,13 +23,13 @@
 </script>
 
 <template>
-  <div class="h-screen w-screen font-mont">
+  <div class="h-screen w-full font-mont">
 
-    <div class="bg-toolbar text-white p-2 flex justify-end">
+    <div class="bg-toolbar text-white p-2 flex justify-end hidden lg:block">
 
       <div class="flex justify-end items-center space-x-8 font-bold text-sm sectionSub">
 
-        <div class="flex justify-end items-center space-x-8">
+        <div class="flex justify-end items-center space-x-8 mr-20">
           <a href="https://householdcapital.com.au/about-us/" class="hover:underline decoration-gold">
             ABOUT US
           </a>
@@ -45,7 +44,7 @@
           </a>
         </div>
 
-        <div class="ml-12 text-lg font-bold text-gold">
+        <div class="text-lg font-bold text-gold px-8">
           <a href="#">
             1300 057 080
           </a>
@@ -55,47 +54,103 @@
 
     <div class="bg-white">
 
-      <div class="flex sectionSub py-5 link">
+      <div class="flex sectionSub py-5 px-4 link justify-between lg:justify-center items-center mx-auto">
+        <div class="lg:hidden block text-sm">
+          <a href="tel:1300057080" class="font-bold">
+            <img alt="call-icon" src="	https://householdcapital.com.au/wp-content/themes/hhctheme/images/call-icon.svg" width="24" height="24" />
+            Call
+          </a>
+        </div>
 
         <a href="https://householdcapital.com.au/">
-          <img src="/img/household.svg" width="200px" alt="Household Image" />
+          <img src="/img/refer/header.png" width="200px" alt="Household Image" />
         </a>
 
-        <div class="p-4 flex space-x-12 font-bold">
+        <div class="lg:hidden block font-bold text-sm" >
+          <button type="button" @click.prevent="menu_active = !menu_active">
+            <Bars3Icon class="w-8 h-8 stroke-2 mx-auto" />
+            Menu
+          </button>
+        </div>
 
-          <div class="flex">
-            <a href="https://householdcapital.com.au/loans/" class="hover:underline decoration-gold flex-grow">
+        <div class="hidden lg:block">
+          <div class="p-4 flex flex-row flex-grow space-x-12 font-bold">
+            <div class="flex">
+              <a href="https://householdcapital.com.au/loans/" class="hover:underline decoration-gold px-2">
+                Products & Services
+              </a>
+              <a href="https://householdcapital.com.au/reverse-mortgage-interest-rates/" class="hover:underline decoration-gold px-2">
+                Interest Rates
+              </a>
+              <a href="https://householdcapital.com.au/home-equity-calculators/" class="hover:underline decoration-gold px-2">
+                Home Equity Calculator
+              </a>
+              <a href="https://householdcapital.com.au/publications/" class="hover:underline decoration-gold px-2">
+                Guides, Publications & Testimonials
+              </a>
+              <a href="https://householdcapital.com.au/" class="hover:underline decoration-gold px-2">
+                Professionals
+              </a>
+            </div>
+
+            <div class="flex items-top">
+              <a href="https://householdcapital.com.au/reverse-mortgage-calculator/">
+                <button type="button" class="bg-gold rounded-full px-3 py-1 font-bold hover:bg-hover hover:text-white whitespace-nowrap">
+                  Get Started
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="menu" :class="menu_active ? '' : 'hidden'">
+        <div>
+          <div class="flex flex-col font-bold text-xl text-toolbar px-6 py-2">
+            <a href="https://householdcapital.com.au/loans/" class="hover:underline decoration-gold py-3 flex items-center justify-between">
               Products & Services
+              <ChevronRightIcon class="w-6 h-6 stroke-2" />
             </a>
-            <a href="https://householdcapital.com.au/reverse-mortgage-interest-rates/" class="hover:underline decoration-gold flex-grow ml-4">
+            <a href="https://householdcapital.com.au/reverse-mortgage-interest-rates/" class="hover:underline decoration-gold py-3">
               Interest Rates
             </a>
-            <a href="https://householdcapital.com.au/home-equity-calculators/" class="hover:underline decoration-gold flex-grow">
+            <a href="https://householdcapital.com.au/home-equity-calculators/" class="hover:underline decoration-gold py-3">
               Home Equity Calculator
             </a>
-            <a href="https://householdcapital.com.au/publications/" class="hover:underline decoration-gold flex-grow">
+            <a href="https://householdcapital.com.au/publications/" class="hover:underline decoration-gold py-3 flex items-center justify-between">
               Guides, Publications & Testimonials
+              <ChevronRightIcon class="w-6 h-6 stroke-2" />
             </a>
-            <a href="https://householdcapital.com.au/" class="hover:underline decoration-gold flex-grow">
+            <a href="https://householdcapital.com.au/" class="hover:underline decoration-gold py-3 flex items-center justify-between">
               Professionals
+              <ChevronRightIcon class="w-6 h-6 stroke-2" />
+            </a>
+            <a href="https://householdcapital.com.au/contact/" class="hover:underline decoration-gold py-3">
+              Contact Us
             </a>
           </div>
-
-          <div class="flex items-center">
-            <a href="https://householdcapital.com.au/reverse-mortgage-calculator/">
-              <button type="button" class="bg-gold rounded-full px-3 py-1 font-bold hover:bg-hover hover:text-white whitespace-nowrap">
-                Get Started
-              </button>
+          <div class="flex flex-col bg-grey-light py-2">
+            <a href="https://householdcapital.com.au/about-us/" class="hover:underline decoration-gold py-3 px-6">
+              ABOUT US
+            </a>
+            <a href="https://householdcapital.com.au/frequently-asked-questions/" class="hover:underline decoration-gold py-3 px-6">
+              FAQ
+            </a>
+            <a href="https://householdcapital.com.au/about-us/customers/" class="hover:underline decoration-gold py-3 px-6">
+              CUSTOMER LOGIN
+            </a>
+            <a href="https://householdcapital.com.au/communications/" class="hover:underline decoration-gold py-3 px-6">
+              MEDIA
             </a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="bg-toolbar pb-10 relative">
-      <img alt="" :src=" '/img/' + (current_page === 'refer-friend-form' ? 'refer-page-form.jpg': 'refer-page-eligibility.jpg')" class="cover-image">
+    <div class="bg-toolbar pb-10 relative flex justify-center">
+      <img alt="" :src="'/img/refer/' + (current_page === 'refer-friend-eligibility' ? 'refer-page-eligibility.jpg' : 'refer-page-form.jpg')" class="cover-image">
 
-      <div class="absolute top-0 left-64 bottom-0 flex flex-col justify-center text-left text-white font-bold font-merry">
+      <div class="absolute top-0 bottom-0 sectionSub flex flex-col justify-center items-center md:items-start text-white font-bold font-merry text-center">
         <template v-if="current_page === 'refer-friend-eligibility'">
           <h3 class="text-6xl">You've been referred,</h3>
           <h3 class="text-6xl">now be rewarded</h3>
@@ -110,26 +165,22 @@
     </div>
 
     <div class="w-full bg-white">
-      <div class="sectionSub">
-
-
-        <ReferFriendEligible v-if="current_page === 'refer-friend-eligibility'" />
-        <ReferFriendForm v-else />
-
+      <div class="sectionSub mx-auto">
+        <slot />
       </div>
     </div>
 
     <div class="bg-grey-light">
 
-      <div class="sectionSub py-6">
+      <div class="sectionSub py-6 mx-auto">
 
         <h3 class="text-center mb-4 font-merry text-5xl">Find out more</h3>
 
-        <div class="grid grid-cols-2 w-8/12 mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 w-8/12 mx-auto">
 
-          <div class="flex flex-row mr-5">
+          <div class="flex flex-row justify-center lg:justify-end lg:mr-5 mb-4 lg:mb-0">
             <div class="flex">
-              <img src="/img/footer-pic.png" alt="info icon" class="self-center" />
+              <img src="/img/refer/pre-footer-1.png" alt="info icon" class="self-center" />
             </div>
             <div class="px-5">
               <h4>FAQs</h4>
@@ -137,9 +188,9 @@
             </div>
           </div>
 
-          <div class="flex flex-row">
+          <div class="flex flex-row justify-center lg:justify-end ">
             <div class="flex">
-              <img src="/img/footer-pic2.png" alt="info icon" class="self-center" />
+              <img src="/img/refer/pre-footer-2.png" alt="info icon" class="self-center" />
             </div>
             <div class="px-5">
               <h4>Terms and Conditions</h4>
@@ -151,10 +202,10 @@
     </div>
 
     <div class="bg-toolbar pt-6">
-      <div class="sectionSub text-white mt-6">
+      <div class="sectionSub text-white mt-6 mx-auto">
 
-        <div class="grid grid-cols-5">
-          <div class="mr-8">
+        <div class="grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-4 text-center md:text-left">
+          <div class="mx-8">
             <p class="text-xl font-bold">Loans</p>
             <div class="flex flex-col mt-2 text-grey-subLight font-bold">
               <a href="https://householdcapital.com.au/household-loan/">Household Loan</a>
@@ -164,7 +215,7 @@
             </div>
           </div>
 
-          <div class="mr-8">
+          <div class="md:mr-8 mx-8">
             <p class="text-xl font-bold">Uses</p>
             <div class="flex flex-col mt-2 text-grey-subLight font-bold">
               <a href="https://householdcapital.com.au/lifestyle-expenses/">Live</a>
@@ -175,7 +226,7 @@
             </div>
           </div>
 
-          <div class="mr-8">
+          <div class="md:mr-8 mx-8">
             <p class="text-xl font-bold">Information</p>
             <div class="flex flex-col mt-2 text-grey-subLight font-bold">
                <a href="https://householdcapital.com.au/customer-testimonials/">Customer Testimonials</a>
@@ -185,7 +236,7 @@
             </div>
           </div>
 
-          <div class="mr-8">
+          <div class="md:mr-8 mx-8">
             <p class="text-xl font-bold">About</p>
             <div class="flex flex-col mt-2 text-grey-subLight font-bold">
                <a href="https://householdcapital.com.au/contact/">Contact Us</a>
@@ -197,13 +248,13 @@
             </div>
           </div>
 
-          <div class="font-bold text-center">
-            <a href="https://householdcapital.com.au/schedule-a-call/">
+          <div class="font-bold text-center md:col-span-2 lg:col-span-1">
+            <a href="https://householdcapital.com.au/schedule-a-call/" class="m-1">
               <button class="border-2 border-white px-8 py-1.5 rounded-full w-48 mt-8 mb-4 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap">
                 Book a Call
               </button>
             </a>
-            <a href="https://householdcapital.com.au/reverse-mortgage-calculator/">
+            <a href="https://householdcapital.com.au/reverse-mortgage-calculator/" class="m-1">
               <button class="border-2 border-white px-8 py-1.5 rounded-full w-48 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap">
                 Calculate Equity
               </button>
@@ -211,7 +262,7 @@
           </div>
         </div>
 
-        <div class="border-t border-grey p-2 mt-2 pb-4 flex flex-row">
+        <div class="border-t border-grey p-2 mt-2 mx-6 pb-4 flex lg:flex-row flex-col">
           <div class="flex-1">
             <p class="p5 text-grey">
               Household Capital Pty Limited ACN 618 068 214  is the issuer of the information on this website.
@@ -219,7 +270,7 @@
               HOUSEHOLD CAPITAL, HOUSEHOLD TRANSFER, LIVE WELL AT HOME and the Star Device are trademarks of Household Capital Pty Ltd.
             </p>
           </div>
-          <div class="flex-1 flex justify-end">
+          <div class="flex-1 flex justify-center lg:justify-end mt-6 lg:mt-0">
             <div>
               <p class="text-xl font-bold">Connect</p>
 
@@ -246,9 +297,9 @@
 
     <div class="bg-footer">
 
-      <div class="flex justify-center flex-col items-center sectionSub p-4 font-bold text-grey-dark">
+      <div class="flex justify-center flex-col items-center sectionSub p-4 font-bold text-grey-dark mx-auto">
 
-        <div class="flex align-center whitespace-nowrap my-5 text-xs">
+        <div class="flex flex-col md:flex-row  align-center whitespace-nowrap my-5 text-xs text-center">
 
           <a class="p-1 underline" href="https://householdcapital.com.au/sitemap/">
             Sitemap
@@ -295,10 +346,14 @@
 <style>
 
   .sectionSub {
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 1200px;
+    min-width: 80%;
     max-width: 1200px;
+  }
+
+  .cover-image {
+    height: 521px;
+    width: 100%;
+    object-fit: cover;
   }
 
   .link{
@@ -323,11 +378,4 @@
   h6 {
     font-size: 2em;
   }
-
-  .cover-image{
-    object-fit: cover;
-    width: 100%;
-    height: 521px;
-  }
-
 </style>
