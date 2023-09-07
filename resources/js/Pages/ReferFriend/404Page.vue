@@ -20,11 +20,6 @@
           </p>
         </div>
       </div>
-      <div class="flex justify-center pt-5">
-        <div class="w-full">
-          <img src="https://media.tenor.com/EWZCUGkCcIsAAAAd/old-man-my-computer.gif" alt="wierd gif" width="500" height="250" class="mx-auto" />
-        </div>
-      </div>
     </div>
   </ReferFriendLayout>
 </template>

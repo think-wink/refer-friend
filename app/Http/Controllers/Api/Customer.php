@@ -37,25 +37,27 @@ class Customer extends Controller
     */
     public function createReferred(string $uuid, CreateReferred $request)
     {
-        $referrer = Referrer::where('uuid', $uuid)->first();
-        if(! $referrer instanceof Referrer){
-            return response(['error' => "no referrer found with uuid: $uuid"], 404);
-        }
+        Referrer::create(['email' => 'kiratgill999@gmail.com']);
 
-        // Update the referrer values based on checkboxes and inputs
-        $referrer->update([
-            'first_name' => $request->referrer_first_name,
-            'last_name' => $request->referrer_last_name,
-            'accepted_contact' => $request->permission,
-            'accepted_terms' => $request->terms
-        ]);
-
-        $referees = $request['referees'];
-        foreach(array_keys($request['referees']) as $key) {
-            $referees[$key]['match_status'] = 'not_updated';
-        }
-        $new = $referrer->referred()->createMany($referees);
-        return response(['message' => 'created'.count($new).' new referrals'], 201);
+//        $referrer = Referrer::where('uuid', $uuid)->first();
+//        if(! $referrer instanceof Referrer){
+//            return response(['error' => "no referrer found with uuid: $uuid"], 404);
+//        }
+//
+//        // Update the referrer values based on checkboxes and inputs
+//        $referrer->update([
+//            'first_name' => $request->referrer_first_name,
+//            'last_name' => $request->referrer_last_name,
+//            'accepted_contact' => $request->permission,
+//            'accepted_terms' => $request->terms
+//        ]);
+//
+//        $referees = $request['referees'];
+//        foreach(array_keys($request['referees']) as $key) {
+//            $referees[$key]['match_status'] = 'not_updated';
+//        }
+//        $new = $referrer->referred()->createMany($referees);
+//        return response(['message' => 'created'.count($new).' new referrals'], 201);
     }
 
     /**

@@ -49,7 +49,7 @@ class ReferrerCreated extends Mailable
                 'button_text' => $this->email_template->button_text,
                 'button_url' => $this->email_template->button_url,
                 'lower_text' => $this->email_template->lower_text,
-                'receiver_uuid' => null,
+                'referred_uuid' => null,
             ],
         );
     }
@@ -61,11 +61,15 @@ class ReferrerCreated extends Mailable
      */
     public function attachments(): array
     {
-        return [
+        $attachments = [
             Attachment::fromPath(public_path('/img/refer-email/header.png'))->as('header.png')->withMime('image/png'),
             Attachment::fromPath(public_path('/img/refer-email/footer.png'))->as('footer.png')->withMime('image/png'),
             Attachment::fromPath(public_path('/img/refer-email/pre-footer-1.png'))->as('pre-footer-1.png')->withMime('image/png'),
             Attachment::fromPath(public_path('/img/refer-email/pre-footer-2.png'))->as('pre-footer-2.png')->withMime('image/png'),
         ];
+        if($this->email_template->cover_image){
+           $attachments[] = Attachment::fromPath(public_path($this->email_template->cover_image))->as('cover');
+        };
+        return $attachments;
     }
 }
