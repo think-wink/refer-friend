@@ -42,8 +42,13 @@ class Customer extends Controller
             return response(['error' => "no referrer found with uuid: $uuid"], 404);
         }
 
-        // Update the referrer values based on checkboxes
-        $referrer->update(['accepted_contact' => $request->permission, 'accepted_terms' => $request->terms]);
+        // Update the referrer values based on checkboxes and inputs
+        $referrer->update([
+            'first_name' => $request->referrer_first_name,
+            'last_name' => $request->referrer_last_name,
+            'accepted_contact' => $request->permission,
+            'accepted_terms' => $request->terms
+        ]);
 
         $referees = $request['referees'];
         foreach(array_keys($request['referees']) as $key) {

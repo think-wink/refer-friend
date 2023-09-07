@@ -42,7 +42,9 @@
         <table>
             <tr class="footer-top">
                 <td class="footer-image">
-                    <img src="cid:footer.png" alt="company logo" />
+                     <a href="https://householdcapital.com.au/">
+                        <img src="cid:footer.png" alt="company logo" />
+                     </a>
                 </td>
                 <td>
                     <table class="footer-icons">

@@ -17,6 +17,8 @@ class Referrer extends Model
     use HasUUID;
 
     public $fillable = [
+        'first_name',
+        'last_name',
         'email',
         'accepted_contact',
         'accepted_terms'

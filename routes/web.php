@@ -65,7 +65,11 @@ Route::prefix('dashboard')->name('dashboard.')->middleware([
 Route::redirect('/', '/dashboard');
 
 Route::get('/refer-friend-form/{uuid}', function($uuid){
-   return Inertia::render('ReferFriend/ReferFriendForm', ['uuid' => $uuid]);
+   if(\App\Models\Customer\Referrer::where('uuid', $uuid)->exists()){
+       return Inertia::render('ReferFriend/ReferFriendForm', ['uuid' => $uuid]);
+   } else {
+       return Inertia::render('ReferFriend/404Page');
+   }
 });
 
 Route::get('/refer-friend-eligibility', function(){

@@ -4,7 +4,9 @@
 </tr>
 <tr class="header-bottom">
     <td>
-        <img src="cid:header.png" alt="company logo" />
+        <a href="https://householdcapital.com.au/">
+            <img src="cid:header.png" alt="company logo" />
+        </a>
     </td>
 </tr>
 @isset($cover_image)

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->uuid();
             $table->timestamps();
             $table->string('email')->unique();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->boolean('subscribed')->default(true);
             $table->boolean('accepted_contact')->default(false);
             $table->boolean('accepted_terms')->default(false);
