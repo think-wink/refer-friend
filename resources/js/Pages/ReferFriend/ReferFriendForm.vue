@@ -10,6 +10,8 @@
     data(){
       return {
         friendsCount: 1,
+        referrer_first_name: '',
+        referrer_last_name: '',
         referees: [
           {
             first_name: '',
@@ -46,6 +48,8 @@
         this.submitting = true;
         try {
             const response = await axios.post(`/api/referrer/${this.uuid}/referred/create`, {
+                referrer_first_name: this.referrer_first_name,
+                referrer_last_name: this.referrer_last_name,
                 referees: this.referees,
                 permission: this.permission,
                 terms: this.terms
@@ -91,12 +95,27 @@
         <div class="w-1/2" v-if="!show_success_message">
 
           <div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 place-content-between lg:mb-8">
+                <div class="flex flex-col lg:mr-5 my-1">
+                  <label class="required-label text-toolbar font-bold text-sm m-1">Your First Name</label>
+                  <input type="text" class="rounded-2xl border-grey" v-model="referrer_first_name" />
+                  <p class="text-red text-xs mt-1" v-if="errors['referrer_first_name']">{{ errors['referrer_first_name'][0] }}</p>
+                </div>
+
+                <div class="flex flex-col my-1">
+                  <label class="required-label text-toolbar font-bold text-sm m-1">Your Last Name</label>
+                  <input type="text" class="rounded-2xl border-grey" v-model="referrer_last_name" />
+                  <p class="text-red text-xs mt-1" v-if="errors['referrer_last_name']">{{ errors['referrer_last_name'][0] }}</p>
+                </div>
+            </div>
+
             <div v-for="(referee, index) in friendsCount" :key="index" class="mb-5">
 
-              <div v-if="index !== 0" class="flex justify-between">
-                  <p class="font-bold text-toolbar: text-lg">Friend {{ index+1 }} Details:</p>
+              <div class="flex justify-between">
+                  <p class="font-bold text-toolbar: text-lg">Friend {{ index === 0 ? '' : index+1 }} Details:</p>
 
-                  <button type="button" class="text-red px-2 py-1 text-xs flex items-center" @click.prevent="removeFriend(index)">
+                  <button type="button" class="text-red px-2 py-1 text-xs flex items-center" @click.prevent="removeFriend(index)" v-if="index !== 0">
                     <XCircleIcon class="w-4 h-4 " /> Remove Friend
                   </button>
               </div>
@@ -114,7 +133,6 @@
                   <input type="text" class="rounded-2xl border-grey" v-model="referees[index].last_name" />
                   <p class="text-red text-xs mt-1" v-if="errors['referees.'+index+'.last_name']">{{ errors['referees.'+index+'.last_name'][0] }}</p>
                 </div>
-
               </div>
 
               <div class="grid grid-cols-1 lg:grid-cols-2">
