@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Customer\Referred;
+use App\Models\Customer\Referrer;
 use App\Models\EmailTemplates;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -16,15 +17,17 @@ class EligibilityEmail extends Mailable
     use Queueable, SerializesModels;
 
     private $email_template;
-    protected Referred $receiver;
+    protected Referred $referred;
+    protected Referrer $referrer;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($receiver, $email_type)
+    public function __construct($referred, $email_type)
     {
         $this->email_template = EmailTemplates::where('type', $email_type)->first();
-        $this->receiver = $receiver;
+        $this->referred = $referred;
+        $this->referrer = $referred->referrer;
     }
 
     /**
@@ -46,12 +49,12 @@ class EligibilityEmail extends Mailable
             markdown: 'emails.hsc-email-template',
             with: [
                 'cover_image' => $this->email_template->cover_image,
-                'greeting_text' => str_replace('{receiver_first_name}', $this->receiver->first_name, $this->email_template->greeting_text),
-                'upper_text' => $this->email_template->upper_text,
+                'greeting_text' => str_replace('{referred_name}', $this->referred->first_name.' '.$this->referred->last_name, $this->email_template->greeting_text),
+                'upper_text' => str_replace('{referrer_name}', $this->referrer->first_name.' '.$this->referrer->last_name, $this->email_template->upper_text),
                 'button_text' => $this->email_template->button_text,
                 'button_url' => $this->email_template->button_url,
                 'lower_text' => $this->email_template->lower_text,
-                'receiver_uuid' => $this->receiver->uuid,
+                'referred_uuid' => $this->referred->uuid,
             ],
         );
     }

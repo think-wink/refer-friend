@@ -1,4 +1,4 @@
-@props(['receiver_uuid'])
+@props(['referred_uuid'])
 <!DOCTYPE>
 <html>
     <head>
@@ -75,7 +75,7 @@
             <tr>
                 <td class="bottom-text">
                     <p>You're receiving this email because you opted-in for emails when you used our online calculator.</p>
-                    <p><a href="{{ config('app.url') }}/referred/{{ $receiver_uuid }}/unsubscribe-emails">unsubscribe</a></p>
+                    <p><a href="{{ config('app.url') }}/referred/{{ $referred_uuid }}/unsubscribe-emails">unsubscribe</a></p>
                 </td>
             </tr>
         </table>

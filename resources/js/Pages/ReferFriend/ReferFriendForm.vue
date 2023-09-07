@@ -90,7 +90,7 @@
       <div class="flex justify-center pt-5">
         <div class="w-1/2" v-if="!show_success_message">
 
-          <form>
+          <div>
             <div v-for="(referee, index) in friendsCount" :key="index" class="mb-5">
 
               <div v-if="index !== 0" class="flex justify-between">
@@ -153,7 +153,7 @@
                 <p class="text-red text-xs mt-1" v-if="errors['terms']">{{ errors['terms'][0] }}</p>
               </div>
             </div>
-          </form>
+          </div>
 
           <div v-if="typeof errors === 'string'" class="p-2 pb-0 text-center">
             <p class="text-red text-xs mt-1"> {{ errors }} </p>

@@ -16,7 +16,11 @@ class Referrer extends Model
 
     use HasUUID;
 
-    public $fillable = ['email'];
+    public $fillable = [
+        'email',
+        'accepted_contact',
+        'accepted_terms'
+    ];
 
     public $casts = [
         'subscribed' => 'boolean'

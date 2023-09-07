@@ -3,13 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Jobs\EligibilityEmails\EligibilityEmailFourJob;
-use App\Jobs\EligibilityEmails\EligibilityEmailOneJob;
 use App\Jobs\EligibilityEmails\EligibilityEmailThreeJob;
 use App\Jobs\EligibilityEmails\EligibilityEmailTwoJob;
 use App\Jobs\NurtureCycleEmails\NurtureCycleEmailOneJob;
 use App\Jobs\NurtureCycleEmails\NurtureCycleEmailThreeJob;
 use App\Jobs\NurtureCycleEmails\NurtureCycleEmailTwoJob;
-use App\Models\Customer\Referred;
 use App\Models\EmailJobs;
 use Illuminate\Console\Command;
 

@@ -28,7 +28,7 @@
                             </td>
                             <td>
                                 <h4>Terms and Conditions</h4>
-                                <p>View the program Terms and Conditions</p>
+                                <p>View the Program Terms and Conditions</p>
                             </td>
                         </tr>
                     </table>

@@ -1,5 +1,5 @@
-@props(['cover_image', 'receiver_uuid'])
-<x-mail::layout :receiver_uuid="$receiver_uuid">
+@props(['cover_image', 'referred_uuid'])
+<x-mail::layout :referred_uuid="$referred_uuid">
 {{-- Header --}}
 <x-slot:header>
 <x-mail::header :cover_image="$cover_image">
