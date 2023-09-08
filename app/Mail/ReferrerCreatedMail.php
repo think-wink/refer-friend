@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Customer\Referrer;
 use App\Models\EmailTemplates;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -15,13 +16,19 @@ class ReferrerCreatedMail extends Mailable
     use Queueable, SerializesModels;
 
     private $email_template;
+    protected Referrer $referrer;
+    protected string $mail_uuid;
+    protected bool $preview;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($referrer, $mail_uuid, $preview = false)
     {
         $this->email_template = EmailTemplates::where('type', 'referrer_created')->first();
+        $this->referrer = $referrer;
+        $this->mail_uuid = $mail_uuid;
+        $this->preview = $preview;
     }
 
     /**
@@ -45,11 +52,14 @@ class ReferrerCreatedMail extends Mailable
                 'cover_image' => $this->email_template->cover_image,
                 'cover_text' => $this->email_template->cover_text,
                 'greeting_text' => $this->email_template->greeting_text,
-                'upper_text' => $this->email_template->upper_text,
+                'upper_text' => str_replace('{referrer_uuid}', $this->referrer->uuid, $this->email_template->upper_text),
                 'button_text' => $this->email_template->button_text,
                 'button_url' => $this->email_template->button_url,
                 'lower_text' => $this->email_template->lower_text,
-                'referred_uuid' => null,
+                'receiver_type' => 'referrer',
+                'receiver_uuid' => $this->referrer->uuid,
+                'mail_uuid' => $this->mail_uuid,
+                'preview' => $this->preview,
             ],
         );
     }

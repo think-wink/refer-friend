@@ -182,11 +182,13 @@ body {
 
 .col-1 {
     text-align: left;
+    color: white;
 }
 
 .col-2 {
     text-align: right;
     white-space: nowrap;
+    color: white;
 }
  .col-2 a {
     display: block;
@@ -205,6 +207,7 @@ body {
     padding: 0;
     width: 100%;
     text-align: right;
+    color: white;
 }
 
 .footer-icons td {
@@ -225,4 +228,5 @@ body {
     font-style: italic;
     text-align: left;
     font-size: 0.8em;
+    color: white;
 }

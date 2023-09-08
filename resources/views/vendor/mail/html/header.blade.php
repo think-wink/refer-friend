@@ -1,11 +1,11 @@
-@props(['cover_image'])
+@props(['cover_image', 'preview'])
 <tr class="header-top">
     <td></td>
 </tr>
 <tr class="header-bottom">
     <td>
         <a href="https://householdcapital.com.au/">
-            <img src="cid:header.png" alt="company logo" />
+            <img src="{{ $preview ? asset('/img/refer-email/header.png') : 'cid:header.png' }}" alt="company logo" />
         </a>
     </td>
 </tr>
@@ -15,7 +15,7 @@
         <table>
             <tr>
                <td class="cover-image">
-                   <img src="cid:cover" alt="cover image"/>
+                   <img src="{{ $preview ? asset($cover_image) : 'cid:cover' }}" alt="cover image"/>
                </td>
             </tr>
         </table>

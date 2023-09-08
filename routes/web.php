@@ -76,7 +76,8 @@ Route::get('/refer-friend-eligibility', function(){
    return Inertia::render('ReferFriend/ReferFriendEligibility');
 });
 
-Route::get('/referred/{uuid}/unsubscribe-emails', function(){
-    return Inertia::render('ReferFriend/UnsubscribeEmail');
+Route::get('/unsubscribe/{type}/{uuid}', function($type, $uuid){
+    return Inertia::render('ReferFriend/UnsubscribeEmail', ['type' => $type, 'uuid' => $uuid]);
 });
 
+Route::get('/mail-preview/{mail_uuid}', [\App\Http\Controllers\MailPreviewController::class, 'preview']);

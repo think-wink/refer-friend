@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('email_jobs', function (Blueprint $table) {
             $table->id();
+            $table->uuid();
             $table->morphs('customer');
             $table->string('email_type');
             $table->boolean('email_sent')->default(0);

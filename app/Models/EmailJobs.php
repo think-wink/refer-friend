@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Customer\Referred;
+use App\Models\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Model;
 
 class EmailJobs extends Model
 {
+
+    use HasUUID;
 
     protected $fillable = [
         'email_type',

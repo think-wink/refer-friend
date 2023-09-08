@@ -28,6 +28,6 @@ class ReferredNotInterestedJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $this->referred->emailJobs()->create(['email_type' => 'nurture_cycle_email_1', 'scheduled_date_time' => now()->addDays(2)]);
+        $this->referred->emailJobs()->updateOrCreate(['email_type' => 'nurture_cycle_email_1', 'email_sent' => false], ['scheduled_date_time' => now()->addDays(2)]);
     }
 }

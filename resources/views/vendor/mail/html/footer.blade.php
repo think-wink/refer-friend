@@ -1,3 +1,4 @@
+@props(['preview'])
 <tr>
     <td class="pre-footer">
         <h2>Find out more</h2>
@@ -11,7 +12,7 @@
                     <table>
                         <tr>
                             <td>
-                                <img src="cid:pre-footer-1.png" alt="Faqs image" />
+                                <img src="{{ $preview ? asset('/img/refer-email/pre-footer-1.png') : 'cid:pre-footer-1.png' }}" alt="Faqs image" />
                             </td>
                             <td>
                                 <h4>FAQs</h4>
@@ -24,7 +25,7 @@
                     <table>
                         <tr>
                             <td>
-                                <img src="cid:pre-footer-2.png" alt="T&C image" />
+                                <img src="{{ $preview ? asset('/img/refer-email/pre-footer-2.png') : 'cid:pre-footer-2.png' }}" alt="T&C image" />
                             </td>
                             <td>
                                 <h4>Terms and Conditions</h4>
@@ -43,7 +44,7 @@
             <tr class="footer-top">
                 <td class="footer-image">
                      <a href="https://householdcapital.com.au/">
-                        <img src="cid:footer.png" alt="company logo" />
+                        <img src="{{ $preview ? asset('/img/refer-email/footer.png') : 'cid:footer.png' }}" alt="company logo" />
                      </a>
                 </td>
                 <td>
