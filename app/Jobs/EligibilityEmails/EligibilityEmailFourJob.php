@@ -2,7 +2,7 @@
 
 namespace App\Jobs\EligibilityEmails;
 
-use App\Mail\EligibilityEmail;
+use App\Mail\EligibilityMail;
 use App\Models\Customer\Referred;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -33,12 +33,14 @@ class EligibilityEmailFourJob implements ShouldQueue
         // If they have filled form delete this job else send email
         if ($this->referred->reward_status === 'eligibility_email_3_sent') {
 
+            $mail = $this->referred->emailJobs()->where('email_type', 'eligibility_email_4')->first();
+
             // Sent the eligibility email 4
-            Mail::to($this->referred)->send(new EligibilityEmail($this->referred, 'eligibility_email_4'));
+            Mail::to($this->referred)->send(new EligibilityMail($this->referred, 'eligibility_email_4', $mail->uuid));
 
             // Update the record that the email has been sent out
+            $mail->update(['email_sent' => true]);
             $this->referred->update(['reward_status' => 'eligibility_email_4_sent']);
-            $this->referred->emailJobs()->where('email_type', 'eligibility_email_4')->update(['email_sent' => true]);
 
         } else {
             $this->referred->emailJobs()->where('email_type', 'eligibility_email_4')->delete();

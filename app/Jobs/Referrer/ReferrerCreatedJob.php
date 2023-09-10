@@ -2,7 +2,7 @@
 
 namespace App\Jobs\Referrer;
 
-use App\Mail\ReferrerCreated;
+use App\Mail\ReferrerCreatedMail;
 use App\Models\Customer\Referrer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -30,7 +30,7 @@ class ReferrerCreatedJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->referrer)->send(new ReferrerCreated());
-        $this->referrer->emailJobs()->create(['email_type' => 'referrer_created', 'scheduled_date_time' => now(), 'email_sent' => true]);
+        $mail = $this->referrer->emailJobs()->create(['email_type' => 'referrer_created', 'scheduled_date_time' => now(), 'email_sent' => true]);
+        Mail::to($this->referrer)->send(new ReferrerCreatedMail($this->referrer, $mail->uuid));
     }
 }

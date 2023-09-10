@@ -12,22 +12,26 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class EligibilityEmail extends Mailable
+class EligibilityMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     private $email_template;
     protected Referred $referred;
     protected Referrer $referrer;
+    protected string $mail_uuid;
+    protected bool $preview;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($referred, $email_type)
+    public function __construct($referred, $email_type, $mail_uuid, $preview = false)
     {
         $this->email_template = EmailTemplates::where('type', $email_type)->first();
         $this->referred = $referred;
         $this->referrer = $referred->referrer;
+        $this->mail_uuid = $mail_uuid;
+        $this->preview = $preview;
     }
 
     /**
@@ -54,7 +58,10 @@ class EligibilityEmail extends Mailable
                 'button_text' => $this->email_template->button_text,
                 'button_url' => $this->email_template->button_url,
                 'lower_text' => $this->email_template->lower_text,
-                'referred_uuid' => $this->referred->uuid,
+                'receiver_type' => 'referred',
+                'receiver_uuid' => $this->referred->uuid,
+                'mail_uuid' => $this->mail_uuid,
+                'preview' => $this->preview,
             ],
         );
     }

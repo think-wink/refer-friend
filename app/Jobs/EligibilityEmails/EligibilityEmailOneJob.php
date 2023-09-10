@@ -2,7 +2,7 @@
 
 namespace App\Jobs\EligibilityEmails;
 
-use App\Mail\EligibilityEmail;
+use App\Mail\EligibilityMail;
 use App\Models\Customer\Referred;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -30,11 +30,11 @@ class EligibilityEmailOneJob implements ShouldQueue
      */
     public function handle(): void
     {
-        // Send the Eligibility Email One
-        Mail::to($this->referred)->send(new EligibilityEmail($this->referred, 'eligibility_email_1'));
-
         // Create a record for this email and the next email to be sent out
-        $this->referred->emailJobs()->create(['email_type' => 'eligibility_email_1', 'scheduled_date_time' => now(), 'email_sent' => true]);
+        $mail = $this->referred->emailJobs()->create(['email_type' => 'eligibility_email_1', 'scheduled_date_time' => now(), 'email_sent' => true]);
         $this->referred->emailJobs()->create(['email_type' => 'eligibility_email_2', 'scheduled_date_time' => now()->addDays(2)]);
+
+        // Send the Eligibility Email One
+        Mail::to($this->referred)->send(new EligibilityMail($this->referred, 'eligibility_email_1', $mail->uuid));
     }
 }

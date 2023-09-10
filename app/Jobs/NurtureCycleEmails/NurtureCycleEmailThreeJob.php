@@ -2,7 +2,7 @@
 
 namespace App\Jobs\NurtureCycleEmails;
 
-use App\Mail\NurtureCycleEmail;
+use App\Mail\NurtureCycleMail;
 use App\Models\Customer\Referred;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,14 +32,15 @@ class NurtureCycleEmailThreeJob implements ShouldQueue
     {
         if($this->referred->reward_status === 'nurture_cycle_email_2_sent') {
 
+            // Create a record for this email and the next email to be sent out
+            $mail = $this->referred->emailJobs()->where('email_type', 'nurture_cycle_email_3')->first();
+
             // Send the Nurture Cycle Email One
-            Mail::to($this->referred)->send(new NurtureCycleEmail($this->referred, 'nurture_cycle_email_3'));
+            Mail::to($this->referred)->send(new NurtureCycleMail($this->referred, 'nurture_cycle_email_3', $mail->uuid));
 
             // update the nurture cycle status in the referred table
+            $mail->update(['email_sent' => true]);
             $this->referred->update(['reward_status' => 'nurture_cycle_email_3_sent']);
-
-            // Create a record for this email and the next email to be sent out
-            $this->referred->emailJobs()->where('email_type', 'nurture_cycle_email_3')->update(['email_sent' => true]);
 
         } else {
             $this->referred->emailJobs()->where('email_type', 'nurture_cycle_email_3')->delete();
