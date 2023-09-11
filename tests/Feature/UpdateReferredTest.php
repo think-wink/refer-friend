@@ -46,7 +46,7 @@ class UpdateReferredTest extends TestCase
     {
         Referred::factory(['id' => 1])->create();
         $this->postJson('/api/referred/1/update', [], $this->headers)
-            ->assertStatus(422);
+            ->assertStatus(201);
     }
 
     public function test_invalid_reward_status(): void
@@ -100,7 +100,7 @@ class UpdateReferredTest extends TestCase
     {
         Referred::factory(['id' => 1, 'email' => 'old_email'])->create();
         Referred::factory(['id' => 2, 'email' => 'new_email'])->create();
-        $this->postJson('/api/referred/1/update', [
+        $this->postJson('/api/referred/1/merge', [
             'merge_email' => 'new_email',
         ], $this->headers)
             ->assertStatus(422);
@@ -109,7 +109,7 @@ class UpdateReferredTest extends TestCase
     public function testMergeUnknownEmail(): void
     {
         Referred::factory(['id' => 1, 'email' => 'old_email'])->create();
-        $this->postJson('/api/referred/1/update', [
+        $this->postJson('/api/referred/1/merge', [
             'merge_email' => 'new_email',
             'reward_status' => 'pension_boost_eligible'
         ], $this->headers)
@@ -120,7 +120,7 @@ class UpdateReferredTest extends TestCase
     {
         Referred::factory(['id' => 1, 'email' => 'old_email'])->create();
         Referred::factory(['id' => 2, 'email' => 'new_email'])->create();
-        $this->postJson('/api/referred/1/update', [
+        $this->postJson('/api/referred/1/merge', [
             'merge_email' => 'new_email',
             'reward_status' => 'pension_boost_eligible'
         ], $this->headers)
