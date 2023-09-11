@@ -32,7 +32,7 @@ class Referrer extends Model
     {
         parent::boot();
         // This prevents events from being dispatcher when testing or reseeding,etc.
-        if (!app()->runningInConsole() || app()->runningUnitTests()) {
+        if (!app()->runningInConsole() || !app()->runningUnitTests()) {
             // This dispatches an event that send an email whenever a new referrer is created.
             static::created(function ($referrer) {
                 ReferrerCreatedEvent::dispatch($referrer);

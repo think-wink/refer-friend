@@ -67,7 +67,7 @@ class Referred extends Model
     {
         parent::boot();
          // This prevents events from being dispatcher when testing or reseeding,etc.
-         if (!app()->runningInConsole() || app()->runningUnitTests()) {
+         if (!app()->runningInConsole() || !app()->runningUnitTests()) {
              // Email new referred
              static::created(function ($referred) {
                  ReferredCreatedEvent::dispatch($referred);

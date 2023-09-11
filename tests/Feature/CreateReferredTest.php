@@ -33,15 +33,20 @@ class CreateReferredTest extends TestCase
      */
     public function test_bad_path(): void
     {
-        $this->postJson("/api/referrer/aadsfasdf/referred/create", ['referees' => [
-            [ 
-             'email' => 'test@mail.com',
-             'phone_number' => '1231113123',
-             'first_name' => 'xxxyyycccc',
-             'last_name' => "asdfadsf",
-             ],
-         ]], $this->headers)
-            ->assertStatus(404);
+        $this->postJson("/api/referrer/aadsfasdf/referred/create", [
+            'referrer_first_name' => 'Test',
+            'referrer_last_name' => 'One',
+            'permission' => '1',
+            'terms' => '1',
+            'referees' => [
+                [
+                    'email' => 'test@mail.com',
+                    'phone_number' => '1231113123',
+                    'first_name' => 'xxxyyycccc',
+                    'last_name' => "asdfadsf",
+                ],
+            ]
+        ], $this->headers)->assertStatus(404);
     }
 
     /**
@@ -58,7 +63,7 @@ class CreateReferredTest extends TestCase
     {
         $referrer =Referrer::factory()->create();
         $this->postJson("/api/referrer/$referrer->uuid/referred/create", ['referees' => [
-            [ 
+            [
             'email' => 'tasdfasdfad',
             'phone_number' => '1231223123',
             'first_name' => 'xxxyyycccc',
@@ -72,7 +77,7 @@ class CreateReferredTest extends TestCase
     {
         $referrer =Referrer::factory()->create();
         $this->postJson("/api/referrer/$referrer->uuid/referred/create", ['referees' => [
-            [ 
+            [
             'email' => 'test@mail.com',
             'phone_number' => 'asdfasdf',
             'first_name' => 'xxxyyycccc',
@@ -116,15 +121,20 @@ class CreateReferredTest extends TestCase
     public function test_create_referred(): void
     {   
         $referrer = Referrer::factory()->create();
-        $this->postJson("/api/referrer/$referrer->uuid/referred/create", ['referees' => [
-           [ 
-            'email' => 'test@mail.com',
-            'phone_number' => '1231113123',
-            'first_name' => 'xxxyyycccc',
-            'last_name' => "asdfadsf",
-            ],
-        ]], $this->headers)
-            ->assertStatus(201);
+        $this->postJson("/api/referrer/$referrer->uuid/referred/create", [
+            'referrer_first_name' => 'Test',
+            'referrer_last_name' => 'Two',
+            'permission' => '1',
+            'terms' => '1',
+            'referees' => [
+                [
+                    'email' => 'test@mail.com',
+                    'phone_number' => '1231113123',
+                    'first_name' => 'xxxyyycccc',
+                    'last_name' => "asdfadsf",
+                ],
+            ]
+        ], $this->headers)->assertStatus(201);
         $item = Referred::first();
         $this->assertInstanceOf(Referred::class, $item);
         $this->assertEquals('test@mail.com', $item->email);
@@ -133,21 +143,27 @@ class CreateReferredTest extends TestCase
     public function test_create_referrals(): void
     {   
         $referrer = Referrer::factory()->create();
-        $this->postJson("/api/referrer/$referrer->uuid/referred/create", ['referees' => [
-           [ 
-                'email' => 'test@mail.com',
-                'phone_number' => '1231113123',
-                'first_name' => 'xxxyyycccc',
-                'last_name' => "asdfadsf",
-            ],
-            [ 
-                'email' => 'test2@mail.com',
-                'phone_number' => '1232113123',
-                'first_name' => 'xxxyyycccc',
-                'last_name' => "asdfadsf",
-            ],
-        ]], $this->headers)
-            ->assertStatus(201);
+        $this->postJson("/api/referrer/$referrer->uuid/referred/create", [
+            'referrer_first_name' => 'Test',
+            'referrer_last_name' => 'Three',
+            'permission' => '1',
+            'terms' => '1',
+            'referees' => [
+                [
+                    'email' => 'test@mail.com',
+                    'phone_number' => '1231113123',
+                    'first_name' => 'xxxyyycccc',
+                    'last_name' => "asdfadsf",
+                ],
+                [
+                    'email' => 'test2@mail.com',
+                    'phone_number' => '1232113123',
+                    'first_name' => 'xxxyyycccc',
+                    'last_name' => "asdfadsf",
+                ],
+            ]
+        ], $this->headers)->assertStatus(201);
+
         $this->assertEquals(Referred::count(), 2);
     }
 
