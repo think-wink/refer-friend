@@ -73,7 +73,8 @@ class ReferredTable extends TableController
     public function get(Referred $referred)
     {
         return Inertia::render('Admin/Referred/UpdateReferred', [
-            'row' => new ReferredResource($referred)
+            'row' => new ReferredResource($referred),
+            'statusList' => Referred::getReadableStatusObject()
         ]);
     }
 

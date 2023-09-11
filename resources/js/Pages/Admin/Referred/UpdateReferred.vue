@@ -3,17 +3,21 @@ import axios from 'axios';
 import ConfirmationModel from '../../../Components/ConfirmationModel.vue';
 import PopupButton from '../../../Components/PopupButton.vue';
 import TextInput from '../../../Components/TextInput.vue';
+import EnumInput from '../../../Components/EnumInput.vue';
+
 import AppLayout from '../../../Layouts/AppLayout.vue';
 
 export default {
   props: {
     row: Object,
+    statusList: Object,
   },
   components: {
     AppLayout,
     ConfirmationModel,
     TextInput,
     PopupButton,
+    EnumInput,
   },
   data() {
     return {
@@ -35,7 +39,7 @@ export default {
     };
   },
   methods: {
-    async update(form) {
+    async update(form, url) {
       try {
         const out_form = {};
         Object.keys(form).forEach( (key) => {
@@ -43,7 +47,8 @@ export default {
             out_form[key] = form[key];
           }
         });
-        const result = await axios.post(`/api/referred/${this.row.data.hidden_id}/update`, out_form);
+        const result = await axios.post(url, out_form);
+        console.log(result);
         location.reload();
       } catch(error) {
         if (error.response && error.response.status === 422) {
@@ -53,6 +58,7 @@ export default {
         }
       } finally {
         this.show_update = false;
+        this.show_merge = true;
       }
     },
     showUpdate() {
@@ -81,9 +87,10 @@ export default {
         :error="update_form.errors.email"
       />
       {{row.data.email}}
-      <TextInput
+      <EnumInput
         class="mt-3 text-white"
         v-model="update_form.reward_status"
+        :options="statusList"
         label="Reward Status"
         :error="update_form.errors.reward_status"
       />
@@ -130,7 +137,7 @@ export default {
               </div>
             </template>
             <template #buttons>
-              <PopupButton @click="() => update(update_form)"> Save </PopupButton>
+              <PopupButton @click="() => update(update_form, `/api/referred/${this.row.data.hidden_id}/update`)"> Save </PopupButton>
               <PopupButton @click="hideUpdate"> Cancel </PopupButton>
             </template>
           </ConfirmationModel>
@@ -143,9 +150,10 @@ export default {
         label="Merge Email"
         :error="merge_form.errors.merge_email"
       />
-      <TextInput
+      <EnumInput
         class="mt-3 text-white"
         v-model="merge_form.reward_status"
+        :options="statusList"
         label="Reward Status"
         :error="merge_form.errors.reward_status"
       />
@@ -157,7 +165,7 @@ export default {
         <div> Merge </div>
     
         <ConfirmationModel
-          :show="show_update"
+          :show="show_merge"
           :close="() => hideMerge()"
         >
           <template #title>
@@ -169,8 +177,8 @@ export default {
             </div>
           </template>
           <template #buttons>
-            <PopupButton @click="() => update(merge_form)"> Save </PopupButton>
-            <PopupButton @click="hideMerge"> Cancel </PopupButton>
+            <PopupButton @click="() => update(merge_form, `/api/referred/${this.row.data.hidden_id}/merge`)"> Save </PopupButton>
+            <PopupButton @click="() => hideMerge()"> Cancel </PopupButton>
           </template>
           </ConfirmationModel>
       </button>
