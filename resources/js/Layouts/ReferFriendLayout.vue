@@ -27,7 +27,7 @@
 
     <div class="bg-toolbar text-white p-2 flex justify-end hidden lg:block">
 
-      <div class="flex justify-end items-center space-x-8 font-bold text-sm sectionSub">
+      <div class="flex justify-end items-center space-x-8 font-medium text-sm sectionSub">
 
         <div class="flex justify-end items-center space-x-8 mr-20">
           <a href="https://householdcapital.com.au/about-us/" class="hover:underline decoration-gold">
@@ -44,7 +44,7 @@
           </a>
         </div>
 
-        <div class="text-lg font-bold text-gold px-8">
+        <div class="text-lg font-medium text-gold px-8">
           <a href="#">
             1300 057 080
           </a>
@@ -63,7 +63,7 @@
         </div>
 
         <a href="https://householdcapital.com.au/">
-          <img src="/img/refer/header.png" width="200px" alt="Household Image" />
+          <img src="/img/refer/header.png" class="w-52 lg:w-72" alt="Household Image" />
         </a>
 
         <div class="lg:hidden block font-bold text-sm" >
@@ -74,7 +74,7 @@
         </div>
 
         <div class="hidden lg:block">
-          <div class="p-4 flex flex-row flex-grow space-x-12 font-bold">
+          <div class="p-4 flex flex-row flex-grow space-x-12 font-medium">
             <div class="flex">
               <a href="https://householdcapital.com.au/loans/" class="hover:underline decoration-gold px-2">
                 Products & Services
@@ -95,7 +95,7 @@
 
             <div class="flex items-top">
               <a href="https://householdcapital.com.au/reverse-mortgage-calculator/">
-                <button type="button" class="bg-gold rounded-full px-3 py-1 font-bold hover:bg-hover hover:text-white whitespace-nowrap">
+                <button type="button" class="bg-gold rounded-full px-3 py-2 font-bold hover:bg-hover hover:text-white whitespace-nowrap">
                   Get Started
                 </button>
               </a>
@@ -106,7 +106,7 @@
 
       <div id="menu" :class="menu_active ? '' : 'hidden'">
         <div>
-          <div class="flex flex-col font-bold text-xl text-toolbar px-6 py-2">
+          <div class="flex flex-col font-medium text-xl text-toolbar px-6 py-2">
             <a href="https://householdcapital.com.au/loans/" class="hover:underline decoration-gold py-3 flex items-center justify-between">
               Products & Services
               <ChevronRightIcon class="w-6 h-6 stroke-2" />
@@ -172,7 +172,7 @@
 
     <div class="bg-grey-light">
 
-      <div class="sectionSub py-6 mx-auto">
+      <div class="sectionSub py-6 mx-auto text-toolbar">
 
         <h3 class="text-center mb-4 font-merry text-5xl">Find out more</h3>
 
@@ -206,8 +206,8 @@
 
         <div class="grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-4 text-center md:text-left">
           <div class="mx-8">
-            <p class="text-xl font-bold">Loans</p>
-            <div class="flex flex-col mt-2 text-grey-subLight font-bold">
+            <p class="text-xl font-medium">Loans</p>
+            <div class="flex flex-col mt-2 text-grey-subLight font-medium">
               <a href="https://householdcapital.com.au/household-loan/">Household Loan</a>
               <a href="https://householdcapital.com.au/refinance-home-loan/">Refinance Home Loan</a>
               <a href="https://householdcapital.com.au/loans/">Compare Loans</a>
@@ -216,8 +216,8 @@
           </div>
 
           <div class="md:mr-8 mx-8">
-            <p class="text-xl font-bold">Uses</p>
-            <div class="flex flex-col mt-2 text-grey-subLight font-bold">
+            <p class="text-xl font-medium">Uses</p>
+            <div class="flex flex-col mt-2 text-grey-subLight font-medium">
               <a href="https://householdcapital.com.au/lifestyle-expenses/">Live</a>
               <a href="https://householdcapital.com.au/refinance-home-loan/">Refinance Home Loan</a>
               <a href="https://householdcapital.com.au/superannuation-top-up/">Super Top Up</a>
@@ -227,8 +227,8 @@
           </div>
 
           <div class="md:mr-8 mx-8">
-            <p class="text-xl font-bold">Information</p>
-            <div class="flex flex-col mt-2 text-grey-subLight font-bold">
+            <p class="text-xl font-medium">Information</p>
+            <div class="flex flex-col mt-2 text-grey-subLight font-medium">
                <a href="https://householdcapital.com.au/customer-testimonials/">Customer Testimonials</a>
                <a href="https://householdcapital.com.au/publications/">Guides</a>
                <a href="https://householdcapital.com.au/third-pillar-forum/">Three Pillars Forum</a>
@@ -237,8 +237,8 @@
           </div>
 
           <div class="md:mr-8 mx-8">
-            <p class="text-xl font-bold">About</p>
-            <div class="flex flex-col mt-2 text-grey-subLight font-bold">
+            <p class="text-xl font-medium">About</p>
+            <div class="flex flex-col mt-2 text-grey-subLight font-medium">
                <a href="https://householdcapital.com.au/contact/">Contact Us</a>
                <a href="https://householdcapital.com.au/about-us/">About Us</a>
                <a href="https://householdcapital.com.au/about-us/reviews/">Reviews</a>
@@ -248,7 +248,7 @@
             </div>
           </div>
 
-          <div class="font-bold text-center md:col-span-2 lg:col-span-1">
+          <div class="font-medium text-center md:col-span-2 lg:col-span-1">
             <a href="https://householdcapital.com.au/schedule-a-call/" class="m-1">
               <button class="border-2 border-white px-8 py-1.5 rounded-full w-48 mt-8 mb-4 hover:bg-hover hover:font-white hover:border-hover whitespace-nowrap">
                 Book a Call
@@ -272,7 +272,7 @@
           </div>
           <div class="flex-1 flex justify-center lg:justify-end mt-6 lg:mt-0">
             <div>
-              <p class="text-xl font-bold">Connect</p>
+              <p class="text-xl font-medium">Connect</p>
 
               <div class="flex flex-row space-x-8 mt-2 ml-8">
                 <a href="https://www.facebook.com/HouseholdCap?_gl=1*neqiq*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
@@ -297,7 +297,7 @@
 
     <div class="bg-footer">
 
-      <div class="flex justify-center flex-col items-center sectionSub p-4 font-bold text-grey-dark mx-auto">
+      <div class="flex justify-center flex-col items-center sectionSub p-4 font-medium text-grey-dark mx-auto">
 
         <div class="flex flex-col md:flex-row  align-center whitespace-nowrap my-5 text-xs text-center">
 

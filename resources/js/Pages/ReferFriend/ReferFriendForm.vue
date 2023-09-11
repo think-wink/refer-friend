@@ -96,15 +96,15 @@
 
           <div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 place-content-between lg:mb-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 place-content-between mb-8">
                 <div class="flex flex-col lg:mr-5 my-1">
-                  <label class="required-label text-toolbar font-bold text-sm m-1">Your First Name</label>
+                  <label class="required-label text-toolbar font-medium text-sm m-1">Your First Name</label>
                   <input type="text" class="rounded-2xl border-grey" v-model="referrer_first_name" />
                   <p class="text-red text-xs mt-1" v-if="errors['referrer_first_name']">{{ errors['referrer_first_name'][0] }}</p>
                 </div>
 
                 <div class="flex flex-col my-1">
-                  <label class="required-label text-toolbar font-bold text-sm m-1">Your Last Name</label>
+                  <label class="required-label text-toolbar font-medium text-sm m-1">Your Last Name</label>
                   <input type="text" class="rounded-2xl border-grey" v-model="referrer_last_name" />
                   <p class="text-red text-xs mt-1" v-if="errors['referrer_last_name']">{{ errors['referrer_last_name'][0] }}</p>
                 </div>
@@ -113,7 +113,7 @@
             <div v-for="(referee, index) in friendsCount" :key="index" class="mb-5">
 
               <div class="flex justify-between">
-                  <p class="font-bold text-toolbar: text-lg">Friend {{ index === 0 ? '' : index+1 }} Details:</p>
+                  <p class="font-medium text-toolbar text-lg">Friend {{ index === 0 ? '' : index+1 }} Details:</p>
 
                   <button type="button" class="text-red px-2 py-1 text-xs flex items-center" @click.prevent="removeFriend(index)" v-if="index !== 0">
                     <XCircleIcon class="w-4 h-4 " /> Remove Friend
@@ -123,13 +123,13 @@
               <div class="grid grid-cols-1 lg:grid-cols-2 place-content-between lg:mb-2">
 
                 <div class="flex flex-col lg:mr-5 my-1">
-                  <label class="required-label text-toolbar font-bold text-sm m-1">Friend's First Name</label>
+                  <label class="required-label text-toolbar font-medium text-sm m-1">Friend's First Name</label>
                   <input type="text" class="rounded-2xl border-grey" v-model="referees[index].first_name" />
                   <p class="text-red text-xs mt-1" v-if="errors['referees.'+index+'.first_name']">{{ errors['referees.'+index+'.first_name'][0] }}</p>
                 </div>
 
                 <div class="flex flex-col my-1">
-                  <label class="required-label text-toolbar font-bold text-sm m-1">Friend's Last Name</label>
+                  <label class="required-label text-toolbar font-medium text-sm m-1">Friend's Last Name</label>
                   <input type="text" class="rounded-2xl border-grey" v-model="referees[index].last_name" />
                   <p class="text-red text-xs mt-1" v-if="errors['referees.'+index+'.last_name']">{{ errors['referees.'+index+'.last_name'][0] }}</p>
                 </div>
@@ -138,13 +138,13 @@
               <div class="grid grid-cols-1 lg:grid-cols-2">
 
                 <div class="flex flex-col lg:mr-5 my-1">
-                  <label class="required-label text-toolbar font-bold text-sm m-1">Friend's Phone Number</label>
+                  <label class="required-label text-toolbar font-medium text-sm m-1">Friend's Phone Number</label>
                   <input type="text" class="rounded-2xl border-grey" v-model="referees[index].phone_number" />
                   <p class="text-red text-xs mt-1" v-if="errors['referees.'+index+'.phone_number']">{{ errors['referees.'+index+'.phone_number'][0] }}</p>
                 </div>
 
                 <div class="flex flex-col my-1">
-                  <label class="required-label text-toolbar font-bold text-sm m-1">Friend's Email</label>
+                  <label class="required-label text-toolbar font-medium text-sm m-1">Friend's Email</label>
                   <input type="text" class="rounded-2xl border-grey" v-model="referees[index].email" />
                   <p class="text-red text-xs mt-1" v-if="errors['referees.'+index+'.email']">{{ errors['referees.'+index+'.email'][0] }}</p>
                 </div>
