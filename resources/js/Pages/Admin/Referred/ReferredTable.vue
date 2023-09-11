@@ -11,7 +11,7 @@ import RowHeading from '../../../Components/SyncedTable/HeadingRow/RowHeading.vu
 import ColumnSelect from '../../../Components/SyncedTable/ActionsRow/ColumnSelect.vue';
 import TextFilter from '../../../Components/SyncedTable/ActionsRow/TextFilter.vue';
 import FilterEnums from '../../../Components/SyncedTable/ActionsRow/FilterEnums.vue';
-import ReferredRow from './ReferredRow.vue';
+import ReferredRow from './ReferredRow.vue'
 
 export default {
   components: {
@@ -78,39 +78,6 @@ export default {
             :update="action_props.updateFilters"
             column_name="email"
           />
-          <button
-            class="px-2 text-white bg-orange rounded my-2" 
-            @click="setCreate(true)"
-          >
-            New User
-          </button>
-          <ConfirmationModel
-            :show="show_create"
-            :close="() => setCreate(false)"
-          >
-            <template #title>
-              Create a new User
-            </template>
-            <template #body>
-              <div class="flex flex-row">
-                <p> Email: </p>
-                <input
-                  v-model="new_user_form.email"
-                  class="mx-3 px-2 text-primary border border-primary"
-                />
-              </div>
-              <p
-                v-if="new_user_form.errors.email"
-                class="text-[red]"
-              >
-                {{ new_user_form.errors.email}}
-              </p>
-          </template>
-        <template #buttons>
-          <PopupButton @click="createNewUser"> Save </PopupButton>
-          <PopupButton @click="setCreate(false)"> Cancel </PopupButton>
-        </template>
-          </ConfirmationModel>
         </template>
         <template #headings>
             <RowHeading column_name="id" />

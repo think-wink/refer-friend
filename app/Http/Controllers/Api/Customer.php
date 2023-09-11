@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Customer\CreateReferred;
 use App\Http\Requests\Api\Customer\CreateReferrer;
 use App\Http\Requests\Api\Customer\UpdateReferred;
+use App\Http\Requests\Api\Customer\MergeReferred;
 use App\Http\Requests\Api\Customer\UpdateReferredStatus;
 use App\Models\Customer\Referred;
 use App\Models\Customer\ReferredAlias;
 use App\Models\Customer\Referrer;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Log;
 
 
 class Customer extends Controller
@@ -65,15 +67,7 @@ class Customer extends Controller
     */
     public function updateReferred(Referred $referred, UpdateReferred $request) 
     {
-        $items = $request->all();
-        if(empty($items)) {
-            return response('', 422);
-        }
-        if (array_key_exists('merge_email', $items)) {
-            $this->merge($referred, $items['merge_email']);
-            unset($items['merge_email']);
-        }
-        $referred->fill($items)->save();
+        $referred->fill($request->all())->save();
         return response($referred, 201);
 
     }
@@ -154,12 +148,17 @@ class Customer extends Controller
         ]);
     }
 
-    protected function merge(Referred $original, string $email)
+    public function mergeReferred(Referred $original, MergeReferred $request)
     {
-        $new = Referred::where('email', $email)->first();
+        if($request->merge_email === $original->email) {
+            return response(['errors'=> ['merge_email' => 'cannot merge with self']], 422);
+        }
+        $new = Referred::where('email', $request->merge_email)->first();
         $new->delete();
         $original->match_status = 'manual';
-        $original->referredAlias()->create(['email' => $email]);
+        $original->reward_status = $request->reward_status;
+        $original->referredAlias()->create(['email' => $request->merge_email]);
+        $original->save();
     }
 }
 

@@ -6,6 +6,7 @@ use App\Events\Referred\ReferredCreatedEvent;
 use App\Events\Referred\ReferredNotInterestedEvent;
 use App\Models\EmailJobs;
 use App\Models\Traits\HasUUID;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -62,6 +63,15 @@ class Referred extends Model
         'match_status',
         'reward_status'
     ];
+
+
+    public static function getReadableStatusObject(): Collection
+    {
+        return collect(self::EXTERNAL_STATUS)
+            ->concat(self::INTERNAL_STATUS)
+            ->mapWithKeys(fn (string $value) => [$value => str_replace('_', ' ', $value)]);
+            
+    }
 
     protected static function booted()
     {

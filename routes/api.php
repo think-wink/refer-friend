@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->controller(Customer::class)->group(function()
     Route::post('referred/upsert', 'updateReferredStatus');
     Route::post('referrer/create', 'createReferrer');
     Route::post('referred/{referred}/update', 'updateReferred');
+    Route::post('referred/{original}/merge',  'mergeReferred');
 });
 
 Route::controller(Customer::class)->group(function() {
