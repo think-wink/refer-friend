@@ -30,16 +30,16 @@
       <div class="flex justify-end items-center space-x-8 font-medium text-sm sectionSub">
 
         <div class="flex justify-end items-center space-x-8 mr-20">
-          <a href="https://householdcapital.com.au/about-us/" class="hover:underline decoration-gold">
+          <a href="https://householdcapital.com.au/about-us/" class="hover:underline decoration-gold underline-offset-4">
             ABOUT US
           </a>
-          <a href="https://householdcapital.com.au/frequently-asked-questions/" class="hover:underline decoration-gold">
+          <a href="https://householdcapital.com.au/frequently-asked-questions/" class="hover:underline decoration-gold underline-offset-4">
             FAQ
           </a>
-          <a href="https://householdcapital.com.au/about-us/customers/" class="hover:underline decoration-gold">
+          <a href="https://householdcapital.com.au/about-us/customers/" class="hover:underline decoration-gold underline-offset-4">
             CUSTOMER LOGIN
           </a>
-          <a href="https://householdcapital.com.au/communications/" class="hover:underline decoration-gold">
+          <a href="https://householdcapital.com.au/communications/" class="hover:underline decoration-gold underline-offset-4">
             MEDIA
           </a>
         </div>
@@ -54,7 +54,7 @@
 
     <div class="bg-white">
 
-      <div class="flex sectionSub py-5 px-4 link justify-between lg:justify-center items-center mx-auto">
+      <div class="flex sectionSub py-5 px-4 justify-between lg:justify-center items-center mx-auto">
         <div class="lg:hidden block text-sm">
           <a href="tel:1300057080" class="font-bold">
             <img alt="call-icon" src="	https://householdcapital.com.au/wp-content/themes/hhctheme/images/call-icon.svg" width="24" height="24" />
@@ -76,19 +76,19 @@
         <div class="hidden lg:block">
           <div class="p-4 flex flex-row flex-grow space-x-12 font-medium">
             <div class="flex">
-              <a href="https://householdcapital.com.au/loans/" class="hover:underline decoration-gold px-2">
+              <a href="https://householdcapital.com.au/loans/" class="hover:underline decoration-gold px-2 underline-offset-2">
                 Products & Services
               </a>
-              <a href="https://householdcapital.com.au/reverse-mortgage-interest-rates/" class="hover:underline decoration-gold px-2">
+              <a href="https://householdcapital.com.au/reverse-mortgage-interest-rates/" class="hover:underline decoration-gold px-2 underline-offset-2">
                 Interest Rates
               </a>
-              <a href="https://householdcapital.com.au/home-equity-calculators/" class="hover:underline decoration-gold px-2">
+              <a href="https://householdcapital.com.au/home-equity-calculators/" class="hover:underline decoration-gold px-2 underline-offset-2">
                 Home Equity Calculator
               </a>
-              <a href="https://householdcapital.com.au/publications/" class="hover:underline decoration-gold px-2">
+              <a href="https://householdcapital.com.au/publications/" class="hover:underline decoration-gold px-2 underline-offset-2">
                 Guides, Publications & Testimonials
               </a>
-              <a href="https://householdcapital.com.au/" class="hover:underline decoration-gold px-2">
+              <a href="https://householdcapital.com.au/" class="hover:underline decoration-gold px-2 underline-offset-2">
                 Professionals
               </a>
             </div>
@@ -174,7 +174,7 @@
 
       <div class="sectionSub py-6 mx-auto text-toolbar">
 
-        <h3 class="text-center mb-4 font-merry text-5xl">Find out more</h3>
+        <h3 class="text-center mb-4 font-merry text-5xl font-bold">Find out more</h3>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 w-8/12 mx-auto">
 
@@ -183,7 +183,7 @@
               <img src="/img/refer/pre-footer-1.png" alt="info icon" class="self-center" />
             </div>
             <div class="px-5">
-              <h4>FAQs</h4>
+              <h4 class="text-xl font-bold">FAQs</h4>
               <p class="text-sm"> Learn More about referrals and view frequently asked questions</p>
             </div>
           </div>
@@ -193,7 +193,7 @@
               <img src="/img/refer/pre-footer-2.png" alt="info icon" class="self-center" />
             </div>
             <div class="px-5">
-              <h4>Terms and Conditions</h4>
+              <h4 class="text-xl font-bold">Terms and Conditions</h4>
               <p class="text-sm">View the program Terms and Conditions</p>
             </div>
           </div>
@@ -264,7 +264,7 @@
 
         <div class="border-t border-grey p-2 mt-2 mx-6 pb-4 flex lg:flex-row flex-col">
           <div class="flex-1">
-            <p class="p5 text-grey">
+            <p class="text-grey text-xs">
               Household Capital Pty Limited ACN 618 068 214  is the issuer of the information on this website.
               Household Capital Pty Limited is a credit representative (512757) of Mortgage Direct Pty Limited ACN 075 721 434, Australian Credit Licence 391876.
               HOUSEHOLD CAPITAL, HOUSEHOLD TRANSFER, LIVE WELL AT HOME and the Star Device are trademarks of Household Capital Pty Ltd.
@@ -354,28 +354,5 @@
     height: 521px;
     width: 100%;
     object-fit: cover;
-  }
-
-  .link{
-    color: #19263f;
-  }
-
-  .p5 {
-    font-size: 10px;
-    color: #fff;
-  }
-
-  h3 {
-    font-size: 32px;
-    font-weight: bold;
-  }
-
-  h4 {
-    font-size: 20px;
-    font-weight: bold;
-  }
-
-  h6 {
-    font-size: 2em;
   }
 </style>
