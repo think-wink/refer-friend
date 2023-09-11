@@ -3,7 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Events\Referred\ReferredCreatedEvent;
-use App\Events\Referred\ReferredNotInterestedEvent;
+use App\Events\Referred\ReferredStatusChangeEvent;
 use App\Models\EmailJobs;
 use App\Models\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -63,7 +63,7 @@ class Referred extends Model
         'reward_status'
     ];
 
-    protected static function booted()
+    protected static function booted(): void
     {
         parent::boot();
          // This prevents events from being dispatcher when testing or reseeding,etc.
@@ -74,10 +74,9 @@ class Referred extends Model
              });
              // If the referred is not interested
              static::updated(function ($referred) {
-                 if($referred->reward_status === 'not_interested') {
-                     ReferredNotInterestedEvent::dispatch($referred);
+                 if($referred->reward_status === 'form_completed' || $referred->reward_status === 'not_interested' || $referred->reward_status === 'meeting_booked') {
+                     ReferredStatusChangeEvent::dispatch($referred);
                  }
-                 // add meeting booked and form_completed as well to cancel emails
              });
          }
     }

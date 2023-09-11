@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use App\Events\Referred\ReferredCreatedEvent;
-use App\Events\Referred\ReferredNotInterestedEvent;
+use App\Events\Referred\ReferredStatusChangeEvent;
 use App\Events\Referrer\ReferrerCreatedEvent;
 use App\Listeners\Referred\ReferredCreatedListener;
-use App\Listeners\Referred\ReferredNotInterestedListener;
+use App\Listeners\Referred\ReferredStatusChangeListener;
 use App\Listeners\Referrer\ReferrerCreatedListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -29,8 +29,8 @@ class EventServiceProvider extends ServiceProvider
         ReferredCreatedEvent::class => [
           ReferredCreatedListener::class,
         ],
-        ReferredNotInterestedEvent::class => [
-          ReferredNotInterestedListener::class,
+        ReferredStatusChangeEvent::class => [
+          ReferredStatusChangeListener::class,
         ],
     ];
 

@@ -2,13 +2,13 @@
 
 namespace App\Listeners\Referred;
 
-use App\Events\Referred\ReferredNotInterestedEvent;
+use App\Events\Referred\ReferredStatusChangeEvent;
 use App\Jobs\NurtureCycleEmails\NurtureCycleEmailOneJob;
-use App\Jobs\Referred\ReferredNotInterestedJob;
+use App\Jobs\Referred\ReferredStatusChangeJob;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class ReferredNotInterestedListener
+class ReferredStatusChangeListener
 {
     /**
      * Create the event listener.
@@ -21,8 +21,8 @@ class ReferredNotInterestedListener
     /**
      * Handle the event.
      */
-    public function handle(ReferredNotInterestedEvent $event): void
+    public function handle(ReferredStatusChangeEvent $event): void
     {
-        dispatch(new ReferredNotInterestedJob($event->referred));
+        dispatch(new ReferredStatusChangeJob($event->referred));
     }
 }
