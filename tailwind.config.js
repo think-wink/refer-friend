@@ -34,9 +34,10 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['serif', ...defaultTheme.fontFamily.sans],
-        merry: ['Merriweather'],
-        mont: ['Montserrat', 'sans-serif']
+        sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+        // sans: ['serif', ...defaultTheme.fontFamily.sans],
+        // merry: ['Merriweather'],
+        // mont: ['Montserrat', 'sans-serif']
       },
     },
     screens: {

@@ -77,6 +77,7 @@ class Referred extends Model
                  if($referred->reward_status === 'not_interested') {
                      ReferredNotInterestedEvent::dispatch($referred);
                  }
+                 // add meeting booked and form_completed as well to cancel emails
              });
          }
     }
