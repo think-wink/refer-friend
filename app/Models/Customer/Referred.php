@@ -84,9 +84,7 @@ class Referred extends Model
              });
              // If the referred is not interested
              static::updated(function ($referred) {
-                 if($referred->reward_status === 'form_completed' || $referred->reward_status === 'not_interested' || $referred->reward_status === 'meeting_booked') {
-                     ReferredStatusChangeEvent::dispatch($referred);
-                 }
+                 ReferredStatusChangeEvent::dispatch($referred);
              });
          }
     }

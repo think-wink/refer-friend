@@ -8,52 +8,37 @@
         <meta name="color-scheme" content="light">
         <meta name="supported-color-schemes" content="light">
         <style>
-            @media only screen and (max-width: 600px) {
-
-                 .table2 {
-                    display: block !important;
-                    margin-bottom: 1em !important;
-                }
-
-                .footer-image {
-                    text-align: center !important;
-                }
-
-                .footer-top td {
-                    display: block !important;
-                    text-align: center !important;
-                }
-
-                .footer-icons {
-                    text-align: center !important;
-                }
-
-                .footer-mid td {
-                    display: block !important;
-                    text-align: center !important;
-                    padding-top: 1em !important;
-                }
-
-                .inner-body {
+            @media only screen and (max-width: 650px) {
+                .wrapper {
                     width: 100% !important;
                 }
 
-                .footer {
+                .header-bottom img {
                     width: 100% !important;
                 }
-            }
 
-            @media only screen and (max-width: 500px) {
-                .button {
-                    width: 100% !important;
+                /* Footer Styling */
+
+                .footer, .tableBottomLeft, .tableBottomRight {
+                    text-align: center !important;
+                }
+
+                .tableLeft {
+                    width: 100%;
+                    display: block;
+                }
+
+                .tableRight {
+                    width: 100%;
+                    display: block;
                 }
             }
         </style>
     </head>
     <body>
-        <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+        <table class="wrapper" width="600" cellpadding="0" cellspacing="0" role="presentation" align="center">
             <tr>
-                <td class="top-text">
+                <td class="textOutside">
                     Having trouble viewing this email? <a href="{{ config('app.url') }}/mail-preview/{{ $mail_uuid }}"> View Online </a>
                 </td>
             </tr>
@@ -63,7 +48,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="body">
+                <td class="body" width="100%">
                     {{ $slot }}
                 </td>
             </tr>
@@ -73,7 +58,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="bottom-text">
+                <td class="textOutside">
                     <p>You're receiving this email because you opted-in for emails when you used our online calculator.</p>
                     <p><a href="{{ config('app.url') }}/unsubscribe/{{ $receiver_type }}/{{ $receiver_uuid }}">unsubscribe</a></p>
                 </td>

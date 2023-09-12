@@ -276,16 +276,16 @@
 
               <div class="flex flex-row space-x-8 mt-2 ml-8">
                 <a href="https://www.facebook.com/HouseholdCap?_gl=1*neqiq*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
-                  <img src="https://householdcapital.com.au/wp-content/uploads/2020/08/social-media-facebook.png" alt="social-media-facebook" title="social-media-facebook" />
+                  <img src="/img/icons/facebook.png" alt="social-media-facebook" title="social-media-facebook" />
                 </a>
                 <a href="https://twitter.com/HouseholdCapit1?_gl=1*neqiq*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
-                  <img src="https://householdcapital.com.au/wp-content/uploads/2020/08/social-media-twitter.png" alt="social-media-twitter" title="social-media-twitter" />
+                  <img src="/img/icons/twitter.png" alt="social-media-twitter" title="social-media-twitter" />
                 </a>
                 <a href="http://www.linkedin.com/company/household-capital/?_gl=1*17jo4h9*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
-                  <img src="https://householdcapital.com.au/wp-content/uploads/2020/08/social-media-linkedin.png" alt="social-media-linkedin" title="social-media-linkedin" />
+                  <img src="/img/icons/linkedin.png" alt="social-media-linkedin" title="social-media-linkedin" />
                 </a>
                 <a href="https://www.youtube.com/channel/UC0i5Trr2mDYi_T47LwcX4cQ?_gl=1*17jo4h9*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
-                  <img src="https://householdcapital.com.au/wp-content/uploads/2020/08/social-media-youtube.png" alt="social-media-youtube" title="social-media-youtube" />
+                  <img src="/img/icons/youtube.png" alt="social-media-youtube" title="social-media-youtube" />
                 </a>
               </div>
             </div>
