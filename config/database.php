@@ -128,15 +128,6 @@ return [
             'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
         ],
 
-        'default' => [
-            'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'username' => env('REDIS_USERNAME'),
-            'password' => env('REDIS_PASSWORD'),
-            'port' => env('REDIS_PORT', '6379'),
-            'database' => env('REDIS_DB', '0'),
-        ],
-
         'cache' => [
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
@@ -155,6 +146,9 @@ return [
                     'database' => 0,
                 ],
             ],
+            'options' => [ // Clustering specific options
+                'cluster' => 'redis', // This tells Redis Client lib to follow redirects (from cluster)
+            ]
         ],
 
     ],
