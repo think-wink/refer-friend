@@ -42,12 +42,8 @@ class NurtureCycleEmailTwoJob implements ShouldQueue
             $mail->update(['email_sent' => true]);
             $this->referred->update(['reward_status' => 'nurture_cycle_email_2_sent']);
 
-            // Scheduled Time
-            $time = Carbon::parse($mail->scheduled_date_time)->format('H:i:s');
-            $scheduled_date_time = Carbon::parse($mail->scheduled_date_time)->addDays(16)->format('Y-m-d') . ' ' . $time;
-
             // Create a record for this email and the next email to be sent out
-            $this->referred->emailJobs()->create(['email_type' => 'nurture_cycle_email_3', 'scheduled_date_time' => $scheduled_date_time]);
+            $this->referred->emailJobs()->create(['email_type' => 'nurture_cycle_email_3', 'scheduled_date_time' => $mail->scheduled_date_time->addDays(16)]);
 
         } else {
             $this->referred->emailJobs()->where('email_type', 'nurture_cycle_email_2')->delete();

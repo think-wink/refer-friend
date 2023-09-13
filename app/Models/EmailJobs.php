@@ -18,6 +18,7 @@ class EmailJobs extends Model
 
     protected $casts = [
         'email_sent' => 'boolean',
+        'scheduled_date_time'=> 'datetime',
     ];
 
     public function customer()

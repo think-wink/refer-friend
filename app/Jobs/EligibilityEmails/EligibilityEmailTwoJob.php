@@ -42,12 +42,8 @@ class EligibilityEmailTwoJob implements ShouldQueue
             $mail->update(['email_sent' => true]);
             $this->referred->update(['reward_status' => 'eligibility_email_2_sent']);
 
-            // Scheduled Time
-            $time = Carbon::parse($mail->scheduled_date_time)->format('H:i:s');
-            $scheduled_date_time = Carbon::parse($mail->scheduled_date_time)->addDays(5)->format('Y-m-d') . ' ' . $time;
-
             // Create a record for the next email to be sent out
-            $this->referred->emailJobs()->create(['email_type' => 'eligibility_email_3', 'scheduled_date_time' => $scheduled_date_time]);
+            $this->referred->emailJobs()->create(['email_type' => 'eligibility_email_3', 'scheduled_date_time' => $mail->scheduled_date_time->addDays(5)]);
 
         } else {
             $this->referred->emailJobs()->where('email_type', 'eligibility_email_2')->delete();
