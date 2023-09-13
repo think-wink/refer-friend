@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
 
         // This command need to run every three hours.
-        $schedule->command('check-status:send-emails')->everyMinute()->withoutOverlapping();
+        $schedule->command('check-status:send-emails')->everyThreeHours()->withoutOverlapping();
     }
 
     /**
