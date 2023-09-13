@@ -80,13 +80,10 @@
 
       <div class="flex justify-center pt-5">
         <div class="text-center text-toolbar w-2/3">
-          <h3 class="text-5xl font-bold font-merry">Refer your friends to earn up to $500</h3>
+          <h3 class="text-5xl font-bold font-merry">Refer your friends to earn $250</h3>
 
           <p class="my-4">
-            Refer as many friends as you like and if they are approved for a Household Loan, you'll both receive up to $500 to spend on whatever you like!
-          </p>
-          <p class="my-6">
-            Simply provide your friends details below and we'll take care of the rest. It's that simple!
+            We’d love our valued customers to share their experience. We’re offering a referral reward for you and your friends if they also settle a loan with us. It’s simple to start the process. Just fill in the details below.
           </p>
         </div>
       </div>

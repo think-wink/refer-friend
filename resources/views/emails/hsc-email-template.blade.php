@@ -1,4 +1,4 @@
-<x-mail::message :mail_uuid="$mail_uuid" :cover_image="$cover_image" :receiver_type="$receiver_type" :receiver_uuid="$receiver_uuid" :preview="$preview">
+<x-mail::message :mail_uuid="$mail_uuid" :cover_image="$cover_image" :receiver_type="$receiver_type" :receiver_uuid="$receiver_uuid">
 @isset($greeting_text)
 {!! $greeting_text !!}
 @endif

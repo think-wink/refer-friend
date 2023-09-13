@@ -82,7 +82,7 @@ class CreateReferred extends FormRequest
             'referrer_last_name.max' => 'Your name should be no more than 50 characters.',
             'referees.*.email.required' => 'Email is required.',
             'referees.*.email.email' => 'Email must be a valid.',
-            'referees.*.email.unique' => 'This email has already been taken.',
+            'referees.*.email.unique' => 'This person has already been referred.',
             'referees.*.phone_number.required' => 'Phone number is required.',
             'referees.*.phone_number.digits' => 'Phone number should be at least 10 digits.',
             'referees.*.first_name.required' => 'First name is required.',

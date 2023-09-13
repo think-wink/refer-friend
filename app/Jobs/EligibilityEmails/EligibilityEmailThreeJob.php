@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 
 class EligibilityEmailThreeJob implements ShouldQueue
@@ -40,8 +41,12 @@ class EligibilityEmailThreeJob implements ShouldQueue
             $mail->update(['email_sent' => true]);
             $this->referred->update(['reward_status' => 'eligibility_email_3_sent']);
 
+            // Scheduled Time
+            $time = Carbon::parse($mail->scheduled_date_time)->format('H:i:s');
+            $scheduled_date_time = Carbon::parse($mail->scheduled_date_time)->addDays(7)->format('Y-m-d') . ' ' . $time;
+
             // Create a record for the next email to be sent out
-            $this->referred->emailJobs()->create(['email_type' => 'eligibility_email_4', 'scheduled_date_time' => now()->addDays(14)]);
+            $this->referred->emailJobs()->create(['email_type' => 'eligibility_email_4', 'scheduled_date_time' => $scheduled_date_time]);
 
         } else {
             $this->referred->emailJobs()->where('email_type', 'eligibility_email_3')->delete();

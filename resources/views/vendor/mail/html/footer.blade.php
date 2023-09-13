@@ -1,18 +1,17 @@
-@props(['preview'])
 <tr>
-    <td class="pre-footer">
+    <td class="preFooter">
         <h2>Find out more</h2>
     </td>
 </tr>
 <tr>
-    <td class="pre-footer">
-        <table class="table1">
+    <td class="preFooter">
+        <table class="tableFooter" width="90%" cellspacing="4" align="center">
             <tr>
-                <td class="table2">
-                    <table>
+                <td width="50%" class="tableLeft">
+                    <table width="100%">
                         <tr>
                             <td>
-                                <img src="{{ $preview ? asset('/img/refer-email/pre-footer-1.png') : 'cid:pre-footer-1.png' }}" alt="Faqs image" />
+                                <img src="cid:pre-footer-1.png" onerror="this.onerror=null; this.src='{{ asset('/img/refer-email/pre-footer-1.png') }}'"  alt="Faqs image" width="60" />
                             </td>
                             <td>
                                 <h4>FAQs</h4>
@@ -21,11 +20,11 @@
                         </tr>
                     </table>
                 </td>
-                <td class="table2">
-                    <table>
+                <td width="50%" class="tableRight">
+                    <table width="100%">
                         <tr>
                             <td>
-                                <img src="{{ $preview ? asset('/img/refer-email/pre-footer-2.png') : 'cid:pre-footer-2.png' }}" alt="T&C image" />
+                                <img src="cid:pre-footer-2.png"  onerror="this.onerror=null; this.src='{{ asset('/img/refer-email/pre-footer-2.png') }}'" alt="T&C image" width="60" />
                             </td>
                             <td>
                                 <h4>Terms and Conditions</h4>
@@ -40,53 +39,86 @@
 </tr>
 <tr>
     <td class="footer">
-        <table>
-            <tr class="footer-top">
-                <td class="footer-image">
+        <table class="tableFooter" width="90%" cellspacing="4" align="center">
+            <tr>
+                <td width="50%" class="tableLeft">
                      <a href="https://householdcapital.com.au/">
-                        <img src="{{ $preview ? asset('/img/refer-email/footer.png') : 'cid:footer.png' }}" alt="company logo" />
+                        <img src="cid:footer.png" onerror="this.onerror=null; this.src='{{ asset('/img/refer-email/footer.png') }}'" alt="company logo" width="200" />
                      </a>
                 </td>
-                <td>
-                    <table class="footer-icons">
+                <td width="50%" class="tableRight">
+                    <table cellpadding="3" width="100%">
                         <tr>
-                            <td>CONNECT</td>
+                            <td colspan="4" class="textWhite">CONNECT</td>
                         </tr>
-                        <tr>
+                        <tr class="footerRight">
                             <td>
                                 <a href="https://www.facebook.com/HouseholdCap?_gl=1*neqiq*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
-                                  <img src="https://householdcapital.com.au/wp-content/uploads/2020/08/social-media-facebook.png" alt="social-media-facebook" title="social-media-facebook" />
+                                  <img src="cid:facebook.png" onerror="this.onerror=null; this.src='{{ asset('/img/icons/facebook.png') }}'" alt="social-media-facebook" title="social-media-facebook" />
                                 </a>
+                            </td>
+                            <td>
                                 <a href="https://twitter.com/HouseholdCapit1?_gl=1*neqiq*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
-                                  <img src="https://householdcapital.com.au/wp-content/uploads/2020/08/social-media-twitter.png" alt="social-media-twitter" title="social-media-twitter" />
+                                  <img src="cid:twitter.png" onerror="this.onerror=null; this.src='{{ asset('/img/icons/twitter.png') }}'" alt="social-media-twitter" title="social-media-twitter" />
                                 </a>
+                            </td>
+                            <td>
                                 <a href="http://www.linkedin.com/company/household-capital/?_gl=1*17jo4h9*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
-                                  <img src="https://householdcapital.com.au/wp-content/uploads/2020/08/social-media-linkedin.png" alt="social-media-linkedin" title="social-media-linkedin" />
+                                  <img src="cid:linkedin.png" onerror="this.onerror=null; this.src='{{ asset('/img/icons/linkedin.png') }}'" alt="social-media-linkedin" title="social-media-linkedin" />
                                 </a>
+                            </td>
+                            <td>
                                 <a href="https://www.youtube.com/channel/UC0i5Trr2mDYi_T47LwcX4cQ?_gl=1*17jo4h9*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
-                                  <img src="https://householdcapital.com.au/wp-content/uploads/2020/08/social-media-youtube.png" alt="social-media-youtube" title="social-media-youtube" />
+                                  <img src="cid:youtube.png" onerror="this.onerror=null; this.src='{{ asset('/img/icons/youtube.png') }}'" alt="social-media-youtube" title="social-media-youtube" />
                                 </a>
                             </td>
                         </tr>
                     </table>
                 </td>
             </tr>
-            <tr class="footer-mid">
-                <td class="col-1">
-                    <h4>Household Capital Pty Ltd</h4>
-                    PO Box 4232, Fitzroy South, VIC 3065
-                    Copyright © Household Capital 2021
+            <tr class="colOne">
+                <td width="50%" class="tableLeft tableBottomLeft">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                               <h4>Household Capital Pty Ltd</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                               <p>PO Box 4232, Fitzroy South, VIC 3065</p>
+                            </td>
+
+                        </tr>
+                        <tr>
+                           <td>
+                               <p>Copyright © Household Capital 2021</p>
+                           </td>
+                        </tr>
+                    </table>
                 </td>
-                <td class="col-2">
-                    <a href="https://householdcapital.com.au/privacy-credit-reporting-policy/">Privacy Policy</a>
-                    <a href="https://householdcapital.com.au/privacy-credit-reporting-policy/">Credit Reporting Policy</a>
+                <td width="50%" class="tableRight tableBottomRight">
+                    <table width="100%" align="right">
+                        <tr>
+                            <td>
+                               <a href="https://householdcapital.com.au/privacy-credit-reporting-policy/">Privacy Policy</a>
+                            </td>
+                        </tr>
+                        <tr>
+                           <td>
+                               <a href="https://householdcapital.com.au/privacy-credit-reporting-policy/">Credit Reporting Policy</a>
+                           </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" class="footer-bottom">
-                    Applications for credit are subject to eligibility and lending criteria. Fees and charges are payable and terms and conditions apply (available upon request).
-                    Household Capital pty Limited is a credit representative (51 757) of Mortgage Direct Ptu Limited ACN 075 121 434 Australian Credit License
-                    391876 HOUSEHOLD CAPITAL the Star Device and Household Capital and the Star Device or trademarks of Household Capital Pty Ltd
+                <td colspan="2" class="footerBottom">
+                   <p>
+                        Applications for credit are subject to eligibility and lending criteria. Fees and charges are payable and terms and conditions apply (available upon request).
+                        Household Capital pty Limited is a credit representative (51 757) of Mortgage Direct Ptu Limited ACN 075 121 434 Australian Credit License
+                        391876 HOUSEHOLD CAPITAL the Star Device and Household Capital and the Star Device or trademarks of Household Capital Pty Ltd
+                    </p>
                 </td>
             </tr>
         </table>

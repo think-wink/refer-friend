@@ -4,6 +4,7 @@ body, body *:not(html):not(style):not(tr):not(code) {
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     position: relative;
 }
+/* Layout */
 
 body {
     -webkit-text-size-adjust: none;
@@ -15,52 +16,28 @@ body {
     width: 100% !important;
 }
 
-/* Layout */
-
 .wrapper {
-    -premailer-cellpadding: 0;
-    -premailer-cellspacing: 0;
-    -premailer-width: 100%;
     background-color: #ffffff;
     margin: 0 auto;
     padding: 0;
-    width: 100%;
-    max-width: 600px;
-}
-
-.content {
-    -premailer-cellpadding: 0;
-    -premailer-cellspacing: 0;
-    -premailer-width: 100%;
-    margin: 0;
-    padding: 0;
-    width: 100%;
 }
 
 .body {
-    -premailer-cellpadding: 0;
-    -premailer-cellspacing: 0;
-    -premailer-width: 100%;
     margin: 0;
     padding: 1em 2em;
-    width: 100%;
     word-break: break-word;
 }
 
 .body p {
-    color: black;
+    color: #1c1c1c;
 }
 
-.top-text{
-    text-align: center;
-    background-color: #edf2f7;
-    padding: 1em 0;
-}
+/* Text Outside Body */
 
-.bottom-text {
+.textOutside {
     text-align: center;
     background-color: #edf2f7;
-    padding: 1em 2em;
+    padding: 1em;
 }
 
 .header-top {
@@ -68,165 +45,74 @@ body {
     height: 2em;
 }
 
-.header-bottom {
-    background-color: white;
-}
-
-.header-bottom img {
-    margin: 0;
-    object-fit: cover;
+/* Header and Cover Image */
+.header-bottom img, .cover-image img {
     width: 100%;
-    height: auto;
     display: block;
 }
 
-.cover table {
-    border-spacing: 0;
-}
+/* Button CSS */
 
-.cover table {
-    border-spacing: 0;
-}
-
-.cover-image img {
-    width: 100%;
-    object-fit: cover;
-    height: auto;
-    display: block;
-}
-/* Footer */
-
-.footer {
-    -premailer-cellpadding: 0;
-    -premailer-cellspacing: 0;
-    -premailer-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-    width: 600px;
-    background-color: #19263f;
-    color: white;
-    padding: 2em;
-}
-
-.footer p {
-    color: #b0adc5;
-    font-size: 12px;
+.textCenter {
     text-align: center;
 }
-
-.footer a {
-    color: #b0adc5;
-    text-decoration: underline;
-}
-
-/* Tables */
-
-.table table {
-    -premailer-cellpadding: 0;
-    -premailer-cellspacing: 0;
-    -premailer-width: 100%;
-    margin: 30px auto;
-    width: 100%;
-}
-
 
 .button {
-    text-align: center;
-    margin-bottom: 1em;
-}
-
-.button a {
-    -webkit-text-size-adjust: none;
-    color: #19263f;
     background-color: #f7b515;
-    font-weight: 500;
-    display: inline-block;
-    text-decoration: none;
-    margin: 1em 0;
-    padding: 0.5em 1em;
     border-radius: 2em;
 }
 
-.pre-footer {
+.button a {
+    text-decoration: none;
+    color: #19263f;
+}
+
+/* Footer and Pre Footer CSS */
+
+.preFooter {
     background-color: #f9f8f6;
 }
 
-.pre-footer h2 {
+.preFooter h2 {
     text-align: center;
     margin-bottom: 0;
 }
 
-.pre-footer .table {
-    width: 100%;
-    -premailer-cellpadding: 0;
-    -premailer-cellspacing: 0;
-    -premailer-width: 100%;
-}
-
-.pre-footer .table1 {
-    padding: 0 2em 1em;
-    -premailer-cellpadding: 0;
-    -premailer-cellspacing: 0;
-    -premailer-width: 100%;
-    width: 100%;
-}
-
-.table1 p, h4 {
-    margin: 0;
-}
-
-.pre-footer img {
-    width: 60px !important;
-    margin-right: 1em;
-}
-
-.col-1 {
-    text-align: left;
-    color: white;
-}
-
-.col-2 {
-    text-align: right;
-    white-space: nowrap;
-    color: white;
-}
- .col-2 a {
-    display: block;
-}
-
-.footer-image {
-    text-align: left;
-}
-
-.footer-image img {
-    max-width: 200px;
-}
-
-.footer-icons {
+.footer {
     margin: 0;
     padding: 0;
-    width: 100%;
-    text-align: right;
+    width: 600px;
+    background-color: #19263f;
     color: white;
 }
 
-.footer-icons td {
-    display: inline-flex;
-}
-
-.footer-icons td a {
-    margin: 0 0 0 1em;
-}
-
-.footer-mid td {
-    padding: 2em 0 1em;
-}
-
-.footer-bottom {
-    border-top: 1px solid #a2a2a2;
-    padding-top: 1em;
-    font-style: italic;
+.tableBottomLeft {
     text-align: left;
-    font-size: 0.8em;
+    white-space: nowrap;
+}
+
+.tableBottomLeft p, .tableBottomLeft h4, .textWhite {
     color: white;
+}
+
+.tableBottomRight {
+    text-align: right;
+}
+
+.tableBottomRight a {
+    color: white;
+}
+
+.tableFooter {
+    padding: 0;
+    margin: 0 auto 1em !important;
+}
+
+.tableFooter p, h4 {
+    margin: 0;
+}
+
+.footerBottom p {
+    color: rgba(249, 248, 246, 0.52);
+    font-size: 12px;
 }
