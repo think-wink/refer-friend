@@ -14,15 +14,15 @@ class MailPreviewController extends Controller
         switch ($email->email_type){
             case 'referrer_created':
                 $mailableClass = "App\\Mail\\ReferrerCreatedMail";
-                $email_preview = new $mailableClass($email->customer, $email->uuid, true);
+                $email_preview = new $mailableClass($email->customer, $email->uuid);
                 break;
             case str_contains($email->email_type, 'eligibility_email_'):
                 $mailableClass = "App\\Mail\\EligibilityMail";
-                $email_preview = new $mailableClass($email->customer, $email->email_type, $email->uuid, true);
+                $email_preview = new $mailableClass($email->customer, $email->email_type, $email->uuid);
                 break;
             case str_contains($email->email_type, 'nurture_cycle_email_'):
                 $mailableClass = "App\\Mail\\NurtureCycleMail";
-                $email_preview = new $mailableClass($email->customer, $email->email_type, $email->uuid, true);
+                $email_preview = new $mailableClass($email->customer, $email->email_type, $email->uuid);
                 break;
             default:
                 break;

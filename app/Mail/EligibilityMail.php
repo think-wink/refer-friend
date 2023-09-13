@@ -20,18 +20,16 @@ class EligibilityMail extends Mailable
     protected Referred $referred;
     protected Referrer $referrer;
     protected string $mail_uuid;
-    protected bool $preview;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($referred, $email_type, $mail_uuid, $preview = false)
+    public function __construct($referred, $email_type, $mail_uuid)
     {
         $this->email_template = EmailTemplates::where('type', $email_type)->first();
         $this->referred = $referred;
         $this->referrer = $referred->referrer;
         $this->mail_uuid = $mail_uuid;
-        $this->preview = $preview;
     }
 
     /**
@@ -40,7 +38,7 @@ class EligibilityMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: $this->email_template->subject,
+            subject: str_replace('{referrer_name}', $this->referrer->first_name.' '.$this->referrer->last_name, $this->email_template->subject),
         );
     }
 
@@ -61,7 +59,6 @@ class EligibilityMail extends Mailable
                 'receiver_type' => 'referred',
                 'receiver_uuid' => $this->referred->uuid,
                 'mail_uuid' => $this->mail_uuid,
-                'preview' => $this->preview,
             ],
         );
     }

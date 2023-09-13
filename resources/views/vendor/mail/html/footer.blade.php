@@ -1,4 +1,3 @@
-@props(['preview'])
 <tr>
     <td class="preFooter">
         <h2>Find out more</h2>
@@ -12,7 +11,7 @@
                     <table width="100%">
                         <tr>
                             <td>
-                                <img src="{{ $preview ? asset('/img/refer-email/pre-footer-1.png') : 'cid:pre-footer-1.png' }}" alt="Faqs image" width="60 "/>
+                                <img src="cid:pre-footer-1.png" onerror="this.onerror=null; this.src='{{ asset('/img/refer-email/pre-footer-1.png') }}'"  alt="Faqs image" width="60" />
                             </td>
                             <td>
                                 <h4>FAQs</h4>
@@ -25,7 +24,7 @@
                     <table width="100%">
                         <tr>
                             <td>
-                                <img src="{{ $preview ? asset('/img/refer-email/pre-footer-2.png') : 'cid:pre-footer-2.png' }}" alt="T&C image" width="60" />
+                                <img src="cid:pre-footer-2.png"  onerror="this.onerror=null; this.src='{{ asset('/img/refer-email/pre-footer-2.png') }}'" alt="T&C image" width="60" />
                             </td>
                             <td>
                                 <h4>Terms and Conditions</h4>
@@ -44,7 +43,7 @@
             <tr>
                 <td width="50%" class="tableLeft">
                      <a href="https://householdcapital.com.au/">
-                        <img src="{{ $preview ? asset('/img/refer-email/footer.png') : 'cid:footer.png' }}" alt="company logo" width="200" />
+                        <img src="cid:footer.png" onerror="this.onerror=null; this.src='{{ asset('/img/refer-email/footer.png') }}'" alt="company logo" width="200" />
                      </a>
                 </td>
                 <td width="50%" class="tableRight">
@@ -55,22 +54,22 @@
                         <tr class="footerRight">
                             <td>
                                 <a href="https://www.facebook.com/HouseholdCap?_gl=1*neqiq*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
-                                  <img src="{{ $preview ? asset('/img/icons/facebook.png') : 'cid:facebook.png' }}" alt="social-media-facebook" title="social-media-facebook" />
+                                  <img src="cid:facebook.png" onerror="this.onerror=null; this.src='{{ asset('/img/icons/facebook.png') }}'" alt="social-media-facebook" title="social-media-facebook" />
                                 </a>
                             </td>
                             <td>
                                 <a href="https://twitter.com/HouseholdCapit1?_gl=1*neqiq*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
-                                  <img src="{{ $preview ? asset('/img/icons/linkedin.png') : 'cid:linkedin.png' }}" alt="social-media-twitter" title="social-media-twitter" />
+                                  <img src="cid:twitter.png" onerror="this.onerror=null; this.src='{{ asset('/img/icons/twitter.png') }}'" alt="social-media-twitter" title="social-media-twitter" />
                                 </a>
                             </td>
                             <td>
                                 <a href="http://www.linkedin.com/company/household-capital/?_gl=1*17jo4h9*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
-                                  <img src="{{ $preview ? asset('/img/icons/twitter.png') : 'cid:twitter.png' }}" alt="social-media-linkedin" title="social-media-linkedin" />
+                                  <img src="cid:linkedin.png" onerror="this.onerror=null; this.src='{{ asset('/img/icons/linkedin.png') }}'" alt="social-media-linkedin" title="social-media-linkedin" />
                                 </a>
                             </td>
                             <td>
                                 <a href="https://www.youtube.com/channel/UC0i5Trr2mDYi_T47LwcX4cQ?_gl=1*17jo4h9*_ga*MTExNzkxMTA1NC4xNjkzMjgzNzc5*_ga_0LYY798T8J*MTY5MzI4ODEyMS4yLjEuMTY5MzI4ODc1NC4wLjAuMA.." title="" target="_blank">
-                                  <img src="{{ $preview ? asset('/img/icons/youtube.png') : 'cid:youtube.png' }}" alt="social-media-youtube" title="social-media-youtube" />
+                                  <img src="cid:youtube.png" onerror="this.onerror=null; this.src='{{ asset('/img/icons/youtube.png') }}'" alt="social-media-youtube" title="social-media-youtube" />
                                 </a>
                             </td>
                         </tr>

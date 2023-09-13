@@ -18,17 +18,15 @@ class ReferrerCreatedMail extends Mailable
     private $email_template;
     protected Referrer $referrer;
     protected string $mail_uuid;
-    protected bool $preview;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($referrer, $mail_uuid, $preview = false)
+    public function __construct($referrer, $mail_uuid)
     {
         $this->email_template = EmailTemplates::where('type', 'referrer_created')->first();
         $this->referrer = $referrer;
         $this->mail_uuid = $mail_uuid;
-        $this->preview = $preview;
     }
 
     /**
@@ -59,7 +57,6 @@ class ReferrerCreatedMail extends Mailable
                 'receiver_type' => 'referrer',
                 'receiver_uuid' => $this->referrer->uuid,
                 'mail_uuid' => $this->mail_uuid,
-                'preview' => $this->preview,
             ],
         );
     }
@@ -76,6 +73,10 @@ class ReferrerCreatedMail extends Mailable
             Attachment::fromPath(public_path('/img/refer-email/footer.png'))->as('footer.png')->withMime('image/png'),
             Attachment::fromPath(public_path('/img/refer-email/pre-footer-1.png'))->as('pre-footer-1.png')->withMime('image/png'),
             Attachment::fromPath(public_path('/img/refer-email/pre-footer-2.png'))->as('pre-footer-2.png')->withMime('image/png'),
+            Attachment::fromPath(public_path('/img/icons/facebook.png'))->as('facebook.png')->withMime('image/png'),
+            Attachment::fromPath(public_path('/img/icons/linkedin.png'))->as('linkedin.png')->withMime('image/png'),
+            Attachment::fromPath(public_path('/img/icons/twitter.png'))->as('twitter.png')->withMime('image/png'),
+            Attachment::fromPath(public_path('/img/icons/youtube.png'))->as('youtube.png')->withMime('image/png'),
         ];
         if($this->email_template->cover_image){
            $attachments[] = Attachment::fromPath(public_path($this->email_template->cover_image))->as('cover');
