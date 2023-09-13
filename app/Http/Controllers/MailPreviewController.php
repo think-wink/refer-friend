@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EmailJobs;
+use Inertia\Inertia;
 
 class MailPreviewController extends Controller
 {
@@ -10,6 +11,10 @@ class MailPreviewController extends Controller
     {
 
         $email = EmailJobs::with('customer')->where('uuid', $mail_uuid)->first();
+
+        if(!$email){
+            return Inertia::render('ReferFriend/404Page');
+        }
 
         switch ($email->email_type){
             case 'referrer_created':
