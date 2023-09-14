@@ -3,7 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Customer\Referrer;
-use App\Models\EmailTemplates;
+use App\Models\EmailTemplate;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Attachment;
@@ -24,7 +24,7 @@ class ReferrerCreatedMail extends Mailable
      */
     public function __construct($referrer, $mail_uuid)
     {
-        $this->email_template = EmailTemplates::where('type', 'referrer_created')->first();
+        $this->email_template = EmailTemplate::where('type', 'referrer_created')->first();
         $this->referrer = $referrer;
         $this->mail_uuid = $mail_uuid;
     }

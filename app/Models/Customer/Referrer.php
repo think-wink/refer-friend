@@ -3,7 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Events\Referrer\ReferrerCreatedEvent;
-use App\Models\EmailJobs;
+use App\Models\EmailJob;
 use App\Models\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -47,6 +47,6 @@ class Referrer extends Model
 
     public function emailJobs(): MorphMany
     {
-        return $this->morphMany(EmailJobs::class, 'customer');
+        return $this->morphMany(EmailJob::class, 'customer');
     }
 }

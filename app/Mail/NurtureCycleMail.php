@@ -4,7 +4,7 @@ namespace App\Mail;
 
 use App\Models\Customer\Referred;
 use App\Models\Customer\Referrer;
-use App\Models\EmailTemplates;
+use App\Models\EmailTemplate;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Attachment;
@@ -26,7 +26,7 @@ class NurtureCycleMail extends Mailable
      */
     public function __construct($referred, $email_type, $mail_uuid)
     {
-        $this->email_template = EmailTemplates::where('type', $email_type)->first();
+        $this->email_template = EmailTemplate::where('type', $email_type)->first();
         $this->referred = $referred;
         $this->referrer = $referred->referrer;
         $this->mail_uuid = $mail_uuid;

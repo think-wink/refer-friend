@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Model;
 
-class EmailJobs extends Model
+class EmailJob extends Model
 {
 
     use HasUUID;
