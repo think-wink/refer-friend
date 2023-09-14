@@ -4,7 +4,7 @@ namespace App\Models\Customer;
 
 use App\Events\Referred\ReferredCreatedEvent;
 use App\Events\Referred\ReferredStatusChangeEvent;
-use App\Models\EmailJobs;
+use App\Models\EmailJob;
 use App\Models\Traits\HasUUID;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -109,6 +109,6 @@ class Referred extends Model
 
     public function emailJobs(): MorphMany
     {
-        return $this->morphMany(EmailJobs::class, 'customer');
+        return $this->morphMany(EmailJob::class, 'customer');
     }
 }

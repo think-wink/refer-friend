@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EmailJobs;
+use App\Models\EmailJob;
 use Inertia\Inertia;
 
 class MailPreviewController extends Controller
@@ -10,7 +10,7 @@ class MailPreviewController extends Controller
     public function preview($mail_uuid)
     {
 
-        $email = EmailJobs::with('customer')->where('uuid', $mail_uuid)->first();
+        $email = EmailJob::with('customer')->where('uuid', $mail_uuid)->first();
 
         if(!$email){
             return Inertia::render('ReferFriend/404Page');

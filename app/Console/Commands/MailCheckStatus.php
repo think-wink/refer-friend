@@ -8,24 +8,25 @@ use App\Jobs\EligibilityEmails\EligibilityEmailTwoJob;
 use App\Jobs\NurtureCycleEmails\NurtureCycleEmailOneJob;
 use App\Jobs\NurtureCycleEmails\NurtureCycleEmailThreeJob;
 use App\Jobs\NurtureCycleEmails\NurtureCycleEmailTwoJob;
-use App\Models\EmailJobs;
+use App\Models\EmailJob;
 use Illuminate\Console\Command;
 
-class CheckStatusAndSendEmails extends Command
+class MailCheckStatus extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'check-status:send-emails';
+    protected $signature = 'mail:check-status';
+    /* sail php artisan mail:check-status */
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Check Status of referreds and send emails';
+    protected $description = 'This Command is used to send pending emails and also schedule new ones';
 
     /**
      * Execute the console command.
@@ -33,7 +34,7 @@ class CheckStatusAndSendEmails extends Command
     public function handle()
     {
         // Get all the Email Jobs
-        $emails =  EmailJobs::with('customer')->where('email_sent', false)->get();
+        $emails =  EmailJob::with('customer')->where('email_sent', false)->get();
 
         // Send Emails based on their current status and their time
         foreach ($emails as $email){
