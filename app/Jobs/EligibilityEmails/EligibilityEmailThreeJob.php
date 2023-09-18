@@ -31,7 +31,7 @@ class EligibilityEmailThreeJob implements ShouldQueue
      */
     public function handle(): void
     {
-        if ($this->referred->reward_status === 'eligibility_email_2_sent') {
+        if ($this->referred->reward_status === 'eligibility_email_2_sent' && $this->referred->referrer) {
 
             $mail = $this->referred->emailJobs()->where('email_type', 'eligibility_email_3')->first();
             // Sent the eligibility email 2

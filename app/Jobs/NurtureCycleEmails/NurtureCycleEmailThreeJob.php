@@ -30,7 +30,7 @@ class NurtureCycleEmailThreeJob implements ShouldQueue
      */
     public function handle(): void
     {
-        if($this->referred->reward_status === 'nurture_cycle_email_2_sent') {
+        if($this->referred->reward_status === 'nurture_cycle_email_2_sent' && $this->referred->referrer) {
 
             // Create a record for this email and the next email to be sent out
             $mail = $this->referred->emailJobs()->where('email_type', 'nurture_cycle_email_3')->first();

@@ -31,7 +31,7 @@ class EligibilityEmailFourJob implements ShouldQueue
     public function handle(): void
     {
         // If they have filled form delete this job else send email
-        if ($this->referred->reward_status === 'eligibility_email_3_sent') {
+        if ($this->referred->reward_status === 'eligibility_email_3_sent' && $this->referred->referrer) {
 
             $mail = $this->referred->emailJobs()->where('email_type', 'eligibility_email_4')->first();
 

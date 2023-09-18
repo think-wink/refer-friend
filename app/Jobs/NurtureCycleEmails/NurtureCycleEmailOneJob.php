@@ -31,7 +31,7 @@ class NurtureCycleEmailOneJob implements ShouldQueue
      */
     public function handle(): void
     {
-        if($this->referred->reward_status === 'not_interested') {
+        if($this->referred->reward_status === 'not_interested' && $this->referred->referrer) {
 
             $mail = $this->referred->emailJobs()->where('email_type', 'nurture_cycle_email_1')->first();
 

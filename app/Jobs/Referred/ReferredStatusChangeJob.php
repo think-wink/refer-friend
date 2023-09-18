@@ -28,7 +28,7 @@ class ReferredStatusChangeJob implements ShouldQueue
      */
     public function handle(): void
     {
-        switch($this->referred->reward_status){
+        switch($this->referred->reward_status && $this->referred->referrer){
             case 'form_completed':
                 // If refereed has completed form, cancel eligibility emails
                 $this->referred->emailJobs()->whereIn('email_type', ['eligibility_email_2', 'eligibility_email_3', 'eligibility_email_4'])->where('email_sent', false)->delete();
