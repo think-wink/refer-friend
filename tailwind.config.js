@@ -29,6 +29,7 @@ module.exports = {
       footer: '#dee3e9',
       gold: '#f7b515',
       hover: '#5184a1',
+      link: '#0000ee',
 
       'text-second': '#FFFFFF99',
     },
@@ -45,6 +46,12 @@ module.exports = {
       md: '865px',
       sm: '450px',
     },
+    listStyleType: {
+      alpha: 'lower-alpha',
+      decimal: 'decimal',
+      dash: '"-"',
+      disc: 'disc',
+    }
   },
 
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],

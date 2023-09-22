@@ -11,11 +11,15 @@
                     <table width="100%">
                         <tr>
                             <td>
-                                <img src="cid:pre-footer-1.png" onerror="this.onerror=null; this.src='{{ asset('/img/refer-email/pre-footer-1.png') }}'"  alt="Faqs image" width="60" />
+                                <a href="{{config('app.url')}}/faqs">
+                                    <img src="cid:pre-footer-1.png" onerror="this.onerror=null; this.src='{{ asset('/img/refer-email/pre-footer-1.png') }}'"  alt="Faqs image" width="60" />
+                                </a>
                             </td>
                             <td>
-                                <h4>FAQs</h4>
-                                <p>Learn more about referrals and view Frequently Asked Questions</p>
+                                <a href="{{config('app.url')}}/faqs" style="color:black;text-decoration: none">
+                                    <h4>FAQs</h4>
+                                    <p>Learn more about referrals and view Frequently Asked Questions</p>
+                                </a>
                             </td>
                         </tr>
                     </table>
@@ -24,11 +28,16 @@
                     <table width="100%">
                         <tr>
                             <td>
-                                <img src="cid:pre-footer-2.png"  onerror="this.onerror=null; this.src='{{ asset('/img/refer-email/pre-footer-2.png') }}'" alt="T&C image" width="60" />
+                                <a href="{{config('app.url')}}/terms">
+                                    <img src="cid:pre-footer-2.png"  onerror="this.onerror=null; this.src='{{ asset('/img/refer-email/pre-footer-2.png') }}'" alt="T&C image" width="60" />
+                                </a>
+
                             </td>
                             <td>
-                                <h4>Terms and Conditions</h4>
-                                <p>View the Program Terms and Conditions</p>
+                                <a href="{{config('app.url')}}/terms" style="color:black;text-decoration: none">
+                                    <h4>Terms and Conditions</h4>
+                                    <p>View the Program Terms and Conditions</p>
+                                </a>
                             </td>
                         </tr>
                     </table>
