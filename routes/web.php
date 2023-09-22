@@ -12,7 +12,7 @@ use App\Http\Controllers\Tables\ReferredTable;
 use App\Http\Controllers\Tables\UserTable;
 use App\Models\Source\Retailer;
 use App\Http\Controllers\ImageController;
-
+use App\Http\Controllers\FrontEndController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,20 +64,13 @@ Route::prefix('dashboard')->name('dashboard.')->middleware([
 
 Route::redirect('/', '/dashboard');
 
-Route::get('/refer-friend-form/{uuid}', function($uuid){
-   if(\App\Models\Customer\Referrer::where('uuid', $uuid)->exists()){
-       return Inertia::render('ReferFriend/ReferFriendForm', ['uuid' => $uuid]);
-   } else {
-       return Inertia::render('ReferFriend/404Page');
-   }
-});
-
-Route::get('/refer-friend-eligibility', function(){
-   return Inertia::render('ReferFriend/ReferFriendEligibility');
-});
-
-Route::get('/unsubscribe/{type}/{uuid}', function($type, $uuid){
-    return Inertia::render('ReferFriend/UnsubscribeEmail', ['type' => $type, 'uuid' => $uuid]);
-});
-
 Route::get('/mail-preview/{mail_uuid}', [\App\Http\Controllers\MailPreviewController::class, 'preview']);
+
+Route::controller(FrontEndController::class)->group( function () {
+    Route::get('/refer-friend-form/{uuid}', 'referFriend');
+    Route::get('/refer-friend-eligibility', 'eligibility');
+    Route::get('/unsubscribe/{type}/{uuid}', 'unsubscribe');
+    Route::get('/terms', 'terms');
+    Route::get('/faqs', 'faqs');
+});
+

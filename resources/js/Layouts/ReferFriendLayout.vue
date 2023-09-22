@@ -178,25 +178,25 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 w-8/12 mx-auto">
 
-          <div class="flex flex-row justify-center lg:justify-end lg:mr-5 mb-4 lg:mb-0">
-            <div class="flex">
-              <img src="/img/refer/pre-footer-1.png" alt="info icon" class="self-center" />
-            </div>
-            <div class="px-5">
-              <h4 class="text-xl font-bold">FAQs</h4>
-              <p class="text-sm"> Learn More about referrals and view frequently asked questions</p>
-            </div>
-          </div>
+            <a href="/faqs" class="flex flex-row justify-center lg:justify-end lg:mr-5 mb-4 lg:mb-0">
+              <div class="flex">
+                <img src="/img/refer/pre-footer-1.png" alt="info icon" class="self-center" />
+              </div>
+              <div class="px-5">
+                <h4 class="text-xl font-bold">FAQs</h4>
+                <p class="text-sm"> Learn More about referrals and view frequently asked questions</p>
+              </div>
+            </a>
 
-          <div class="flex flex-row justify-center lg:justify-end ">
-            <div class="flex">
-              <img src="/img/refer/pre-footer-2.png" alt="info icon" class="self-center" />
-            </div>
-            <div class="px-5">
-              <h4 class="text-xl font-bold">Terms and Conditions</h4>
-              <p class="text-sm">View the program Terms and Conditions</p>
-            </div>
-          </div>
+            <a href="/terms" class="flex flex-row justify-center lg:justify-end ">
+              <div class="flex">
+                <img src="/img/refer/pre-footer-2.png" alt="info icon" class="self-center" />
+              </div>
+              <div class="px-5">
+                <h4 class="text-xl font-bold">Terms and Conditions</h4>
+                <p class="text-sm">View the program Terms and Conditions</p>
+              </div>
+            </a>
         </div>
       </div>
     </div>
