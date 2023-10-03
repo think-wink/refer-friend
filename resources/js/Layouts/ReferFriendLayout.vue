@@ -265,9 +265,7 @@
         <div class="border-t border-grey p-2 mt-2 mx-6 pb-4 flex lg:flex-row flex-col">
           <div class="flex-1">
             <p class="text-grey text-xs">
-              Household Capital Pty Limited ACN 618 068 214  is the issuer of the information on this website.
-              Household Capital Pty Limited is a credit representative (512757) of Mortgage Direct Pty Limited ACN 075 721 434, Australian Credit Licence 391876.
-              HOUSEHOLD CAPITAL, HOUSEHOLD TRANSFER, LIVE WELL AT HOME and the Star Device are trademarks of Household Capital Pty Ltd.
+              Household Capital Pty Limited ACN 618 068 214 is the issuer of the information on this website. Household Capital Pty Limited holds and Australian Credit Licence number of 545906 and is servicer for the credit provider Household Capital Services Pty Ltd. HOUSEHOLD CAPITAL, HOUSEHOLD TRANSFER, LIVE WELL AT HOME and the Star Device are trademarks of Household Capital Pty Ltd.
             </p>
           </div>
           <div class="flex-1 flex justify-center lg:justify-end mt-6 lg:mt-0">

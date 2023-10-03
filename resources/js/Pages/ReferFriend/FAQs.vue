@@ -14,8 +14,8 @@ export default {
         title: 'What is a Household Loan?',
         content: `<div>
           Please refer to the
-          <a class="text-link underline" href="https://householdcapital.com.au/"> Household Capital website </a> 
-          for more information on Household Loans or call 1300 057 080 to organise a personalised discussion with a retirement specialist.
+          <a class="text-link" href="https://householdcapital.com.au/"> Household Capital website </a>
+          for more information on Household Loans or call <a class="text-link" href="tel: 1300 057 080">1300 057 080</a> to organise a personalised discussion with a retirement specialist.
         </div>`,
       }, {
         title:'Am I eligible for a Household Loan?',
@@ -23,29 +23,25 @@ export default {
           <div>If you have been referred by a friend, please use our reverse mortgage calculator to see how much you could borrow. You will be required to enter the below information: </div>
           <ul class="list-disc flex flex-col gap-3 ml-10">
               <li>Your name, phone number and email so we can send you a summary document of your results</li>
-          
               <li>The age of the borrower/s (note: the youngest borrower must be aged 60+)</li>
-          
               <li>Whether your home is a house or apartment</li>
-          
               <li>Your postcode</li>
-          
               <li>The estimated value of your home (which needs to be at least $600,000 AUD)</li>
           </ul>
           <div>Once you submit that information, if eligible, you’ll see an estimate of the amount you may be able to borrow. </div>
-          <div>If you have any questions regarding our reverse mortgage calculator, call us on 1300 169 046. See how using your Household Capital™ could improve your retirement income and help you Live Well At Home™.  </div>
+          <div>If you have any questions regarding our reverse mortgage calculator, call us on <a class= "text-link" href="tel: 1300 169 046">1300 169 046</a>. See how using your Household Capital™ could improve your retirement income and help you Live Well At Home™.  </div>
         `
       }, {
         title: 'Do I qualify for a reward with Household Capital? ',
         content:`
             <div>To qualify for a reward as part of the refer a friend program, you must be a referrer or referee. </div>
             <div class="font-bold"> Referrer</div>
-            <div>If you have an existing Household Capital Household Loan, you may refer a friend or family member to Household Capital. If your friend settles a loan with Household Capital in 2023, you are eligible for a $150 reward. </div>
+            <div>If you have a settled a Household Loan with Household Capital and still hold the loan, you may refer a friend or family member to Household Capital. If your friend settles a loan with Household Capital, you are eligible for a $250 reward.</div>
             <div class="font-bold">Referee</div>
-            <div>If you have been referred by a friend and have since settled a Household Loan with Household Capital in 2023, you are eligible for a $500 reward.   </div>
+            <div>If you have been referred by a friend and have since settled a Household Loan with Household Capital, you are eligible for a $500 reward.</div>
             <div>
               More information can be found in the 
-              <a class="text-link underline" href="/terms"> Terms and Conditions </a>
+              <a class="text-link" href="/terms"> Terms and Conditions </a>
               .  
             </div>
         `
@@ -60,7 +56,7 @@ export default {
         content: `
           <div class="font-bold">Household Loan </div>
 
-          <div>Referrer $150 </div>
+          <div>Referrer $250 </div>
 
           <div>Referee $500 </div>
 
@@ -75,7 +71,7 @@ export default {
         content: `
           <div>
             Yes, if you have a Household Loan you can refer up to 10 friends. Refer more friends here 
-            <a class="text-link underline" href="#"> [Insert link to refer friend microsite] <a>. 
+            <a class="text-link" href="#"> [Insert link to refer friend microsite] <a>.
           </div>
         `
       }, {
@@ -83,7 +79,7 @@ export default {
         content: `
           <div>
             Please allow up to 3 business days to receive your Digital Prepaid Mastercard. If it has been longer than 3 business days, please contact us at 
-            <a class="text-link underline" href="#"> customer service </a>
+            <a class="text-link" href="#"> customer service </a>
           </div>
         `
       }, {
@@ -97,11 +93,11 @@ export default {
             <ol class="list-decimal flex flex-col gap-3 ml-5">
               <li>
                 Apple: 
-                <a class="text-link underline" href="https://apps.apple.com/au/app/the-card-network/id1481419515"> https://apps.apple.com/au/app/the-card-network/id1481419515 </a> 
+                <a class="text-link" href="https://apps.apple.com/au/app/the-card-network/id1481419515"> https://apps.apple.com/au/app/the-card-network/id1481419515 </a>
               </li>
               <li>
                 Google:
-                <a class="text-link underline" href="https://play.google.com/store/apps/details?id=com.tcnpayments.app"> https://play.google.com/store/apps/details?id=com.tcnpayments.app </a> 
+                <a class="text-link" href="https://play.google.com/store/apps/details?id=com.tcnpayments.app"> https://play.google.com/store/apps/details?id=com.tcnpayments.app </a>
               </li>
             </ol>
             <li>Add the gift card to your smartphone’s digital wallet;</li>
@@ -133,7 +129,7 @@ export default {
           </ol>
           <div>
             Should your Digital Prepaid Mastercard decline but has available balance and hasn’t expired, please contact The Card Network 
-            <a class="text-link underline" href="https://thecardnetwork.com.au/pages/contact-us"> https://thecardnetwork.com.au/pages/contact-us </a> 
+            <a class="text-link" href="https://thecardnetwork.com.au/pages/contact-us" target="_blank"> https://thecardnetwork.com.au/pages/contact-us </a>
           </div>
         `
       }, {
@@ -147,12 +143,10 @@ export default {
         content: `
           <div>
             <span>More information can be found here</span> 
-            <a class="text-link underline" href="https://householdcapital.com.au/frequently-asked-questions"> https://householdcapital.com.au/frequently-asked-questions/</a>. 
+            <a class="text-link" href="https://householdcapital.com.au/frequently-asked-questions"> https://householdcapital.com.au/frequently-asked-questions/</a>.
           </div>
           <div>
-            Otherwise, contact us here
-            <a class="text-link underline" href="#"> customer service </a>
-            and our team will assist.
+             Otherwise, email us at <a href="mailto: hhcsupport@thinkwink.com.au" class="text-link">hhcsupport@thinkwink.com.au</a> and our team will assist.
           </div>
         `
       }
@@ -180,13 +174,16 @@ export default {
 
 <template>
   <ReferFriendLayout>
-    <div class="mx-auto py-12 px-20 font-merry">
-      <h1 class="font-bold text-5xl pl-5 pb-10"> FAQs</h1>
-      <Item 
-        v-for="item in items" 
-        @toggle-open="updateOpen" 
-        :state="item"
-        />
-    </div>
+
+     <div class="mx-auto py-12">
+
+        <div class="flex justify-center pt-5">
+          <div class="text-center text-toolbar w-2/3">
+            <h3 class="text-5xl font-bold font-merry">FAQs</h3>
+
+            <Item v-for="item in items" @toggle-open="updateOpen" :state="item" class="text-left" />
+          </div>
+        </div>
+     </div>
   </ReferFriendLayout>
 </template>
