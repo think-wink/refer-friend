@@ -51,8 +51,8 @@ class EligibilityEmailTwoJob implements ShouldQueue
         }
     }
 
-    public function middleware(): array
-    {
-        return [new RateLimited('emails')];
-    }
+//    public function middleware(): array
+//    {
+//        return [new RateLimited('emails')];
+//    }
 }
