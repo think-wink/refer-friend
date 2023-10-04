@@ -23,6 +23,9 @@ class Referred extends Model
         'subscribed' => 'boolean'
     ];
 
+    protected $attributes = [
+        'reward_status' => 'eligibility_email_1_sent'
+    ];
     
     // set by us
     const INTERNAL_STATUS = [
@@ -36,16 +39,15 @@ class Referred extends Model
         'reward_credited',
     ];
 
-    // set by other party
     const EXTERNAL_STATUS = [
-        'form_completed',
-        'not_interested', 
-        'meeting_booked', 
-        'ineligible', 
-        'pension_boost_eligible',
-        'loan_eligible',
-        'loan_approved', 
-        'pension_boost_approved', 
+        'form_completed',# Customer has completed the calculator form
+        'not_interested',  # Customer is eligible but is not interested
+        'meeting_booked',   # Customer has their 15 min qualifying call booked
+        'ineligible',  # Customer is not eligible for a loan
+        'pension_boost_eligible', # Customer has been referred to Pension Boost
+        'eligible', # Customer is eligible for a loan, but it is not approved yet
+        'loan_settled', # Customer and the referrer will be issued with a reward
+        'pb_approved',  # Customer, and the referre
     ];
 
     const MATCH_STATUS = [
