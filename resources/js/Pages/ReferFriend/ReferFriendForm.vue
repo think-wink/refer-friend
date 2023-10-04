@@ -154,7 +154,7 @@
                 <div class="flex items-center">
                   <input type="checkbox" class="rounded-md border-grey mr-2" v-model="permission" />
                   <label class="text-sm text-toolbar">
-                    By providing us another person’s information, you confirm that you first obtained their consent to share it with us and for us to collect and handle their personal information in accordance with our <a class=" text-link" href="https://householdcapital.com.au/privacy-credit-reporting-policy/" target="_blank">Privacy Policy</a>.
+                    By providing us another person’s information, you confirm that you first obtained their consent to share it with us and for us to collect and handle their personal information in accordance with our <a class=" text-link underline" href="https://householdcapital.com.au/privacy-credit-reporting-policy/" target="_blank">Privacy Policy</a>.
                   </label>
                 </div>
                 <p class="text-red text-xs mt-1" v-if="errors['permission']">{{ errors['permission'][0] }}</p>
@@ -164,7 +164,7 @@
                 <div class="flex items-center">
                   <input type="checkbox" class="rounded-md border-grey mr-2" v-model="terms" />
                   <label class="required-label text-sm text-toolbar">
-                    By providing yours and your friend's details, you agree to and have shared with your friend our <a class=" text-link" href="/terms" target="_blank">Terms of Use</a> and <a class=" text-link" href="https://householdcapital.com.au/privacy-credit-reporting-policy/" target="_blank">Privacy and Credit Reporting Policy.</a>
+                    By providing yours and your friend's details, you agree to and have shared with your friend our <a class=" text-link underline" href="/terms" target="_blank">Terms of Use</a> and <a class=" text-link underline" href="https://householdcapital.com.au/privacy-credit-reporting-policy/" target="_blank">Privacy and Credit Reporting Policy.</a>
                   </label>
                 </div>
                 <p class="text-red text-xs mt-1" v-if="errors['terms']">{{ errors['terms'][0] }}</p>

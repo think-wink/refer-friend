@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Log;
@@ -24,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
         if( config('app.env') !== 'local') {
             URL::forceScheme('https');
         }
-       
+
+//        RateLimiter::for('emails', function($job){
+//            return Limit::perMinute(10);
+//        });
     }
 }
