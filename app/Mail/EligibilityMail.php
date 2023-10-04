@@ -18,7 +18,7 @@ class EligibilityMail extends Mailable
 
     private $email_template;
     protected Referred $referred;
-    protected Referrer $referrer;
+    protected ?Referrer $referrer;
     protected string $mail_uuid;
 
     /**
@@ -38,7 +38,7 @@ class EligibilityMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: str_replace('{referrer_name}', $this->referrer->first_name.' '.$this->referrer->last_name, $this->email_template->subject),
+            subject: str_replace('{referrer_name}', ($this->referrer ? ($this->referrer->first_name.' '.$this->referrer->last_name) : ''), $this->email_template->subject),
         );
     }
 
@@ -52,7 +52,7 @@ class EligibilityMail extends Mailable
             with: [
                 'cover_image' => $this->email_template->cover_image,
                 'greeting_text' => str_replace('{referred_name}', $this->referred->first_name.' '.$this->referred->last_name, $this->email_template->greeting_text),
-                'upper_text' => str_replace('{referrer_name}', $this->referrer->first_name.' '.$this->referrer->last_name, $this->email_template->upper_text),
+                'upper_text' => str_replace('{referrer_name}', ($this->referrer ? ($this->referrer->first_name.' '.$this->referrer->last_name) : ''), $this->email_template->upper_text),
                 'button_text' => $this->email_template->button_text,
                 'button_url' => $this->email_template->button_url,
                 'lower_text' => $this->email_template->lower_text,

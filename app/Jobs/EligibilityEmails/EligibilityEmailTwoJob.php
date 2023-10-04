@@ -8,6 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\Middleware\RateLimited;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
@@ -49,4 +50,9 @@ class EligibilityEmailTwoJob implements ShouldQueue
             $this->referred->emailJobs()->where('email_type', 'eligibility_email_2')->delete();
         }
     }
+
+//    public function middleware(): array
+//    {
+//        return [new RateLimited('emails')];
+//    }
 }

@@ -101,7 +101,7 @@
                         </tr>
                         <tr>
                            <td>
-                               <p>Copyright © Household Capital 2021</p>
+                               <p>Copyright © Household Capital 2023</p>
                            </td>
                         </tr>
                     </table>
