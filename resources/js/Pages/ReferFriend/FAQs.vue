@@ -70,8 +70,7 @@ export default {
         title: 'Can I refer more than one friend? ',
         content: `
           <div>
-            Yes, if you have a Household Loan you can refer up to 10 friends. Refer more friends here 
-            <a class="text-link" href="#"> [Insert link to refer friend microsite] <a>.
+            Yes, if you have a Household Loan you can refer up to 10 friends.
           </div>
         `
       }, {
@@ -146,7 +145,7 @@ export default {
             <a class="text-link" href="https://householdcapital.com.au/frequently-asked-questions"> https://householdcapital.com.au/frequently-asked-questions/</a>.
           </div>
           <div>
-             Otherwise, email us at <a href="mailto: hhcsupport@thinkwink.com.au" class="text-link">hhcsupport@thinkwink.com.au</a> and our team will assist.
+             Otherwise, email us at <a href="mailto:householdcapital@thinkwink.com.au" class="text-link">householdcapital@thinkwink.com.au</a> and our team will assist.
           </div>
         `
       }

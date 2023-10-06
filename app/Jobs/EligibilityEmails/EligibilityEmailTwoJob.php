@@ -10,7 +10,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\RateLimited;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 
 class EligibilityEmailTwoJob implements ShouldQueue
@@ -51,8 +50,8 @@ class EligibilityEmailTwoJob implements ShouldQueue
         }
     }
 
-//    public function middleware(): array
-//    {
-//        return [new RateLimited('emails')];
-//    }
+    public function middleware(): array
+    {
+        return [new RateLimited('emails')];
+    }
 }
