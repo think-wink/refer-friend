@@ -27,8 +27,9 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
-//        RateLimiter::for('emails', function($job){
-//            return Limit::perMinute(10);
-//        });
+        RateLimiter::for('emails', function($job){
+            // Limits jobs by 13 per minute
+            return Limit::perMinute(13);
+        });
     }
 }
