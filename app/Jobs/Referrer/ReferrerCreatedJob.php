@@ -8,6 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\Middleware\RateLimited;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
@@ -32,5 +33,10 @@ class ReferrerCreatedJob implements ShouldQueue
     {
         $mail = $this->referrer->emailJobs()->create(['email_type' => 'referrer_created', 'scheduled_date_time' => now(), 'email_sent' => true]);
         Mail::to($this->referrer)->send(new ReferrerCreatedMail($this->referrer, $mail->uuid));
+    }
+
+    public function middleware(): array
+    {
+        return [new RateLimited('emails')];
     }
 }

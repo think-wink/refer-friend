@@ -52,7 +52,7 @@
                   <h5 class="underline relative">Referee: </h5>
 
                   <li>Is above 60 years old.</li>
-                  <li>Lives in an <a class="text-link underline" href="#"> eligible postcode</a>  in Australia.</li>
+                  <li>Lives in an eligible postcode in Australia.</li>
                   <li>House value is a minimum of $600,000.</li>
                   <li>A referee settles a Household Loan with Household Capital after being referred by</li>
                 </ol>
@@ -82,7 +82,6 @@
 
               <li> Join Household Capital via the Refer a Friend program if they have not secured a loan with Household Capital previously or join Pension Boost to access the Home Equity Access Scheme (HEAS).</li>
               <li> Receive a $500 Digital Prepaid Mastercard upon settlement of Household Loan with Household Capital or $50 Digital Prepaid Mastercard upon acquisition of a HEAS.</li>
-              <li> Refer their own friend via the Refer a Friend program after they have settled a Household Loan.</li>
               <li> Participants must not be an employee of (or spouse, parent, child or sibling, whether full, half, step or by adoption, of an employee of the Promoters or any of its related corporations or any of their agencies associated with the program.  </li>
 
               <h4 class="text-lg font-bold">Claiming your Household Capital branded Digital Prepaid Mastercard</h4>

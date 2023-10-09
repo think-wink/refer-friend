@@ -8,8 +8,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\Middleware\RateLimited;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 
 class EligibilityEmailOneJob implements ShouldQueue
@@ -41,5 +41,10 @@ class EligibilityEmailOneJob implements ShouldQueue
             // Send the Eligibility Email One
             Mail::to($this->referred)->send(new EligibilityMail($this->referred, 'eligibility_email_1', $mail->uuid));
         }
+    }
+
+    public function middleware(): array
+    {
+        return [new RateLimited('emails')];
     }
 }
