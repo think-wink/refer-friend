@@ -28,8 +28,8 @@ class AppServiceProvider extends ServiceProvider
         }
 
         RateLimiter::for('emails', function($job){
-            // Limits jobs by 840 per minute or 14 per second
-            return Limit::perMinute(840);
+            // Limits jobs by 13 per minute
+            return Limit::perMinute(13);
         });
     }
 }
