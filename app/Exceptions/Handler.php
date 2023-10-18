@@ -49,7 +49,7 @@ class Handler extends ExceptionHandler
         $this->renderable(function (NotFoundHttpException $e, $request) {
             if ($request->is('api/*')) { // <- Add your condition here
                 return response()->json([
-                    'message' => 'No item exists with the given ID'
+                    'message' => 'Resource Not Found'
                 ], 404);
             }
         });
