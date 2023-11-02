@@ -9,6 +9,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Headers;
 use Illuminate\Queue\SerializesModels;
 
 class ReferrerCreatedMail extends Mailable
@@ -36,6 +37,15 @@ class ReferrerCreatedMail extends Mailable
     {
         return new Envelope(
             subject: $this->email_template->subject,
+        );
+    }
+
+    public function headers(): Headers
+    {
+        return new Headers(
+            text: [
+                'X-Model-ID' => $this->mail_uuid,
+            ]
         );
     }
 

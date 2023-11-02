@@ -37,3 +37,8 @@ Route::controller(Auth::class)->group(function(){
 Route::controller(Customer::class)->group(function(){
     Route::post('referrer/{uuid}/referred/create', 'createReferred');
 });
+
+Route::middleware('auth:sanctum')->controller(\App\Http\Controllers\Admin\StatsController::class)->group(function () {
+    Route::get('email-stats', 'emailStats');
+    Route::get('subscribed-stats', 'subscribedStats');
+});
