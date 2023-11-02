@@ -106,10 +106,10 @@
         Total Emails Sent: {{ chartData ? chartData.datasets[0].data[0] : 0 }}
       </h3>
       <h3 class="">
-        Total Clicks: {{ chartData ? chartData.datasets[0].data[1] : 0 }}
+        Total Opens: {{ chartData ? chartData.datasets[0].data[1] : 0 }}
       </h3>
       <h3 class="">
-        Total Opens: {{ chartData ? chartData.datasets[0].data[2] : 0 }}
+        Total Clicks: {{ chartData ? chartData.datasets[0].data[2] : 0 }}
       </h3>
     </div>
     <div class="h-[300px] flex items-center" >
