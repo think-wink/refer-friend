@@ -10,6 +10,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Headers;
 use Illuminate\Queue\SerializesModels;
 
 class EligibilityMail extends Mailable
@@ -39,6 +40,15 @@ class EligibilityMail extends Mailable
     {
         return new Envelope(
             subject: str_replace('{referrer_name}', ($this->referrer ? ($this->referrer->first_name.' '.$this->referrer->last_name) : ''), $this->email_template->subject),
+        );
+    }
+
+    public function headers(): Headers
+    {
+        return new Headers(
+            text: [
+                'X-Model-ID' => $this->mail_uuid,
+            ]
         );
     }
 

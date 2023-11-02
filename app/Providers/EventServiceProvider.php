@@ -5,12 +5,14 @@ namespace App\Providers;
 use App\Events\Referred\ReferredCreatedEvent;
 use App\Events\Referred\ReferredStatusChangeEvent;
 use App\Events\Referrer\ReferrerCreatedEvent;
+use App\Listeners\EmailSent;
 use App\Listeners\Referred\ReferredCreatedListener;
 use App\Listeners\Referred\ReferredStatusChangeListener;
 use App\Listeners\Referrer\ReferrerCreatedListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use jdavidbakr\MailTracker\Events\EmailSentEvent;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -31,6 +33,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ReferredStatusChangeEvent::class => [
           ReferredStatusChangeListener::class,
+        ],
+        EmailSentEvent::class=> [
+            EmailSent::class,
         ],
     ];
 
