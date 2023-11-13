@@ -16,18 +16,20 @@ class StatsController extends Controller
     public function emailStats(EmailStatsRequest $request)
     {
         $emailQuery = EmailJob::join('sent_emails', 'email_jobs.sent_email_id', '=', 'sent_emails.id')
-                                ->select(
-                                    DB::raw('COUNT(*) as total_sent_emails'),
-                                    DB::raw('IFNULL(SUM(CASE WHEN sent_emails.opened_at IS NOT NULL THEN 1 ELSE 0 END), 0) as total_opens'),
-                                    DB::raw('IFNULL(SUM(CASE WHEN sent_emails.clicked_at IS NOT NULL THEN 1 ELSE 0 END), 0) as total_clicks')
-                                )
-                                ->where('email_sent', true);
+            ->select(
+                DB::raw('COUNT(*) as total_sent_emails'),
+                DB::raw('SUM(sent_emails.opens) as total_opens'),
+                DB::raw('SUM(sent_emails.clicks) as total_clicks'),
+                DB::raw('IFNULL(SUM(CASE WHEN sent_emails.opened_at IS NOT NULL THEN 1 ELSE 0 END), 0) as unique_opens'),
+                DB::raw('IFNULL(SUM(CASE WHEN sent_emails.clicked_at IS NOT NULL THEN 1 ELSE 0 END), 0) as unique_clicks')
+            )
+            ->where('email_sent', true);
 
-        if($request->type){
+        if ($request->type) {
             $emailQuery = $emailQuery->where('email_type', $request->type)->groupBy('email_type');
         }
 
-        if($request->date){
+        if ($request->date) {
             $startDate = Carbon::parse($request->date)->startOfMonth();
             $endDate = Carbon::parse($request->date)->endOfMonth();
             $emailQuery = $emailQuery->whereBetween('sent_emails.created_at', [$startDate, $endDate]);
