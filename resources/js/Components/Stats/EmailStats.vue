@@ -39,7 +39,7 @@
           .get(`/api/email-stats?type=${this.emailType}&date=${this.timePeriod}`)
           .then((response) => {
             response.data.emailStats ? this.chartData = {
-              labels: ['Total Emails Sent', 'Total Opens', 'Total Clicks'],
+              labels: ['Total Emails Sent', 'Total Opens', 'Total Clicks',  'Unique Opens', 'Unique Clicks'],
               datasets: [
                 {
                   backgroundColor: ['#22c55e', '#FF4929', '#f7b515'],
@@ -103,13 +103,19 @@
       </div>
 
       <h3 class="">
-        Total Emails Sent: {{ chartData ? chartData.datasets[0].data[0] : 0 }}
+        Total Recipients: {{ chartData ? chartData.datasets[0].data[0] : 0 }}
       </h3>
       <h3 class="">
-        Total Opens: {{ chartData ? chartData.datasets[0].data[1] : 0 }}
+        Unique Opens: {{ chartData ? chartData.datasets[0].data[1] : 0 }}
       </h3>
       <h3 class="">
-        Total Clicks: {{ chartData ? chartData.datasets[0].data[2] : 0 }}
+        Unique Clicks: {{ chartData ? chartData.datasets[0].data[2] : 0 }}
+      </h3>
+      <h3 class="">
+        Total Opens: {{ chartData ? chartData.datasets[0].data[3] : 0 }}
+      </h3>
+      <h3 class="">
+        Total Clicks: {{ chartData ? chartData.datasets[0].data[4] : 0 }}
       </h3>
     </div>
     <div class="h-[300px] flex items-center" >
